@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class AppointmentListResponse {
+public class OfferListResponse {
 
-    private List<AppointmentListItemResponse> items;
+    private List<OfferListItemResponse> items;
 }

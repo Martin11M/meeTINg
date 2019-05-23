@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class AppointmentListItemResponse {
+public class OfferListItemResponse {
 
     private long id;
 

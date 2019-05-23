@@ -23,12 +23,12 @@ public enum RequestFlag {
     MAKEEVT, // stwórz nowy event
     RMEVENT, // usuń event
 
-    EVNTAPT, // pokaż terminy eventu
-    SHOWAPT, // wybierz konkretny termin
-    MAKEAPT, // stwórz nowy termin
-    PROPAPT, // proponuj nowy termin
-    RMAPTMT, // usuń termin
-    APTMDEC, // zaakceptuj/odrzuć termin
+    EVNTOFR, // pokaż terminy eventu
+    SHOWOFR, // wybierz konkretny termin
+    MAKEOFR, // stwórz nowy termin
+    PROPOFR, // proponuj nowy termin
+    RMOFFER, // usuń termin
+    OFRDECL, // zaakceptuj/odrzuć termin
 
     NEWVOTE, // zagłosuj na termin
     COMMENT  // dodaj komentarz

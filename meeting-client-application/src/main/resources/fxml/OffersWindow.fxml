@@ -8,12 +8,12 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="meeting.controller.AppointmentsWindowController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="meeting.controller.OffersWindowController">
     <children>
         <Pane prefHeight="100.0" prefWidth="800.0" style="-fx-background-color: #D3D3D3;">
             <children>
                 <FontIcon iconLiteral="typ-calendar-outline" iconSize="64" layoutX="40.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                <Label layoutX="125.0" layoutY="26.0" text="Appointments">
+                <Label layoutX="125.0" layoutY="26.0" text="Offers">
                     <font>
                         <Font name="System Bold" size="44.0" />
                     </font>

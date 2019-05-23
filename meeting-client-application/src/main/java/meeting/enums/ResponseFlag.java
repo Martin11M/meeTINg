@@ -23,12 +23,12 @@ public enum ResponseFlag {
     MAKEEVT, // pomyślne stworzenie eventu
     RMEVENT, // pomyślne usunięcie eventu
 
-    EVNTAPT, // terminy eventu
-    SHOWAPT, // konkretny termin
-    MAKEAPT, // pomyślne stworzenie nowego terminu
-    PROPAPT, // potwierdzenie wysłania propozycji
-    RMAPTMT, // pomyślne usunięcie terminu
-    APTMDEC, // potwierdzenie decyzji
+    EVNTOFR, // terminy eventu
+    SHOWOFR, // konkretny termin
+    MAKEOFR, // pomyślne stworzenie nowego terminu
+    PROPOFR, // potwierdzenie wysłania propozycji
+    RMOFFER, // pomyślne usunięcie terminu
+    OFRDECL, // potwierdzenie decyzji
 
     NEWVOTE, // pomyślnie zagłosowano
     COMMENT, // pomyślnie dodano komentarz
