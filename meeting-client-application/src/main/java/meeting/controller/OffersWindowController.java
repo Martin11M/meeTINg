@@ -20,6 +20,7 @@ import meeting.enums.ResponseFlag;
 import meeting.model.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,20 +33,21 @@ public class OffersWindowController {
     @FXML public Button returnButton;
     @FXML public Button refreshButton;
     @FXML public Button createButton;
-    @FXML public Button proposalsButton;
+    @FXML public Button acceptButton;
+    @FXML public Button proposeButton;
+    @FXML public Button voteButton;
+    @FXML public Button commentButton;
 
-    @FXML public TableView<Offer> offersTable;
-    @FXML public TableColumn<Offer, String> offerDate;
-    @FXML public TableColumn<Offer, Integer> offerVotes;
+    @FXML public TableView<FormattedOffer> offersTable;
+    @FXML public TableColumn<FormattedOffer, String> offerDate;
+    @FXML public TableColumn<FormattedOffer, Integer> offerVotes;
 
-    @FXML public TableView<Offer> proposalsTable;
-    @FXML public TableColumn<Offer, String> proposalDate;
-    @FXML public TableColumn<Offer, Integer> proposalVotes;
+    @FXML public TableView<FormattedOffer> proposalsTable;
+    @FXML public TableColumn<FormattedOffer, String> proposalDate;
+    @FXML public TableColumn<FormattedOffer, Integer> proposalVotes;
 
-    @FXML public TableView<Comment> commentsTable;
-    @FXML public TableColumn<Comment, String> commentDate;
-    @FXML public TableColumn<Comment, String> commentUsername;
-    @FXML public TableColumn<Comment, String> commentMessage;
+    @FXML public ListView<String> commentsList;
+    @FXML public Label roleInfoLabel;
 
     private Group pickedGroup;
     private Event pickedEvent;
@@ -75,6 +77,11 @@ public class OffersWindowController {
         Platform.runLater(() ->{
             if(user.getSystemRole() == USER) {
                 createButton.setDisable(true);
+                acceptButton.setDisable(true);
+                roleInfoLabel.setText("Logged as " + user.getUsername() + " (User)");
+            }
+            else {
+                roleInfoLabel.setText("Logged as " + user.getUsername() + " (Team Leader)");
             }
             refreshClicked();
         });
@@ -176,24 +183,22 @@ public class OffersWindowController {
                 "      \"id\" : 255,\n" +
                 "      \"username\" : \"piotrek wariat\",\n" +
                 "      \"message\" : \"siemano wariatyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\",\n" +
-                "      \"postDate\" : \"2019-05-28T20:30:00.000000\"\n" +
+                "      \"postDate\" : \"2019-05-27T20:30:00.000000\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 256,\n" +
                 "      \"username\" : \"pawelek z ustronia\",\n" +
                 "      \"message\" : \"ustronalia to gUWno niesamowite\",\n" +
-                "      \"postDate\" : \"2019-05-28T20:30:00.000000\"\n" +
+                "      \"postDate\" : \"2019-05-28T16:32:25.620031\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 257,\n" +
                 "      \"username\" : \"Maria (Lwow)\",\n" +
                 "      \"message\" : \"w paszczu pisiont, w zopu sto\",\n" +
-                "      \"postDate\" : \"2019-05-28T20:30:00.000000\"\n" +
+                "      \"postDate\" : \"2019-05-28T20:58:10.326503\"\n" +
                 "    }\n" +
                 "  ]\n" +
                 "}";
-
-        System.out.println(fakeResponse);
 
         OfferListResponse offerListResponse = gson.fromJson(fakeResponse, OfferListResponse.class);
 
@@ -207,6 +212,7 @@ public class OffersWindowController {
 
         List<Offer> acceptedOffers = new ArrayList<>();
         List<Offer> proposals = new ArrayList<>();
+        List<Comment> comments = new ArrayList<>();
 
         offerListResponse.getOffers().forEach(offer -> {
             Offer o = Offer.builder()
@@ -219,8 +225,6 @@ public class OffersWindowController {
             else proposals.add(o);
         });
 
-        List<Comment> comments = new ArrayList<>();
-
         offerListResponse.getComments().forEach(comment -> {
             Comment c = Comment.builder()
                     .id(comment.getId())
@@ -231,13 +235,7 @@ public class OffersWindowController {
             comments.add(c);
         });
 
-        offersTable.getItems().clear();
-        proposalsTable.getItems().clear();
-        commentsTable.getItems().clear();
-
-        offersTable.getItems().addAll(acceptedOffers);
-        proposalsTable.getItems().addAll(proposals);
-        commentsTable.getItems().addAll(comments);
+        fillTables(acceptedOffers, proposals, comments);
     }
 
     private void initCols() {
@@ -245,18 +243,41 @@ public class OffersWindowController {
         offerVotes.setCellValueFactory(new PropertyValueFactory<>("votesCount"));
         proposalDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         proposalVotes.setCellValueFactory(new PropertyValueFactory<>("votesCount"));
-        commentDate.setCellValueFactory(new PropertyValueFactory<>("postDate"));
-        commentUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
-        commentMessage.setCellValueFactory(new PropertyValueFactory<>("message"));
     }
 
-    public void proposalsClicked(ActionEvent mouseEvent) {
-    }
+    private void fillTables( List<Offer> acceptedOffers, List<Offer> proposals, List<Comment> comments) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 
-    public void commentsClicked(MouseEvent mouseEvent) {
+        List<FormattedOffer> formattedAcceptedOffers = new ArrayList<>();
+        List<FormattedOffer> formattedProposals = new ArrayList<>();
+        List<String> formattedComments = new ArrayList<>();
+
+        acceptedOffers.forEach(offer -> formattedAcceptedOffers.add(new FormattedOffer(offer.getStartDate().format(formatter), offer.getVotesCount())));
+        proposals.forEach(proposal -> formattedProposals.add(new FormattedOffer(proposal.getStartDate().format(formatter), proposal.getVotesCount())));
+        comments.forEach(comment -> formattedComments.add(comment.getPostDate().format(formatter) + " " + comment.getUsername() + ": " + comment.getMessage()));
+
+        offersTable.getItems().clear();
+        proposalsTable.getItems().clear();
+        commentsList.getItems().clear();
+
+        offersTable.getItems().addAll(formattedAcceptedOffers);
+        proposalsTable.getItems().addAll(formattedProposals);
+        commentsList.getItems().addAll(formattedComments);
     }
 
     public void createClicked(ActionEvent actionEvent) {
+    }
+
+    public void acceptClicked(ActionEvent actionEvent) {
+    }
+
+    public void proposeClicked(ActionEvent mouseEvent) {
+    }
+
+    public void voteClicked(ActionEvent actionEvent) {
+    }
+
+    public void commentClicked(ActionEvent actionEvent) {
     }
 
     public void acceptedOffersTableClicked(MouseEvent mouseEvent) {
@@ -265,6 +286,23 @@ public class OffersWindowController {
     public void proposalsTableClicked(MouseEvent mouseEvent) {
     }
 
-    public void commentsTableClicked(MouseEvent mouseEvent) {
+    public class FormattedOffer {
+
+        private String startDate;
+
+        private int votesCount;
+
+        FormattedOffer(String startDate, int votesCount) {
+            this.startDate = startDate;
+            this.votesCount = votesCount;
+        }
+
+        public String getStartDate() {
+            return startDate;
+        }
+
+        public int getVotesCount() {
+            return votesCount;
+        }
     }
 }

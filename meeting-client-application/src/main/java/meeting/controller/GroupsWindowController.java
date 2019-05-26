@@ -47,11 +47,12 @@ public class GroupsWindowController {
             if(user.getSystemRole() == USER) {
                 createButton.setDisable(true);
                 requestsButton.setDisable(true);
-                roleInfoLabel.setText("Logged as User (limited options)");
+                roleInfoLabel.setText("Logged as " + user.getUsername() + " (User)");
             }
             else {
                 // leader nie moze aplikowac do grup
                 allGroupsButton.setDisable(true);
+                roleInfoLabel.setText("Logged as " + user.getUsername() + " (Team Leader)");
             }
 
             refreshClicked();

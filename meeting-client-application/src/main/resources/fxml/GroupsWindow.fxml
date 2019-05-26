@@ -26,7 +26,7 @@
                   <FontIcon iconColor="WHITE" iconLiteral="fa-sign-out" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" />
                </graphic>
             </Button>
-            <Label fx:id="roleInfoLabel" alignment="CENTER_RIGHT" layoutX="465.0" layoutY="17.0" prefHeight="18.0" prefWidth="321.0" text="Logged as Admin (Team Leader)">
+            <Label fx:id="roleInfoLabel" alignment="CENTER_RIGHT" layoutX="465.0" layoutY="17.0" prefHeight="18.0" prefWidth="321.0">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -38,7 +38,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
                <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="typ-refresh-outline" iconSize="22" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <FontIcon iconColor="WHITE" iconLiteral="typ-th-list-outline" iconSize="22" strokeType="OUTSIDE" strokeWidth="0.0" />
                </graphic>
             </Button>
             <Button layoutX="20.0" layoutY="30.0" mnemonicParsing="false" onAction="#refreshClicked" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #000000;" text=" REFRESH" textFill="WHITE">

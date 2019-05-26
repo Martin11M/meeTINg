@@ -27,7 +27,7 @@
                         <FontIcon iconColor="WHITE" iconLiteral="fa-sign-out" iconSize="20" strokeType="OUTSIDE" strokeWidth="0.0" />
                     </graphic>
                 </Button>
-                <Label layoutX="557.0" layoutY="17.0" text="Logged as Admin (Team Leader)">
+                <Label fx:id="roleInfoLabel" alignment="CENTER_RIGHT" layoutX="465.0" layoutY="17.0" prefHeight="18.0" prefWidth="321.0">
                     <font>
                         <Font size="14.0" />
                     </font></Label>

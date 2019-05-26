@@ -16,7 +16,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import meeting.model.Event;
 import meeting.model.Group;
@@ -36,6 +35,7 @@ public class EventsWindowController {
     @FXML public Button returnButton;
     @FXML public Button signOutButton;
     @FXML public ListView<Event> eventList;
+    public Label roleInfoLabel;
 
     private Group pickedGroup;
     private Event pickedEvent;
@@ -47,6 +47,10 @@ public class EventsWindowController {
         Platform.runLater(() ->{
             if(user.getSystemRole() == USER) {
                 createButton.setDisable(true);
+                roleInfoLabel.setText("Logged as " + user.getUsername() + " (User)");
+            }
+            else {
+                roleInfoLabel.setText("Logged as " + user.getUsername() + " (Team Leader)");
             }
             refreshClicked();
         });
