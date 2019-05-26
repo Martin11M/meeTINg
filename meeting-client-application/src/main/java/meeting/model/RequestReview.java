@@ -1,6 +1,5 @@
 package meeting.model;
 
-import javafx.scene.control.Button;
 import lombok.*;
 
 @Getter

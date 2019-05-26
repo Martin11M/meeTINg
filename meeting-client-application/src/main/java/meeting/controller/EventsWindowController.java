@@ -4,7 +4,6 @@ import javafx.scene.control.*;
 import meeting.StageLoader;
 import meeting.api.request.EventListRequest;
 import meeting.api.request.NewEventRequest;
-import meeting.api.response.ErrorResponse;
 import meeting.api.response.EventListResponse;
 import meeting.api.response.NewEventResponse;
 import meeting.client.Client;
@@ -39,6 +38,7 @@ public class EventsWindowController {
     @FXML public ListView<Event> eventList;
 
     private Group pickedGroup;
+    private Event pickedEvent;
     private Client client;
     private User user;
 
@@ -182,8 +182,24 @@ public class EventsWindowController {
     }
 
     @FXML
-    public void eventClicked(MouseEvent mouseEvent) {
-        System.out.println("eventClicked");
+    public void eventClicked(javafx.event.Event event) {
+        if(eventList.getSelectionModel().getSelectedItem() != null &&
+                eventList.getSelectionModel().getSelectedItem() != pickedEvent) {
+
+            pickedEvent = eventList.getSelectionModel().getSelectedItem();
+
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/OffersWindow.fxml"));
+                StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
+                OffersWindowController offersWindowController = fxmlLoader.getController();
+                offersWindowController.setPickedGroup(pickedGroup);
+                offersWindowController.setPickedEvent(pickedEvent);
+                offersWindowController.setClient(client);
+                offersWindowController.setUser(user);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     void setPickedGroup(Group pickedGroup) {

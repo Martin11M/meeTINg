@@ -9,5 +9,9 @@ public class OfferListItemResponse {
 
     private long id;
 
-    private String name;
+    private String startDate;
+
+    private int votesCount;
+
+    private boolean acceptedOffer;
 }

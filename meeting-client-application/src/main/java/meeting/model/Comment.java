@@ -9,13 +9,13 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-public class Offer {
+public class Comment {
 
     private long id;
 
-    private LocalDateTime startDate;
+    private String username;
 
-    private int votesCount;
+    private String message;
 
-    private boolean acceptedOffer;
+    private LocalDateTime postDate;
 }

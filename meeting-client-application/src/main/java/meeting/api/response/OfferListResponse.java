@@ -9,5 +9,9 @@ import java.util.List;
 @NoArgsConstructor
 public class OfferListResponse {
 
-    private List<OfferListItemResponse> items;
+    private String flag;
+
+    private List<OfferListItemResponse> offers;
+
+    private List<CommentResponse> comments;
 }

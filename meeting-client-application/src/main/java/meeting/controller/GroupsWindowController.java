@@ -1,11 +1,8 @@
 package meeting.controller;
 
 import meeting.StageLoader;
-import meeting.api.request.EventListRequest;
 import meeting.api.request.GroupListRequest;
 import meeting.api.request.NewGroupRequest;
-import meeting.api.response.ErrorResponse;
-import meeting.api.response.EventListResponse;
 import meeting.api.response.GroupListResponse;
 import meeting.api.response.NewGroupResponse;
 import meeting.client.Client;

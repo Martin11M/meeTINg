@@ -69,7 +69,7 @@
       </Pane>
       <Pane layoutY="580.0" prefHeight="20.0" prefWidth="800.0" style="-fx-background-color: #A9A9A9; -fx-opacity: 0.4;">
          <children>
-            <Label layoutX="50.0" layoutY="2.0" prefHeight="16.0" prefWidth="700.0" text="Tomasz Suchodolski, Kacper Klimczuk, Marcin Janczurewicz, Michał Fijałkowski © 2019" textFill="WHITE" />
+            <Label alignment="CENTER" layoutX="110.0" layoutY="2.0" prefHeight="16.0" prefWidth="580.0" text="Tomasz Suchodolski, Kacper Klimczuk, Marcin Janczurewicz, Michał Fijałkowski © 2019" textFill="WHITE" />
          </children>
       </Pane>
       <ListView fx:id="listView" layoutY="100.0" onMouseClicked="#listClicked" prefHeight="480.0" prefWidth="600.0" />
