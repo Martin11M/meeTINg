@@ -3,6 +3,8 @@ package meeting.controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +16,10 @@ import javafx.stage.Stage;
 import meeting.StageLoader;
 import meeting.api.request.NewCommentRequest;
 import meeting.api.request.OfferListRequest;
+import meeting.api.request.ProposeOfferRequest;
 import meeting.api.response.NewCommentResponse;
 import meeting.api.response.OfferListResponse;
+import meeting.api.response.ProposeOfferResponse;
 import meeting.client.Client;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
@@ -59,6 +63,8 @@ public class OffersWindowController {
     private List<Offer> acceptedOffers = new ArrayList<>();
     private List<Offer> proposals = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
+
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 
     void setPickedGroup(Group pickedGroup) {
         this.pickedGroup = pickedGroup;
@@ -216,6 +222,10 @@ public class OffersWindowController {
             return;
         }
 
+        acceptedOffers.clear();
+        proposals.clear();
+        comments.clear();
+
         offerListResponse.getOffers().forEach(offer -> {
             Offer o = Offer.builder()
                     .id(offer.getId())
@@ -247,9 +257,7 @@ public class OffersWindowController {
         proposalVotes.setCellValueFactory(new PropertyValueFactory<>("votesCount"));
     }
 
-    private void fillTables( List<Offer> acceptedOffers, List<Offer> proposals, List<Comment> comments) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
-
+    private void fillTables(List<Offer> acceptedOffers, List<Offer> proposals, List<Comment> comments) {
         List<FormattedOffer> formattedAcceptedOffers = new ArrayList<>();
         List<FormattedOffer> formattedProposals = new ArrayList<>();
         List<String> formattedComments = new ArrayList<>();
@@ -312,9 +320,64 @@ public class OffersWindowController {
                 .build()
         );
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
         String formattedComment = postDate.format(formatter) + " " + user.getUsername() + ": " + comment;
         commentsList.getItems().add(formattedComment);
+    }
+
+    private void addProposal(String offer) {
+
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+
+        String delimiters = "[-: ]";
+        String[] parameters = offer.split(delimiters);
+        List<Integer> convertedParameters = new ArrayList<>();
+        for (String parameter : parameters) {
+            convertedParameters.add(Integer.parseInt(parameter));
+        }
+
+        LocalDateTime proposalDate = LocalDateTime.of(convertedParameters.get(0), convertedParameters.get(1),
+                convertedParameters.get(2), convertedParameters.get(3), convertedParameters.get(4));
+
+        ProposeOfferRequest proposeOfferRequest = ProposeOfferRequest.builder()
+                .flag(RequestFlag.PROPOFR.toString())
+                .eventId(pickedEvent.getId())
+                .userId(user.getId())
+                .date(proposalDate.toString())
+                .build();
+
+        String request = gson.toJson(proposeOfferRequest);
+//        String response = client.sendRequestRecResponse(request);
+
+        // fake response:
+
+        String fakeResponse = "{\n" +
+                "  \"flag\": \"PROPOFR\",\n" +
+                "  \"offerId\": 69\n" +
+                "}";
+
+        ProposeOfferResponse proposeOfferResponse = gson.fromJson(fakeResponse, ProposeOfferResponse.class);
+
+        if(proposeOfferResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Error response for PROPOFR");
+            alert.show();
+            return;
+        }
+
+        proposals.add(
+                Offer.builder()
+                        .id(proposeOfferResponse.getOfferId())
+                        .startDate(proposalDate)
+                        .votesCount(0)
+                        .acceptedOffer(false)
+                        .build()
+        );
+
+        FormattedOffer formattedOffer = new FormattedOffer(proposalDate.format(formatter), 0);
+        proposalsTable.getItems().add(formattedOffer);
     }
 
     public void createClicked(ActionEvent actionEvent) {
@@ -324,6 +387,13 @@ public class OffersWindowController {
     }
 
     public void proposeClicked(ActionEvent mouseEvent) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("New Proposal");
+        dialog.setHeaderText("Add new proposal to " + pickedEvent.getName());
+        dialog.setContentText("Date format: 2001-01-01 01:01");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(this::addProposal);
     }
 
     public void voteClicked(ActionEvent actionEvent) {
