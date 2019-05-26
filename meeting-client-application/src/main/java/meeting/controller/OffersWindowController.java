@@ -12,7 +12,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import meeting.StageLoader;
+import meeting.api.request.NewCommentRequest;
 import meeting.api.request.OfferListRequest;
+import meeting.api.response.NewCommentResponse;
 import meeting.api.response.OfferListResponse;
 import meeting.client.Client;
 import meeting.enums.RequestFlag;
@@ -53,6 +55,10 @@ public class OffersWindowController {
     private Event pickedEvent;
     private Client client;
     private User user;
+
+    private List<Offer> acceptedOffers = new ArrayList<>();
+    private List<Offer> proposals = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
     void setPickedGroup(Group pickedGroup) {
         this.pickedGroup = pickedGroup;
@@ -210,10 +216,6 @@ public class OffersWindowController {
             return;
         }
 
-        List<Offer> acceptedOffers = new ArrayList<>();
-        List<Offer> proposals = new ArrayList<>();
-        List<Comment> comments = new ArrayList<>();
-
         offerListResponse.getOffers().forEach(offer -> {
             Offer o = Offer.builder()
                     .id(offer.getId())
@@ -265,6 +267,56 @@ public class OffersWindowController {
         commentsList.getItems().addAll(formattedComments);
     }
 
+    private void addComment(String comment) {
+
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+
+        LocalDateTime postDate = LocalDateTime.now();
+
+        NewCommentRequest newCommentRequest = NewCommentRequest.builder()
+                .flag(RequestFlag.COMMENT.toString())
+                .userId(user.getId())
+                .eventId(pickedEvent.getId())
+                .message(comment)
+                .postDate(postDate.toString())
+                .build();
+
+        String request = gson.toJson(newCommentRequest);
+//        String response = client.sendRequestRecResponse(request);
+
+        // fake response:
+
+        String fakeResponse = "{\n" +
+                "  \"flag\": \"COMMENT\",\n" +
+                "  \"commentId\": 603\n" +
+                "}";
+
+        NewCommentResponse newCommentResponse = gson.fromJson(fakeResponse, NewCommentResponse.class);
+
+        if(newCommentResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Error response for COMMENT");
+            alert.show();
+            return;
+        }
+
+        comments.add(
+                Comment.builder()
+                .id(newCommentResponse.getCommentId())
+                .username(user.getUsername())
+                .message(comment)
+                .postDate(postDate)
+                .build()
+        );
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+        String formattedComment = postDate.format(formatter) + " " + user.getUsername() + ": " + comment;
+        commentsList.getItems().add(formattedComment);
+    }
+
     public void createClicked(ActionEvent actionEvent) {
     }
 
@@ -278,6 +330,12 @@ public class OffersWindowController {
     }
 
     public void commentClicked(ActionEvent actionEvent) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("New Comment");
+        dialog.setHeaderText("Add new comment to " + pickedEvent.getName());
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(this::addComment);
     }
 
     public void acceptedOffersTableClicked(MouseEvent mouseEvent) {
