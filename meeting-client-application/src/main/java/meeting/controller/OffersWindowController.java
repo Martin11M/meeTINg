@@ -3,8 +3,6 @@ package meeting.controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,10 +14,10 @@ import javafx.stage.Stage;
 import meeting.StageLoader;
 import meeting.api.request.NewCommentRequest;
 import meeting.api.request.OfferListRequest;
-import meeting.api.request.ProposeOfferRequest;
+import meeting.api.request.OfferRequest;
 import meeting.api.response.NewCommentResponse;
 import meeting.api.response.OfferListResponse;
-import meeting.api.response.ProposeOfferResponse;
+import meeting.api.response.OfferResponse;
 import meeting.client.Client;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
@@ -94,6 +92,7 @@ public class OffersWindowController {
             }
             else {
                 roleInfoLabel.setText("Logged as " + user.getUsername() + " (Team Leader)");
+                proposeButton.setDisable(true);
             }
             refreshClicked();
         });
@@ -324,7 +323,7 @@ public class OffersWindowController {
         commentsList.getItems().add(formattedComment);
     }
 
-    private void addProposal(String offer) {
+    private void newOffer(String offer, RequestFlag flag) {
 
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
@@ -340,14 +339,14 @@ public class OffersWindowController {
         LocalDateTime proposalDate = LocalDateTime.of(convertedParameters.get(0), convertedParameters.get(1),
                 convertedParameters.get(2), convertedParameters.get(3), convertedParameters.get(4));
 
-        ProposeOfferRequest proposeOfferRequest = ProposeOfferRequest.builder()
-                .flag(RequestFlag.PROPOFR.toString())
+        OfferRequest offerRequest = OfferRequest.builder()
+                .flag(flag.toString())
                 .eventId(pickedEvent.getId())
                 .userId(user.getId())
                 .date(proposalDate.toString())
                 .build();
 
-        String request = gson.toJson(proposeOfferRequest);
+        String request = gson.toJson(offerRequest);
 //        String response = client.sendRequestRecResponse(request);
 
         // fake response:
@@ -357,35 +356,58 @@ public class OffersWindowController {
                 "  \"offerId\": 69\n" +
                 "}";
 
-        ProposeOfferResponse proposeOfferResponse = gson.fromJson(fakeResponse, ProposeOfferResponse.class);
+        OfferResponse offerResponse = gson.fromJson(fakeResponse, OfferResponse.class);
 
-        if(proposeOfferResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
+        if(offerResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-            alert.setContentText("Error response for PROPOFR");
+            alert.setContentText("Error response for " + flag.toString());
             alert.show();
             return;
         }
 
-        proposals.add(
-                Offer.builder()
-                        .id(proposeOfferResponse.getOfferId())
-                        .startDate(proposalDate)
-                        .votesCount(0)
-                        .acceptedOffer(false)
-                        .build()
-        );
-
-        FormattedOffer formattedOffer = new FormattedOffer(proposalDate.format(formatter), 0);
-        proposalsTable.getItems().add(formattedOffer);
+        if (flag == RequestFlag.PROPOFR) {
+            proposals.add(
+                    Offer.builder()
+                            .id(offerResponse.getOfferId())
+                            .startDate(proposalDate)
+                            .votesCount(0)
+                            .acceptedOffer(false)
+                            .build()
+            );
+            FormattedOffer formattedOffer = new FormattedOffer(proposalDate.format(formatter), 0);
+            proposalsTable.getItems().add(formattedOffer);
+        }
+        else if (flag == RequestFlag.MAKEOFR) {
+            acceptedOffers.add(
+                    Offer.builder()
+                            .id(offerResponse.getOfferId())
+                            .startDate(proposalDate)
+                            .votesCount(0)
+                            .acceptedOffer(true)
+                            .build()
+            );
+            FormattedOffer formattedOffer = new FormattedOffer(proposalDate.format(formatter), 0);
+            offersTable.getItems().add(formattedOffer);
+        }
     }
 
+    @FXML
     public void createClicked(ActionEvent actionEvent) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("New Offer");
+        dialog.setHeaderText("Add new offer to " + pickedEvent.getName());
+        dialog.setContentText("Date format: 2001-01-01 01:01");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(offer -> newOffer(offer, RequestFlag.MAKEOFR));
     }
 
+    @FXML
     public void acceptClicked(ActionEvent actionEvent) {
     }
 
+    @FXML
     public void proposeClicked(ActionEvent mouseEvent) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("New Proposal");
@@ -393,12 +415,14 @@ public class OffersWindowController {
         dialog.setContentText("Date format: 2001-01-01 01:01");
 
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(this::addProposal);
+        result.ifPresent(offer -> newOffer(offer, RequestFlag.PROPOFR));
     }
 
+    @FXML
     public void voteClicked(ActionEvent actionEvent) {
     }
 
+    @FXML
     public void commentClicked(ActionEvent actionEvent) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("New Comment");
@@ -408,9 +432,11 @@ public class OffersWindowController {
         result.ifPresent(this::addComment);
     }
 
+    @FXML
     public void acceptedOffersTableClicked(MouseEvent mouseEvent) {
     }
 
+    @FXML
     public void proposalsTableClicked(MouseEvent mouseEvent) {
     }
 

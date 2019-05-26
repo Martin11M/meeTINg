@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ProposeOfferRequest {
+public class OfferRequest {
 
     private String flag;
 

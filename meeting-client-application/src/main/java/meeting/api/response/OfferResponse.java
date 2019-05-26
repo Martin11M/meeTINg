@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ProposeOfferResponse {
+public class OfferResponse {
 
     private String flag;
 
