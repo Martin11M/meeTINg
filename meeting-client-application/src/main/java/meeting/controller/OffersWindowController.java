@@ -21,8 +21,10 @@ import meeting.api.response.OfferResponse;
 import meeting.client.Client;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
+import meeting.enums.SystemRole;
 import meeting.model.*;
 
+import java.text.Normalizer;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -57,6 +59,9 @@ public class OffersWindowController {
     private Event pickedEvent;
     private Client client;
     private User user;
+
+    private FormattedOffer pickedOffer;
+    private FormattedOffer pickedProposal;
 
     private List<Offer> acceptedOffers = new ArrayList<>();
     private List<Offer> proposals = new ArrayList<>();
@@ -247,6 +252,9 @@ public class OffersWindowController {
         });
 
         fillTables(acceptedOffers, proposals, comments);
+
+        acceptButton.setDisable(true);
+        voteButton.setDisable(true);
     }
 
     private void initCols() {
@@ -393,7 +401,7 @@ public class OffersWindowController {
     }
 
     @FXML
-    public void createClicked(ActionEvent actionEvent) {
+    public void createClicked() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("New Offer");
         dialog.setHeaderText("Add new offer to " + pickedEvent.getName());
@@ -405,10 +413,11 @@ public class OffersWindowController {
 
     @FXML
     public void acceptClicked(ActionEvent actionEvent) {
+
     }
 
     @FXML
-    public void proposeClicked(ActionEvent mouseEvent) {
+    public void proposeClicked() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("New Proposal");
         dialog.setHeaderText("Add new proposal to " + pickedEvent.getName());
@@ -423,7 +432,7 @@ public class OffersWindowController {
     }
 
     @FXML
-    public void commentClicked(ActionEvent actionEvent) {
+    public void commentClicked() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("New Comment");
         dialog.setHeaderText("Add new comment to " + pickedEvent.getName());
@@ -433,11 +442,24 @@ public class OffersWindowController {
     }
 
     @FXML
-    public void acceptedOffersTableClicked(MouseEvent mouseEvent) {
+    public void acceptedOffersTableClicked() {
+        if(offersTable.getSelectionModel().getSelectedItem() != null &&
+                offersTable.getSelectionModel().getSelectedItem() != pickedOffer) {
+
+            pickedOffer = offersTable.getSelectionModel().getSelectedItem();
+            voteButton.setDisable(false);
+        }
     }
 
     @FXML
-    public void proposalsTableClicked(MouseEvent mouseEvent) {
+    public void proposalsTableClicked() {
+        if(proposalsTable.getSelectionModel().getSelectedItem() != null &&
+                proposalsTable.getSelectionModel().getSelectedItem() != pickedProposal) {
+
+            pickedProposal = proposalsTable.getSelectionModel().getSelectedItem();
+            if (user.getSystemRole() == SystemRole.TEAM_LEADER) acceptButton.setDisable(false);
+            voteButton.setDisable(false);
+        }
     }
 
     public class FormattedOffer {

@@ -145,7 +145,7 @@ public class RequestsReviewWindowController {
         }
     }
 
-    String determineFlag(Event evt) {
+    private String determineFlag(Event evt) {
         if(((Button)evt.getSource()).getId().equals("acceptButton"))
             return RequestFlag.USERACC.toString();
         else
