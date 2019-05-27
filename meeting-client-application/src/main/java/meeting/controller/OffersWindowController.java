@@ -9,12 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import meeting.StageLoader;
 import meeting.api.request.NewCommentRequest;
+import meeting.api.request.OfferAcceptRequest;
 import meeting.api.request.OfferListRequest;
 import meeting.api.request.OfferRequest;
+import meeting.api.response.FlagResponse;
 import meeting.api.response.NewCommentResponse;
 import meeting.api.response.OfferListResponse;
 import meeting.api.response.OfferResponse;
@@ -24,7 +25,6 @@ import meeting.enums.ResponseFlag;
 import meeting.enums.SystemRole;
 import meeting.model.*;
 
-import java.text.Normalizer;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -269,8 +269,8 @@ public class OffersWindowController {
         List<FormattedOffer> formattedProposals = new ArrayList<>();
         List<String> formattedComments = new ArrayList<>();
 
-        acceptedOffers.forEach(offer -> formattedAcceptedOffers.add(new FormattedOffer(offer.getStartDate().format(formatter), offer.getVotesCount())));
-        proposals.forEach(proposal -> formattedProposals.add(new FormattedOffer(proposal.getStartDate().format(formatter), proposal.getVotesCount())));
+        acceptedOffers.forEach(offer -> formattedAcceptedOffers.add(new FormattedOffer(offer.getId(), offer.getStartDate().format(formatter), offer.getVotesCount())));
+        proposals.forEach(proposal -> formattedProposals.add(new FormattedOffer(proposal.getId(), proposal.getStartDate().format(formatter), proposal.getVotesCount())));
         comments.forEach(comment -> formattedComments.add(comment.getPostDate().format(formatter) + " " + comment.getUsername() + ": " + comment.getMessage()));
 
         offersTable.getItems().clear();
@@ -383,7 +383,7 @@ public class OffersWindowController {
                             .acceptedOffer(false)
                             .build()
             );
-            FormattedOffer formattedOffer = new FormattedOffer(proposalDate.format(formatter), 0);
+            FormattedOffer formattedOffer = new FormattedOffer(offerResponse.getOfferId(), proposalDate.format(formatter), 0);
             proposalsTable.getItems().add(formattedOffer);
         }
         else if (flag == RequestFlag.MAKEOFR) {
@@ -395,7 +395,7 @@ public class OffersWindowController {
                             .acceptedOffer(true)
                             .build()
             );
-            FormattedOffer formattedOffer = new FormattedOffer(proposalDate.format(formatter), 0);
+            FormattedOffer formattedOffer = new FormattedOffer(offerResponse.getOfferId(), proposalDate.format(formatter), 0);
             offersTable.getItems().add(formattedOffer);
         }
     }
@@ -412,8 +412,37 @@ public class OffersWindowController {
     }
 
     @FXML
-    public void acceptClicked(ActionEvent actionEvent) {
+    public void acceptClicked() {
 
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+
+        OfferAcceptRequest offerAcceptRequest = OfferAcceptRequest.builder()
+                .flag(RequestFlag.OFRACPT.toString())
+                .offerId(pickedProposal.getId())
+                .build();
+
+        String request = gson.toJson(offerAcceptRequest);
+
+//        String response = client.sendRequestRecResponse(request);
+
+        // fake response
+        String response = "{\n" +
+                "  \"flag\": \"OFRACPT\"\n" +
+                "}";
+
+        FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
+
+        if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Error response for OFRACPT");
+            alert.show();
+            return;
+        }
+
+        refreshClicked();
     }
 
     @FXML
@@ -464,13 +493,20 @@ public class OffersWindowController {
 
     public class FormattedOffer {
 
+        private long id;
+
         private String startDate;
 
         private int votesCount;
 
-        FormattedOffer(String startDate, int votesCount) {
+        FormattedOffer(long id, String startDate, int votesCount) {
+            this.id = id;
             this.startDate = startDate;
             this.votesCount = votesCount;
+        }
+
+        public long getId() {
+            return id;
         }
 
         public String getStartDate() {

@@ -28,7 +28,7 @@ public enum RequestFlag {
     MAKEOFR, // stwórz nowy termin
     PROPOFR, // proponuj nowy termin
     RMOFFER, // usuń termin
-    OFRDECL, // zaakceptuj/odrzuć termin
+    OFRACPT, // zaakceptuj termin
 
     NEWVOTE, // zagłosuj na termin
     COMMENT  // dodaj komentarz

@@ -28,7 +28,7 @@ public enum ResponseFlag {
     MAKEOFR, // pomyślne stworzenie nowego terminu
     PROPOFR, // potwierdzenie wysłania propozycji
     RMOFFER, // pomyślne usunięcie terminu
-    OFRDECL, // potwierdzenie decyzji
+    OFRACPT, // potwierdzenie akceptacji
 
     NEWVOTE, // pomyślnie zagłosowano
     COMMENT, // pomyślnie dodano komentarz
