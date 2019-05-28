@@ -40,11 +40,6 @@ public:
     bool makeEvent(int groupId, string eventName);
 
 };
-//{
-//"flag": "MAKEEVT",
-//"groupId": 3,
-//"eventName": "12"
-//}
 
 
 #endif //TESTDB_DATABASECONNECTION_H

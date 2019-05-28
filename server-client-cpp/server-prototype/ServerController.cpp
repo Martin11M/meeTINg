@@ -32,6 +32,7 @@ ResponseFlag convert(const std::string& str)
     else if(str == "USERDEC") return USERDEC;
     else if(str == "GRPEVNT") return GRPEVNT;
     else if(str == "MAKEEVT") return MAKEEVT;
+    else if(str == "EVNTOFR") return EVNTOFR;
 
 }
 

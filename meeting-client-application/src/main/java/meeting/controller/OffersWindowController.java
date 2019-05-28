@@ -150,6 +150,7 @@ public class OffersWindowController {
                 .build();
 
         String request = gson.toJson(groupRequest);
+        System.out.println(request);
 //        String response = client.sendRequestRecResponse(request);
 
         // fake response:

@@ -196,7 +196,7 @@ string DataBaseConnection::userGroupsList(int userId) {
 string DataBaseConnection::allGroups(int userId) {
 
     string response = "\"items\": [";
-
+    int iterator = 0;
     try {
         sql::ResultSet *res;
 
@@ -205,13 +205,13 @@ string DataBaseConnection::allGroups(int userId) {
         res = stmt->executeQuery(
                 "select g.group_id, g.name, (select USER.username from USER where user_id = g.leader_id) as leader_name from GROUPS g where (select count(*) from GROUP_USER where GROUP_USER.group_id = g.group_id and GROUP_USER.user_id = " + to_string(userId) + " and GROUP_USER.status = 1) = 0 and (select count(*) from GROUP_USER where GROUP_USER.group_id = g.group_id and GROUP_USER.user_id = \"" + to_string(userId) + "\" and GROUP_USER.status = 0) = 0");
         while (res->next()) {
-
+            iterator++;
             response += "{\"id\":\"" + res->getString("group_id") + "\",";
             response += "\"name\":\"" + res->getString("name") + "\",";
             response += "\"leader\":\"" + res->getString("leader_name") + "\"},";
 
         }
-        response.pop_back();
+        if(iterator != 0) response.pop_back();
         response += "]}";
 
         stmt->close();
@@ -413,6 +413,7 @@ bool DataBaseConnection::userDecline(int userId, int groupId) {
 string DataBaseConnection::groupEvents(int groupId) {
 
     string response = "\"items\": [";
+    int iterator = 0;
 
     try {
         sql::ResultSet *res;
@@ -422,12 +423,12 @@ string DataBaseConnection::groupEvents(int groupId) {
         res = stmt->executeQuery(
                 "SELECT event_id, name FROM EVENT where group_id = " + to_string(groupId));
         while (res->next()) {
-
+            iterator ++;
             response += "{\"id\":\"" + res->getString("event_id") + "\",";
             response += "\"name\":\"" + res->getString("name") + "\"},";
 
         }
-        response.pop_back();
+        if(iterator != 0) response.pop_back();
         response += "]}";
 
         stmt->close();

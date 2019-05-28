@@ -33,7 +33,7 @@ enum ResponseFlag {
     MAKEEVT, // pomyślne stworzenie eventu
     RMEVENT, // pomyślne usunięcie eventu
 
-    EVNTAPT, // terminy eventu
+    EVNTOFR, // terminy eventu
     SHOWAPT, // konkretny termin
     MAKEAPT, // pomyślne stworzenie nowego terminu
     PROPAPT, // potwierdzenie wysłania propozycji
