@@ -11,10 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import meeting.StageLoader;
-import meeting.api.request.NewCommentRequest;
-import meeting.api.request.OfferAcceptRequest;
-import meeting.api.request.OfferListRequest;
-import meeting.api.request.OfferRequest;
+import meeting.api.request.*;
 import meeting.api.response.FlagResponse;
 import meeting.api.response.NewCommentResponse;
 import meeting.api.response.OfferListResponse;
@@ -67,7 +64,7 @@ public class OffersWindowController {
     private List<Offer> proposals = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     void setPickedGroup(Group pickedGroup) {
         this.pickedGroup = pickedGroup;
@@ -160,37 +157,37 @@ public class OffersWindowController {
                 "  \"offers\": [\n" +
                 "    {\n" +
                 "      \"id\" : 101,\n" +
-                "      \"startDate\" : \"2019-05-25T16:00:00.000000\",\n" +
+                "      \"startDate\" : \"2019-05-25 16:00:00\",\n" +
                 "      \"votesCount\" : 3,\n" +
                 "      \"acceptedOffer\" : true\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 102,\n" +
-                "      \"startDate\" : \"2019-05-25T18:00:00.000000\",\n" +
+                "      \"startDate\" : \"2019-05-25 18:00:00\",\n" +
                 "      \"votesCount\" : 5,\n" +
                 "      \"acceptedOffer\" : false\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 103,\n" +
-                "      \"startDate\" : \"2019-05-28T16:00:00.000000\",\n" +
+                "      \"startDate\" : \"2019-05-28 16:00:00\",\n" +
                 "      \"votesCount\" : 3,\n" +
                 "      \"acceptedOffer\" : true\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 104,\n" +
-                "      \"startDate\" : \"2019-05-28T19:00:00.000000\",\n" +
+                "      \"startDate\" : \"2019-05-28 19:00:00\",\n" +
                 "      \"votesCount\" : 6,\n" +
                 "      \"acceptedOffer\" : false\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 105,\n" +
-                "      \"startDate\" : \"2019-05-28T20:30:00.000000\",\n" +
+                "      \"startDate\" : \"2019-05-28 20:30:00\",\n" +
                 "      \"votesCount\" : 9,\n" +
                 "      \"acceptedOffer\" : true\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 106,\n" +
-                "      \"startDate\" : \"2019-06-03T18:00:00.000000\",\n" +
+                "      \"startDate\" : \"2019-06-03 18:00:00\",\n" +
                 "      \"votesCount\" : 9,\n" +
                 "      \"acceptedOffer\" : true\n" +
                 "    }\n" +
@@ -200,19 +197,19 @@ public class OffersWindowController {
                 "      \"id\" : 255,\n" +
                 "      \"username\" : \"piotrek wariat\",\n" +
                 "      \"message\" : \"siemano wariatyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\",\n" +
-                "      \"postDate\" : \"2019-05-27T20:30:00.000000\"\n" +
+                "      \"postDate\" : \"2019-05-27 20:30:00\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 256,\n" +
                 "      \"username\" : \"pawelek z ustronia\",\n" +
                 "      \"message\" : \"ustronalia to gUWno niesamowite\",\n" +
-                "      \"postDate\" : \"2019-05-28T16:32:25.620031\"\n" +
+                "      \"postDate\" : \"2019-05-28 16:32:25\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 257,\n" +
                 "      \"username\" : \"Maria (Lwow)\",\n" +
                 "      \"message\" : \"w paszczu pisiont, w zopu sto\",\n" +
-                "      \"postDate\" : \"2019-05-28T20:58:10.326503\"\n" +
+                "      \"postDate\" : \"2019-05-28 20:58:10\"\n" +
                 "    }\n" +
                 "  ]\n" +
                 "}";
@@ -235,7 +232,7 @@ public class OffersWindowController {
         offerListResponse.getOffers().forEach(offer -> {
             Offer o = Offer.builder()
                     .id(offer.getId())
-                    .startDate(LocalDateTime.parse(offer.getStartDate()))
+                    .startDate(LocalDateTime.parse(offer.getStartDate(), formatter))
                     .votesCount(offer.getVotesCount())
                     .acceptedOffer(offer.isAcceptedOffer())
                     .build();
@@ -248,7 +245,7 @@ public class OffersWindowController {
                     .id(comment.getId())
                     .username(comment.getUsername())
                     .message(comment.getMessage())
-                    .postDate(LocalDateTime.parse(comment.getPostDate()))
+                    .postDate(LocalDateTime.parse(comment.getPostDate(), formatter))
                     .build();
             comments.add(c);
         });
@@ -297,7 +294,7 @@ public class OffersWindowController {
                 .userId(user.getId())
                 .eventId(pickedEvent.getId())
                 .message(comment)
-                .postDate(postDate.toString())
+                .postDate(postDate.format(formatter))
                 .build();
 
         String request = gson.toJson(newCommentRequest);
@@ -355,7 +352,7 @@ public class OffersWindowController {
                 .flag(flag.toString())
                 .eventId(pickedEvent.getId())
                 .userId(user.getId())
-                .date(proposalDate.toString())
+                .date(proposalDate.format(formatter))
                 .build();
 
         String request = gson.toJson(offerRequest);
@@ -463,7 +460,37 @@ public class OffersWindowController {
     }
 
     @FXML
-    public void voteClicked(ActionEvent actionEvent) {
+    public void voteClicked() {
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+
+        // TODO moze byc pickedOffer zamiast pickedProposal
+        VoteRequest voteRequest = VoteRequest.builder()
+                .flag(RequestFlag.NEWVOTE.toString())
+                .offerId(pickedProposal.getId())
+                .userId(user.getId())
+                .build();
+
+        String request = gson.toJson(voteRequest);
+        String response = client.sendRequestRecResponse(request);
+
+        // fake response
+        /*String response = "{\n" +
+                "  \"flag\": \"NEWVOTE\"\n" +
+                "}";*/
+
+        FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
+
+        if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Error response for NEWVOTE");
+            alert.show();
+            return;
+        }
+
+        refreshClicked();
     }
 
     @FXML
