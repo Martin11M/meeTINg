@@ -37,6 +37,11 @@ public:
     static string userDecline(int userId, int groupId, DataBaseConnection &dbc);
     static string groupEvents(int groupId, DataBaseConnection &dbc);
     static string makeEvent(int groupId, string eventName, DataBaseConnection &dbc);
+    static string showEventOffer(int eventId, DataBaseConnection &dbc);
+    static string makeOffer(int eventId, int userId, string dateTime, DataBaseConnection &dbc);
+    static string makePropOffer(int eventId, int userId, string dateTime, DataBaseConnection &dbc);
+    static string offerAccept(int offerId, DataBaseConnection &dbc);
+    static string makeComment(int userId, int eventId, string message, string dateTime, DataBaseConnection &dbc);
 
 };
 

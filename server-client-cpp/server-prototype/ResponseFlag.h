@@ -11,37 +11,37 @@ enum ResponseFlag {
 
 
 
-    LOGGING, // pomyślne logowanie
-    REGISTR, // pomyślna rejestracja
+    LOGGING, // logowanie
+    SIGNOUT, // wylogowanie - zastanowić się, czy musimy wysyłać requesta, żeby się wylogować
+    REGISTR, // rejestracja
 
-    USERGRP, // grupy użytkownika
-    SHOWGRP, // konkretna grupa
-    GRPLIST, // wszystkie mozliwe grupy
-    MAKEGRP, // pomyślne stworzenie grupy
-    RMGROUP, // pomyślne usunięcie grupy
-    LEAVGRP, // pomyślne wyjście z grupy
-    LEADREQ, // zaaplikowano o status lidera
-    LEADRSP, // decyzja o nadaniu statusu lidera
-    MEMBREQ, // decyzja o dodaniu do grupy
+    USERGRP, // wyświetl grupy użytkownika
+    SHOWGRP, // pokaż konkretną grupę <-----czym sie rozni od: GRPEVNT, // wyświetl eventy grupy
+    GRPLIST, // pokaż wszystkie dostepne grupy
+    MAKEGRP, // stwórz nową grupę
+    RMGROUP, // usuń grupę
+    LEAVGRP, // wyjdź z grupy
+    LEADREQ, // aplikuj o status lidera
+    MEMBREQ, // aplikuj o dolaczenie do grupy
 
-    USERREQ, // requesty użytkowników
-    USERACC, // zaakceptuj zytkownika
-    USERDEC, // odrzuc decyzje
+    USERREQ, // wyświetl requesty użytkowników
+    USERDEC, // odrzuć użytkownika
+    USERACC, // zaakceptuj użytkownika
 
-    GRPEVNT, // eventy grupy
-    SHOWEVT, // konkretny event
-    MAKEEVT, // pomyślne stworzenie eventu
-    RMEVENT, // pomyślne usunięcie eventu
+    GRPEVNT, // wyświetl eventy grupy
+    SHOWEVT, // pokaż konkretny event
+    MAKEEVT, // stwórz nowy event
+    RMEVENT, // usuń event
 
-    EVNTOFR, // terminy eventu
-    SHOWAPT, // konkretny termin
-    MAKEAPT, // pomyślne stworzenie nowego terminu
-    PROPAPT, // potwierdzenie wysłania propozycji
-    RMAPTMT, // pomyślne usunięcie terminu
-    APTMDEC, // potwierdzenie decyzji
+    EVNTOFR, // pokaż terminy eventu
+    SHOWOFR, // wybierz konkretny termin
+    MAKEOFR, // stwórz nowy termin
+    PROPOFR, // proponuj nowy termin
+    RMOFFER, // usuń termin
+    OFRACPT, // zaakceptuj termin
 
-    NEWVOTE, // pomyślnie zagłosowano
-    COMMENT, // pomyślnie dodano komentarz
+    NEWVOTE, // zagłosuj na termin
+    COMMENT,  // dodaj komentarz
 
 
     __ERROR  // błąd

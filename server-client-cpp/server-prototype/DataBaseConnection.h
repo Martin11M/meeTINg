@@ -38,8 +38,19 @@ public:
     bool userDecline(int userId, int groupId);
     string groupEvents(int groupId);
     bool makeEvent(int groupId, string eventName);
-
+    string showEventOffer(int eventId);
+    string showEventComment(int eventId);
+    string makeOffer(int groupId, int userId, string dateTime);
+    string makePropOffer(int groupId, int userId, string dateTime);
+    bool offerAccept(int offerId);
+    string makeComment(int userId, int eventId, string message, string dateTime);
 };
-
+/*v{
+"flag": "COMMENT",
+"userId": 6,
+"eventId": 4,
+"message": "aaa",
+"postDate": "2019-06-01T14:20:55.715"
+}*/
 
 #endif //TESTDB_DATABASECONNECTION_H

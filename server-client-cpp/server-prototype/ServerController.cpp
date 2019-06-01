@@ -33,6 +33,10 @@ ResponseFlag convert(const std::string& str)
     else if(str == "GRPEVNT") return GRPEVNT;
     else if(str == "MAKEEVT") return MAKEEVT;
     else if(str == "EVNTOFR") return EVNTOFR;
+    else if(str == "MAKEOFR") return MAKEOFR;
+    else if(str == "PROPOFR") return PROPOFR;
+    else if(str == "OFRACPT") return OFRACPT;
+    else if(str == "COMMENT") return COMMENT;
 
 }
 
@@ -79,6 +83,21 @@ void ServerController::selectAction(int fd, json messageJson, ConnectionManager 
             break;
         case MAKEEVT:
             response = makeEvent(messageJson["groupId"],messageJson["eventName"], dbc);
+            break;
+        case EVNTOFR:
+            response = showEventOffer(messageJson["eventId"], dbc);
+            break;
+        case MAKEOFR:
+            response = makeOffer(messageJson["eventId"],messageJson["userId"], messageJson["date"], dbc);
+            break;
+        case PROPOFR:
+            response = makePropOffer(messageJson["eventId"],messageJson["userId"], messageJson["date"], dbc);
+            break;
+        case OFRACPT:
+            response = offerAccept(messageJson["offerId"], dbc);
+            break;
+        case COMMENT:
+            response = makeComment(messageJson["userId"],messageJson["eventId"], messageJson["message"], messageJson["postDate"], dbc);
             break;
         default:
             cout << "default switch" << endl;
@@ -213,6 +232,51 @@ string ServerController::makeEvent(int groupId, string eventName, DataBaseConnec
     if (dbc.makeEvent(groupId, eventName)) return returnMessage;
 
     returnMessage = "{\"flag\":\"__ERROR\"}";
+    return returnMessage;
+}
+
+string ServerController::showEventOffer(int eventId, DataBaseConnection &dbc)  {
+    string returnMessage;
+
+    returnMessage = "{\"flag\":\"EVNTOFR\",";
+    returnMessage += dbc.showEventOffer(eventId) + dbc.showEventComment(eventId);
+    cout << returnMessage << endl;
+
+    return returnMessage;
+}
+
+
+string ServerController::makeOffer(int eventId, int userId, string dateTime , DataBaseConnection &dbc)  {
+    string returnMessage = dbc.makeOffer(eventId, userId, dateTime);
+    cout << returnMessage;
+    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
+
+    return returnMessage;
+}
+
+string ServerController::makePropOffer(int eventId, int userId, string dateTime , DataBaseConnection &dbc)  {
+    string returnMessage = dbc.makePropOffer(eventId, userId, dateTime);
+    cout << returnMessage;
+    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
+
+    return returnMessage;
+}
+
+string ServerController::offerAccept(int offerId, DataBaseConnection &dbc) {
+    string returnMessage;
+
+    returnMessage = "{\"flag\":\"OFRACPT\"}";
+    if (dbc.offerAccept(offerId)) return returnMessage;
+
+    returnMessage = "{\"flag\":\"__ERROR\"}";
+    return returnMessage;
+}
+
+string ServerController::makeComment(int userId, int eventId, string message, string dateTime , DataBaseConnection &dbc)  {
+    string returnMessage = dbc.makeComment(userId, eventId, message, dateTime);
+    cout << returnMessage;
+    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
+
     return returnMessage;
 }
 

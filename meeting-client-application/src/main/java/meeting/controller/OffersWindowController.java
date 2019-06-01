@@ -150,12 +150,12 @@ public class OffersWindowController {
                 .build();
 
         String request = gson.toJson(groupRequest);
-        System.out.println(request);
-//        String response = client.sendRequestRecResponse(request);
+
+        //String response = client.sendRequestRecResponse(request);
 
         // fake response:
 
-        String fakeResponse = "{\n" +
+        String response = "{\n" +
                 "  \"flag\": \"EVNTOFR\",\n" +
                 "  \"offers\": [\n" +
                 "    {\n" +
@@ -217,7 +217,8 @@ public class OffersWindowController {
                 "  ]\n" +
                 "}";
 
-        OfferListResponse offerListResponse = gson.fromJson(fakeResponse, OfferListResponse.class);
+
+        OfferListResponse offerListResponse = gson.fromJson(response, OfferListResponse.class);
 
         if(offerListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -300,16 +301,18 @@ public class OffersWindowController {
                 .build();
 
         String request = gson.toJson(newCommentRequest);
-//        String response = client.sendRequestRecResponse(request);
+        System.out.println(request);
+        String response = client.sendRequestRecResponse(request);
+        System.out.println(response);
 
         // fake response:
 
-        String fakeResponse = "{\n" +
+        /*String fakeResponse = "{\n" +
                 "  \"flag\": \"COMMENT\",\n" +
                 "  \"commentId\": 603\n" +
-                "}";
+                "}";*/
 
-        NewCommentResponse newCommentResponse = gson.fromJson(fakeResponse, NewCommentResponse.class);
+        NewCommentResponse newCommentResponse = gson.fromJson(response, NewCommentResponse.class);
 
         if(newCommentResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -356,7 +359,8 @@ public class OffersWindowController {
                 .build();
 
         String request = gson.toJson(offerRequest);
-//        String response = client.sendRequestRecResponse(request);
+        System.out.println(request);
+        String response = client.sendRequestRecResponse(request);
 
         // fake response:
 
@@ -365,7 +369,7 @@ public class OffersWindowController {
                 "  \"offerId\": 69\n" +
                 "}";
 
-        OfferResponse offerResponse = gson.fromJson(fakeResponse, OfferResponse.class);
+        OfferResponse offerResponse = gson.fromJson(response, OfferResponse.class);
 
         if(offerResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -425,13 +429,14 @@ public class OffersWindowController {
                 .build();
 
         String request = gson.toJson(offerAcceptRequest);
+        System.out.println(request);
 
-//        String response = client.sendRequestRecResponse(request);
+        String response = client.sendRequestRecResponse(request);
 
         // fake response
-        String response = "{\n" +
+        /*String response = "{\n" +
                 "  \"flag\": \"OFRACPT\"\n" +
-                "}";
+                "}";*/
 
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 

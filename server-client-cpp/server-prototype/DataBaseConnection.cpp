@@ -471,5 +471,188 @@ bool DataBaseConnection::makeEvent(int groupId, string eventName) {
     return 0;
 }
 
+string DataBaseConnection::showEventOffer(int eventId) {
+
+    string response = "\"offers\": [";
+    int iterator = 0;
+    try {
+        sql::ResultSet *res;
+
+        stmt = con->createStatement();
+        res = stmt->executeQuery(
+                "SELECT event_id, start_date, votes_count, accepted_offer FROM OFFER WHERE event_id = " + to_string(eventId));
+        while (res->next()) {
+            iterator++;
+            string acceptedOffer = (res->getString("accepted_offer") == "1")? "true" : "false";
+            string date = res->getString("start_date");
 
 
+            response += "{\"id\":\"" + res->getString("event_id") + "\",";
+            response += "\"startDate\":\"" + date + "\",";
+            response += "\"votesCount\":\"" + res->getString("votes_count") + "\",";
+            response += "\"acceptedOffer\":\"" + acceptedOffer + "\"},";
+
+        }
+        if(iterator != 0) response.pop_back();
+        response += "],";
+
+        stmt->close();
+        res->close();
+        delete res;
+        delete stmt;
+
+        return response;
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+    }
+
+}
+
+string DataBaseConnection::showEventComment(int eventId) {
+
+    string response = "\"comments\": [";
+    int iterator = 0;
+    try {
+        sql::ResultSet *res;
+
+        stmt = con->createStatement();
+        res = stmt->executeQuery(
+                "SELECT comment_id, user_id, message, post_date FROM COMMENT WHERE event_id = " + to_string(eventId));
+        while (res->next()) {
+            iterator++;
+            string date = res->getString("post_date");
+
+
+            response += "{\"id\":\"" + res->getString("comment_id") + "\",";
+            response += "\"username\":\"" + res->getString("user_id") + "\",";
+            response += "\"message\":\"" + res->getString("message") + "\",";
+            response += "\"postDate\":\"" + date + "\"},";
+
+        }
+        if(iterator != 0) response.pop_back();
+        response += "]}";
+
+        stmt->close();
+        res->close();
+        delete res;
+        delete stmt;
+
+        return response;
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+    }
+
+}
+
+string DataBaseConnection::makeOffer(int eventId, int userId, string dateTime) {
+    int indeks = freeID("OFFER", "offer_id");
+
+    cout << "INSERT INTO OFFER VALUES(\"" + to_string(indeks) + "\",\"" + to_string(eventId) + "\",\"" + to_string(userId) + "\", \"" + dateTime + "\", \"0\" , \" 0 \")" << endl;
+
+
+    try {
+        stmt = con->createStatement();
+        stmt->executeUpdate(
+                "INSERT INTO OFFER VALUES(\"" + to_string(indeks) + "\",\"" + to_string(eventId) + "\",\"" + to_string(userId) + "\", \"" + dateTime + "\", \"0\" , \" 0 \")");
+
+
+        stmt->close();
+        delete stmt;
+        return "{\"flag\":\"MAKEOFR\", \" offerId\" : \"" + to_string(indeks) + "\" }";
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+
+    }
+    return "__ERROR";
+}
+
+string DataBaseConnection::makePropOffer(int eventId, int userId, string dateTime) {
+    int indeks = freeID("OFFER", "offer_id");
+
+    try {
+        stmt = con->createStatement();
+        stmt->executeUpdate(
+                "INSERT INTO OFFER VALUES(\"" + to_string(indeks) + "\",\"" + to_string(eventId) + "\",\"" + to_string(userId) + "\", \"" + dateTime + "\", \"0\" , \" 1 \")");
+
+
+        stmt->close();
+        delete stmt;
+        return "{\"flag\":\"PROPOFR\", \" offerId\" : \"" + to_string(indeks) + "\" }";
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+
+    }
+    return "__ERROR";
+}
+
+bool DataBaseConnection::offerAccept(int offerId) {
+    int indeks = freeID("EVENT", "event_id");
+
+    try {
+        stmt = con->createStatement();
+        stmt->executeUpdate(
+                "UPDATE OFFER SET accepted_offer = 1 WHERE offer_id = " + to_string(offerId));
+
+        stmt->close();
+        delete stmt;
+        return 1;
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+
+    }
+    return 0;
+}
+
+string DataBaseConnection::makeComment(int userId, int eventId, string message, string dateTime) {
+    int indeks = freeID("COMMENT", "comment_id");
+
+    cout << "INSERT INTO COMMENT VALUES(\"" + to_string(indeks) + "\",\"" + to_string(userId) + "\",\"" +
+            to_string(eventId) + "\", \"" + message + "\"" + dateTime + "\")" << endl;
+
+
+    try {
+        stmt = con->createStatement();
+        stmt->executeUpdate(
+                "INSERT INTO COMMENT VALUES(\"" + to_string(indeks) + "\",\"" + to_string(userId) + "\",\"" +
+                to_string(eventId) + "\", \"" + message + "\"" + dateTime + "\")");
+
+
+        stmt->close();
+        delete stmt;
+        return "{\"flag\":\"COMMENT\", \" commentId\" : \"" + to_string(indeks) + "\" }";
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+
+    }
+    return "__ERROR";
+}
