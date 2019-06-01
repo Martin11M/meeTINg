@@ -480,14 +480,14 @@ string DataBaseConnection::showEventOffer(int eventId) {
 
         stmt = con->createStatement();
         res = stmt->executeQuery(
-                "SELECT event_id, start_date, votes_count, accepted_offer FROM OFFER WHERE event_id = " + to_string(eventId));
+                "SELECT offer_id, start_date, votes_count, accepted_offer FROM OFFER WHERE event_id = " + to_string(eventId));
         while (res->next()) {
             iterator++;
             string acceptedOffer = (res->getString("accepted_offer") == "1")? "true" : "false";
             string date = res->getString("start_date");
 
 
-            response += "{\"id\":\"" + res->getString("event_id") + "\",";
+            response += "{\"id\":\"" + res->getString("offer_id") + "\",";
             response += "\"startDate\":\"" + date + "\",";
             response += "\"votesCount\":\"" + res->getString("votes_count") + "\",";
             response += "\"acceptedOffer\":\"" + acceptedOffer + "\"},";
@@ -603,12 +603,12 @@ string DataBaseConnection::makePropOffer(int eventId, int userId, string dateTim
 }
 
 bool DataBaseConnection::offerAccept(int offerId) {
-    int indeks = freeID("EVENT", "event_id");
 
     try {
         stmt = con->createStatement();
         stmt->executeUpdate(
                 "UPDATE OFFER SET accepted_offer = 1 WHERE offer_id = " + to_string(offerId));
+        cout << "UPDATE OFFER SET accepted_offer = 1 WHERE offer_id = " + to_string(offerId);
 
         stmt->close();
         delete stmt;
@@ -636,7 +636,7 @@ string DataBaseConnection::makeComment(int userId, int eventId, string message, 
         stmt = con->createStatement();
         stmt->executeUpdate(
                 "INSERT INTO COMMENT VALUES(\"" + to_string(indeks) + "\",\"" + to_string(userId) + "\",\"" +
-                to_string(eventId) + "\", \"" + message + "\"" + dateTime + "\")");
+                to_string(eventId) + "\", \"" + message + "\",\"" + dateTime + "\")");
 
 
         stmt->close();

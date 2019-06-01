@@ -148,11 +148,11 @@ public class OffersWindowController {
 
         String request = gson.toJson(groupRequest);
 
-        //String response = client.sendRequestRecResponse(request);
+        String response = client.sendRequestRecResponse(request);
 
         // fake response:
 
-        String response = "{\n" +
+        /*String response = "{\n" +
                 "  \"flag\": \"EVNTOFR\",\n" +
                 "  \"offers\": [\n" +
                 "    {\n" +
@@ -213,7 +213,7 @@ public class OffersWindowController {
                 "    }\n" +
                 "  ]\n" +
                 "}";
-
+*/
 
         OfferListResponse offerListResponse = gson.fromJson(response, OfferListResponse.class);
 
@@ -474,6 +474,7 @@ public class OffersWindowController {
 
         String request = gson.toJson(voteRequest);
         String response = client.sendRequestRecResponse(request);
+        System.out.println(response);
 
         // fake response
         /*String response = "{\n" +
