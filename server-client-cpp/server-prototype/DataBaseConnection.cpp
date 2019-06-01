@@ -608,7 +608,6 @@ bool DataBaseConnection::offerAccept(int offerId) {
         stmt = con->createStatement();
         stmt->executeUpdate(
                 "UPDATE OFFER SET accepted_offer = 1 WHERE offer_id = " + to_string(offerId));
-        cout << "UPDATE OFFER SET accepted_offer = 1 WHERE offer_id = " + to_string(offerId);
 
         stmt->close();
         delete stmt;
@@ -627,10 +626,6 @@ bool DataBaseConnection::offerAccept(int offerId) {
 
 string DataBaseConnection::makeComment(int userId, int eventId, string message, string dateTime) {
     int indeks = freeID("COMMENT", "comment_id");
-
-    cout << "INSERT INTO COMMENT VALUES(\"" + to_string(indeks) + "\",\"" + to_string(userId) + "\",\"" +
-            to_string(eventId) + "\", \"" + message + "\"" + dateTime + "\")" << endl;
-
 
     try {
         stmt = con->createStatement();

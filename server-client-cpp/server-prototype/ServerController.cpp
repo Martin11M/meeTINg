@@ -240,7 +240,7 @@ string ServerController::showEventOffer(int eventId, DataBaseConnection &dbc)  {
 
     returnMessage = "{\"flag\":\"EVNTOFR\",";
     returnMessage += dbc.showEventOffer(eventId) + dbc.showEventComment(eventId);
-    cout << returnMessage << endl;
+
 
     return returnMessage;
 }
@@ -248,7 +248,7 @@ string ServerController::showEventOffer(int eventId, DataBaseConnection &dbc)  {
 
 string ServerController::makeOffer(int eventId, int userId, string dateTime , DataBaseConnection &dbc)  {
     string returnMessage = dbc.makeOffer(eventId, userId, dateTime);
-    cout << returnMessage;
+
     if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
 
     return returnMessage;
@@ -256,7 +256,7 @@ string ServerController::makeOffer(int eventId, int userId, string dateTime , Da
 
 string ServerController::makePropOffer(int eventId, int userId, string dateTime , DataBaseConnection &dbc)  {
     string returnMessage = dbc.makePropOffer(eventId, userId, dateTime);
-    cout << returnMessage;
+
     if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
 
     return returnMessage;
@@ -274,7 +274,7 @@ string ServerController::offerAccept(int offerId, DataBaseConnection &dbc) {
 
 string ServerController::makeComment(int userId, int eventId, string message, string dateTime , DataBaseConnection &dbc)  {
     string returnMessage = dbc.makeComment(userId, eventId, message, dateTime);
-    cout << returnMessage;
+
     if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
 
     return returnMessage;
