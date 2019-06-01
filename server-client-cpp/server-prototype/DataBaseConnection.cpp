@@ -557,13 +557,10 @@ string DataBaseConnection::showEventComment(int eventId) {
 string DataBaseConnection::makeOffer(int eventId, int userId, string dateTime) {
     int indeks = freeID("OFFER", "offer_id");
 
-    cout << "INSERT INTO OFFER VALUES(\"" + to_string(indeks) + "\",\"" + to_string(eventId) + "\",\"" + to_string(userId) + "\", \"" + dateTime + "\", \"0\" , \" 0 \")" << endl;
-
-
     try {
         stmt = con->createStatement();
         stmt->executeUpdate(
-                "INSERT INTO OFFER VALUES(\"" + to_string(indeks) + "\",\"" + to_string(eventId) + "\",\"" + to_string(userId) + "\", \"" + dateTime + "\", \"0\" , \" 0 \")");
+                "INSERT INTO OFFER VALUES(\"" + to_string(indeks) + "\",\"" + to_string(eventId) + "\",\"" + to_string(userId) + "\", \"" + dateTime + "\", \"0\" , \" 1 \", \"0\")");
 
 
         stmt->close();
@@ -587,7 +584,7 @@ string DataBaseConnection::makePropOffer(int eventId, int userId, string dateTim
     try {
         stmt = con->createStatement();
         stmt->executeUpdate(
-                "INSERT INTO OFFER VALUES(\"" + to_string(indeks) + "\",\"" + to_string(eventId) + "\",\"" + to_string(userId) + "\", \"" + dateTime + "\", \"0\" , \" 1 \")");
+                "INSERT INTO OFFER VALUES(\"" + to_string(indeks) + "\",\"" + to_string(eventId) + "\",\"" + to_string(userId) + "\", \"" + dateTime + "\", \"0\" , \"0\", \"0\")");
 
 
         stmt->close();
