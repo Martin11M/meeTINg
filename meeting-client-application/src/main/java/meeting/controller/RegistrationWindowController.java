@@ -23,11 +23,13 @@ import static com.google.common.hash.Hashing.sha256;
 
 public class RegistrationWindowController {
 
+    @FXML public CheckBox isLeader;
     @FXML private PasswordField password;
     @FXML private PasswordField confirmPassword;
     @FXML private TextField username;
     @FXML private Button registerButton;
     @FXML private Label infoLabel;
+
     private Client client;
 
     @FXML
@@ -44,6 +46,7 @@ public class RegistrationWindowController {
                     .flag(RequestFlag.REGISTR.toString())
                     .username(username.getText())
                     .password(hashedPassword)
+                    .isLeader(isLeader.isSelected())
                     .build();
 
             // robie JSONa
