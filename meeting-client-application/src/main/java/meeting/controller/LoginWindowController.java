@@ -1,10 +1,9 @@
 package meeting.controller;
 
+import javafx.application.Platform;
 import meeting.api.request.UserDataRequest;
 import meeting.api.response.UserLoginResponse;
 import meeting.api.Client;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import meeting.enums.SystemRole;
@@ -16,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import meeting.model.User;
+import meeting.serializer.Serializer;
 import meeting.service.ApplicationService;
 
 import java.nio.charset.StandardCharsets;
@@ -26,8 +26,15 @@ public class LoginWindowController {
 
     private Client client;
 
+    private Serializer serializer;
+
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
+
+    @FXML
+    public void initialize() {
+        Platform.runLater(() -> serializer = new Serializer(client));
+    }
 
     @FXML
     public void signInClicked(ActionEvent event) {
@@ -37,48 +44,28 @@ public class LoginWindowController {
             return;
         }
 
-        // hashuje hasło
         String hashedPassword = sha256()
                 .hashString(passwordField.getText(), StandardCharsets.UTF_8)
                 .toString();
 
-        // tworze requesta
-        UserDataRequest request = UserDataRequest.builder()
+        UserDataRequest userDataRequest = UserDataRequest.builder()
                 .flag(RequestFlag.LOGGING.toString())
                 .username(usernameField.getText())
                 .password(hashedPassword)
                 .build();
 
-        System.out.println("Dlugosc username: " + usernameField.getText().length());
-        System.out.println("Dlugosc password: " + hashedPassword.length());
+        UserLoginResponse userLoginResponse = serializer.signIn(userDataRequest);
 
-        // robie JSONa
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
-
-        String requestString = gson.toJson(request);
-        System.out.println(requestString);
-
-        System.out.println("Dlugosc requestString: " + requestString.length());
-
-        // wysyłam tego requesta, po czym przychodzi response:
-        String responseString = client.sendRequestRecResponse(requestString);
-
-        // parsuje JSONa
-        UserLoginResponse response = gson.fromJson(responseString, UserLoginResponse.class);
-
-        if (response.getFlag().equals(ResponseFlag.__ERROR.toString())) {
+        if (userLoginResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Wrong username or password!");
             return;
         }
 
-        // tworze obiekt użytkownika
         User user = User.builder()
-                .id(response.getId())
-                .username(response.getUsername())
-                .password(response.getPassword())
-                .systemRole(SystemRole.valueOf(response.getSystemRole()))
+                .id(userLoginResponse.getId())
+                .username(userLoginResponse.getUsername())
+                .password(userLoginResponse.getPassword())
+                .systemRole(SystemRole.valueOf(userLoginResponse.getSystemRole()))
                 .build();
 
         try {

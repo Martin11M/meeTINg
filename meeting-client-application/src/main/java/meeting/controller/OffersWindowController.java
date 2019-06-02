@@ -1,7 +1,5 @@
 package meeting.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +15,7 @@ import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import meeting.enums.SystemRole;
 import meeting.model.*;
+import meeting.serializer.Serializer;
 import meeting.service.ApplicationService;
 
 import java.time.LocalDateTime;
@@ -59,6 +58,8 @@ public class OffersWindowController {
 
     private FormattedOffer pickedOffer;
 
+    private Serializer serializer;
+
     private List<Offer> acceptedOffers = new ArrayList<>();
     private List<Offer> proposals = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
@@ -84,8 +85,8 @@ public class OffersWindowController {
 
     @FXML
     public void initialize() {
-        initCols();
 
+        initCols();
         Platform.runLater(() ->{
             if(user.getSystemRole() == USER) {
                 createButton.setDisable(true);
@@ -95,6 +96,7 @@ public class OffersWindowController {
                 roleInfoLabel.setText("Logged as " + user.getUsername() + " (Team Leader)");
                 proposeButton.setDisable(true);
             }
+            serializer = new Serializer(client);
             refreshClicked();
         });
     }
@@ -115,10 +117,6 @@ public class OffersWindowController {
 
     @FXML
     public void refreshClicked() {
-        // robie JSONa
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
 
         OfferListRequest groupRequest = OfferListRequest.builder()
                 .flag(RequestFlag.EVNTOFR.toString())
@@ -126,12 +124,7 @@ public class OffersWindowController {
                 .userId(user.getId())
                 .build();
 
-        String request = gson.toJson(groupRequest);
-
-        String response = client.sendRequestRecResponse(request);
-        System.out.println(response);
-
-        OfferListResponse offerListResponse = gson.fromJson(response, OfferListResponse.class);
+        OfferListResponse offerListResponse = serializer.refreshOffers(groupRequest);
 
         if(offerListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for EVNTOFR");
@@ -208,10 +201,6 @@ public class OffersWindowController {
 
     private void addComment(String comment) {
 
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
-
         LocalDateTime postDate = LocalDateTime.now();
 
         NewCommentRequest newCommentRequest = NewCommentRequest.builder()
@@ -222,12 +211,7 @@ public class OffersWindowController {
                 .postDate(postDate.format(formatter))
                 .build();
 
-        String request = gson.toJson(newCommentRequest);
-        System.out.println(request);
-        String response = client.sendRequestRecResponse(request);
-        System.out.println(response);
-
-        NewCommentResponse newCommentResponse = gson.fromJson(response, NewCommentResponse.class);
+        NewCommentResponse newCommentResponse = serializer.createComment(newCommentRequest);
 
         if(newCommentResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for COMMENT");
@@ -249,10 +233,6 @@ public class OffersWindowController {
 
     private void newOffer(String offer, RequestFlag flag) {
 
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
-
         String delimiters = "[-: ]";
         String[] parameters = offer.split(delimiters);
         List<Integer> convertedParameters = new ArrayList<>();
@@ -270,11 +250,7 @@ public class OffersWindowController {
                 .date(proposalDate.format(formatter))
                 .build();
 
-        String request = gson.toJson(offerRequest);
-        System.out.println(request);
-        String response = client.sendRequestRecResponse(request);
-
-        OfferResponse offerResponse = gson.fromJson(response, OfferResponse.class);
+        OfferResponse offerResponse = serializer.createOffer(offerRequest);
 
         if(offerResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for " + flag.toString());
@@ -323,19 +299,12 @@ public class OffersWindowController {
     @FXML
     public void acceptClicked() {
 
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
-
         OfferAcceptRequest offerAcceptRequest = OfferAcceptRequest.builder()
                 .flag(RequestFlag.OFRACPT.toString())
                 .offerId(pickedOffer.getId())
                 .build();
 
-        String request = gson.toJson(offerAcceptRequest);
-        System.out.println(request);
-        String response = client.sendRequestRecResponse(request);
-        FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
+        FlagResponse flagResponse = serializer.acceptOffer(offerAcceptRequest);
 
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for OFRACPT");
@@ -358,9 +327,6 @@ public class OffersWindowController {
 
     @FXML
     public void voteClicked() {
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
 
         VoteRequest voteRequest = VoteRequest.builder()
                 .flag(RequestFlag.NEWVOTE.toString())
@@ -368,10 +334,7 @@ public class OffersWindowController {
                 .userId(user.getId())
                 .build();
 
-        String request = gson.toJson(voteRequest);
-        String response = client.sendRequestRecResponse(request);
-        System.out.println(response);
-        FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
+        FlagResponse flagResponse = serializer.createVote(voteRequest);
 
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for NEWVOTE");
@@ -393,18 +356,13 @@ public class OffersWindowController {
 
     @FXML
     public void confirmClicked() {
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
 
         OfferConfirmRequest offerConfirmRequest = OfferConfirmRequest.builder()
                 .flag(RequestFlag.CFRMOFR.toString())
                 .offerId(pickedOffer.getId())
                 .build();
 
-        String request = gson.toJson(offerConfirmRequest);
-        String response = client.sendRequestRecResponse(request);
-        FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
+        FlagResponse flagResponse = serializer.confirmOffer(offerConfirmRequest);
 
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for CFRMOFR");

@@ -6,8 +6,6 @@ import meeting.api.request.NewEventRequest;
 import meeting.api.response.EventListResponse;
 import meeting.api.response.NewEventResponse;
 import meeting.api.Client;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import javafx.application.Platform;
@@ -19,6 +17,7 @@ import javafx.stage.Stage;
 import meeting.model.Event;
 import meeting.model.Group;
 import meeting.model.User;
+import meeting.serializer.Serializer;
 import meeting.service.ApplicationService;
 
 import java.util.ArrayList;
@@ -42,9 +41,11 @@ public class EventsWindowController {
     private Client client;
     private User user;
 
+    private Serializer serializer;
+
     @FXML
     public void initialize() {
-        Platform.runLater(() ->{
+        Platform.runLater(() -> {
             if(user.getSystemRole() == USER) {
                 createButton.setDisable(true);
                 roleInfoLabel.setText("Logged as " + user.getUsername() + " (User)");
@@ -52,6 +53,7 @@ public class EventsWindowController {
             else {
                 roleInfoLabel.setText("Logged as " + user.getUsername() + " (Team Leader)");
             }
+            serializer = new Serializer(client);
             refreshClicked();
         });
     }
@@ -72,21 +74,13 @@ public class EventsWindowController {
 
     @FXML
     public void refreshClicked() {
-        // robie JSONa
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
 
-        EventListRequest request = EventListRequest.builder()
+        EventListRequest eventListRequest = EventListRequest.builder()
                 .flag(RequestFlag.GRPEVNT.toString())
                 .groupId(pickedGroup.getId())
                 .build();
 
-        String requestString = gson.toJson(request);
-
-        String response = client.sendRequestRecResponse(requestString);
-
-        EventListResponse eventListResponse = gson.fromJson(response, EventListResponse.class);
+        EventListResponse eventListResponse = serializer.refreshEvents(eventListRequest);
 
         if(eventListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for GRPEVNT");
@@ -125,10 +119,6 @@ public class EventsWindowController {
     }
 
     private void sendNewEventRequest(String name) {
-        // robie JSONa
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
 
         NewEventRequest newEventRequest = NewEventRequest.builder()
                 .flag(RequestFlag.MAKEEVT.toString())
@@ -136,11 +126,7 @@ public class EventsWindowController {
                 .eventName(name)
                 .build();
 
-        String request = gson.toJson(newEventRequest);
-
-        String response = client.sendRequestRecResponse(request);
-
-        NewEventResponse newEventResponse = gson.fromJson(response, NewEventResponse.class);
+        NewEventResponse newEventResponse = serializer.createEvent(newEventRequest);
 
         if(newEventRequest.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Cannot do request MAKEEVT");

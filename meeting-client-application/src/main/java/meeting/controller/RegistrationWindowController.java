@@ -1,8 +1,7 @@
 package meeting.controller;
 
+import javafx.application.Platform;
 import meeting.api.request.UserDataRequest;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import meeting.api.response.FlagResponse;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
@@ -13,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import meeting.api.Client;
+import meeting.serializer.Serializer;
 import meeting.service.ApplicationService;
 
 import java.nio.charset.StandardCharsets;
@@ -29,41 +29,34 @@ public class RegistrationWindowController {
     @FXML private Label infoLabel;
 
     private Client client;
+    private Serializer serializer;
+
+    @FXML
+    public void initialize() {
+        Platform.runLater(() -> serializer = new Serializer(client));
+    }
 
     @FXML
     public void registerClicked(ActionEvent event) {
         if(password.getText().trim().equals(confirmPassword.getText().trim())) {
 
-            // hashuje hasło
             String hashedPassword = sha256()
                     .hashString(password.getText(), StandardCharsets.UTF_8)
                     .toString();
 
-            // tworze requesta
-            UserDataRequest request = UserDataRequest.builder()
+            UserDataRequest userDataRequest = UserDataRequest.builder()
                     .flag(RequestFlag.REGISTR.toString())
                     .username(username.getText())
                     .password(hashedPassword)
                     .isLeader(isLeader.isSelected())
                     .build();
 
-            // robie JSONa
-            GsonBuilder builder = new GsonBuilder();
-            builder.setPrettyPrinting();
-            Gson gson = builder.create();
+            FlagResponse flagResponse = serializer.register(userDataRequest);
 
-            String requestString = gson.toJson(request);
-
-            String responseString = client.sendRequestRecResponse(requestString);
-
-            FlagResponse response = gson.fromJson(responseString, FlagResponse.class);
-
-            // jesli odpowiedz ze blad, to komunikat i od nowa
-            if(response.getFlag().equals(ResponseFlag.__ERROR.toString())) {
+            if (flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
                 ApplicationService.showErrorAlert("Username occupied :(");
             }
-            // jesli odpowiedz ze zapisano uzytkownika to komunikat i do okna logowania
-            else if(response.getFlag().equals(ResponseFlag.REGISTR.toString())) {
+            else if (flagResponse.getFlag().equals(ResponseFlag.REGISTR.toString())) {
                 ApplicationService.showInformationAlert("Information Dialog", "Account created :)");
                 cancelClicked(event);
             }

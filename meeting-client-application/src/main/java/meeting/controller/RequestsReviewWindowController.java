@@ -1,7 +1,5 @@
 package meeting.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -17,6 +15,7 @@ import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import meeting.model.RequestReview;
 import meeting.model.User;
+import meeting.serializer.Serializer;
 import meeting.service.ApplicationService;
 
 import java.util.ArrayList;
@@ -38,15 +37,17 @@ public class RequestsReviewWindowController {
 
     private Client client;
     private User user;
+    private Serializer serializer;
 
     private RequestReview pickedRequest;
 
     @FXML
     public void initialize() {
         initCols();
-
-        // blokowanie accept i decline w tej funkcji, bo odswiezac mozna samemu, wtedy sie wiersz odznacza
-        Platform.runLater(this::refreshClicked);
+        Platform.runLater(() -> {
+            serializer = new Serializer(client);
+            refreshClicked();
+        });
     }
 
     @FXML
@@ -65,30 +66,22 @@ public class RequestsReviewWindowController {
 
     @FXML
     public void refreshClicked() {
-        // robie JSONa
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
 
-        RequestReviewListRequest request = RequestReviewListRequest.builder()
+        RequestReviewListRequest requestReviewListRequest = RequestReviewListRequest.builder()
                 .flag(RequestFlag.USERREQ.toString())
                 .leaderId(user.getId())
                 .build();
 
-        String requestString = gson.toJson(request);
+        RequestReviewListResponse requestReviewListResponse = serializer.refreshRequests(requestReviewListRequest);
 
-        String response = client.sendRequestRecResponse(requestString);
-
-        RequestReviewListResponse reqRevListResponse = gson.fromJson(response, RequestReviewListResponse.class);
-
-        if(reqRevListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
+        if(requestReviewListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for USERREQ");
             return;
         }
 
         List<RequestReview> requests = new ArrayList<>();
 
-        reqRevListResponse.getItems().forEach(element -> {
+        requestReviewListResponse.getItems().forEach(element -> {
             RequestReview r = RequestReview.builder()
                     .groupId(element.getGroupId())
                     .groupName(element.getGroupName())
@@ -126,26 +119,18 @@ public class RequestsReviewWindowController {
 
     @FXML
     public void decisionClicked(Event evt) {
-        // robie JSONa
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        Gson gson = builder.create();
 
         String flagInApp = determineFlag(evt);
 
-        RequestDecisionRequest request = RequestDecisionRequest.builder()
+        RequestDecisionRequest requestDecisionRequest = RequestDecisionRequest.builder()
                 .flag(flagInApp)
                 .userId(pickedRequest.getUserId())
                 .groupId(pickedRequest.getGroupId())
                 .build();
 
-        String requestString = gson.toJson(request);
+        FlagResponse flagResponse = serializer.makeRequestDecision(requestDecisionRequest);
 
-        String decisionResponse = client.sendRequestRecResponse(requestString);
-
-        FlagResponse response = gson.fromJson(decisionResponse, FlagResponse.class);
-
-        if(response.getFlag().equals(ResponseFlag.__ERROR.toString())) {
+        if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for USERACC/USERDEC");
             return;
         }
