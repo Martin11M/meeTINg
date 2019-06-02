@@ -5,7 +5,7 @@ import meeting.api.request.EventListRequest;
 import meeting.api.request.NewEventRequest;
 import meeting.api.response.EventListResponse;
 import meeting.api.response.NewEventResponse;
-import meeting.client.Client;
+import meeting.api.Client;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import meeting.enums.RequestFlag;

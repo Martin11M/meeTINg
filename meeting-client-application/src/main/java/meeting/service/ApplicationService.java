@@ -9,11 +9,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import meeting.Main;
-import meeting.client.Client;
+import meeting.api.Client;
 import meeting.controller.*;
 
 import javafx.event.ActionEvent;
-import meeting.model.Event;
 import meeting.model.Group;
 import meeting.model.User;
 

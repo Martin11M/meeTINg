@@ -12,7 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import meeting.client.Client;
+import meeting.api.Client;
 import meeting.service.ApplicationService;
 
 import java.nio.charset.StandardCharsets;

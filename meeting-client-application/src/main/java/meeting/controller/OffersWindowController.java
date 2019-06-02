@@ -15,7 +15,7 @@ import meeting.api.response.FlagResponse;
 import meeting.api.response.NewCommentResponse;
 import meeting.api.response.OfferListResponse;
 import meeting.api.response.OfferResponse;
-import meeting.client.Client;
+import meeting.api.Client;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import meeting.enums.SystemRole;
