@@ -480,17 +480,19 @@ string DataBaseConnection::showEventOffer(int eventId) {
 
         stmt = con->createStatement();
         res = stmt->executeQuery(
-                "SELECT offer_id, start_date, votes_count, accepted_offer FROM OFFER WHERE event_id = " + to_string(eventId));
+                "SELECT offer_id, start_date, votes_count, accepted_offer, confirmed_offer FROM OFFER WHERE event_id = " + to_string(eventId));
         while (res->next()) {
             iterator++;
             string acceptedOffer = (res->getString("accepted_offer") == "1")? "true" : "false";
+            string confirmedOffer = (res->getString("confirmed_offer") == "1")? "true" : "false";
             string date = res->getString("start_date");
 
 
             response += "{\"id\":\"" + res->getString("offer_id") + "\",";
             response += "\"startDate\":\"" + date + "\",";
             response += "\"votesCount\":\"" + res->getString("votes_count") + "\",";
-            response += "\"acceptedOffer\":\"" + acceptedOffer + "\"},";
+            response += "\"acceptedOffer\":\"" + acceptedOffer + "\",";
+            response += "\"confirmedOffer\":\"" + confirmedOffer + "\"},";
 
         }
         if(iterator != 0) response.pop_back();
@@ -532,6 +534,43 @@ string DataBaseConnection::showEventComment(int eventId) {
             response += "\"username\":\"" + res->getString("user_id") + "\",";
             response += "\"message\":\"" + res->getString("message") + "\",";
             response += "\"postDate\":\"" + date + "\"},";
+
+        }
+        if(iterator != 0) response.pop_back();
+        response += "],";
+
+        stmt->close();
+        res->close();
+        delete res;
+        delete stmt;
+
+        return response;
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+    }
+
+}
+
+string DataBaseConnection::showUserVotes(int eventId, int userId) {
+
+    string response = "\"votes\": [";
+    int iterator = 0;
+    try {
+        sql::ResultSet *res;
+
+        stmt = con->createStatement();
+        res = stmt->executeQuery(
+                "SELECT VOTE.vote_id, VOTE.offer_id FROM VOTE join OFFER on VOTE.offer_id = OFFER.offer_id where OFFER.event_id = \"" + to_string(eventId) + "\" and VOTE.user_id = " + to_string(userId));
+        while (res->next()) {
+            iterator++;
+
+            response += "{\"id\":\"" + res->getString("vote_id") + "\",";
+            response += "\"offer_id\":\"" + res->getString("offer_id") + "\"},";
 
         }
         if(iterator != 0) response.pop_back();

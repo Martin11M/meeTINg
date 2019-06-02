@@ -40,17 +40,16 @@ public:
     bool makeEvent(int groupId, string eventName);
     string showEventOffer(int eventId);
     string showEventComment(int eventId);
+    string showUserVotes(int eventId, int userId);
     string makeOffer(int groupId, int userId, string dateTime);
     string makePropOffer(int groupId, int userId, string dateTime);
     bool offerAccept(int offerId);
     string makeComment(int userId, int eventId, string message, string dateTime);
 };
-/*v{
-"flag": "COMMENT",
-"userId": 6,
-"eventId": 4,
-"message": "aaa",
-"postDate": "2019-06-01T14:20:55.715"
+/*{
+"flag": "EVNTOFR",
+"eventId": 9,
+"userId": 9
 }*/
 
 #endif //TESTDB_DATABASECONNECTION_H

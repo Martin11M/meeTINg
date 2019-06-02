@@ -148,12 +148,13 @@ public class OffersWindowController {
                 .build();
 
         String request = gson.toJson(groupRequest);
+        System.out.println(request);
 
-   //     String response = client.sendRequestRecResponse(request);
+        String response = client.sendRequestRecResponse(request);
 
         // fake response:
 
-        String response = "{\n" +
+        /*String response = "{\n" +
                 "  \"flag\": \"EVNTOFR\",\n" +
                 "  \"offers\": [\n" +
                 "    {\n" +
@@ -233,7 +234,7 @@ public class OffersWindowController {
                 "      \"offerId\" : \"5\"\n" +
                 "    }\n" +
                 "  ]\n" +
-                "}";
+                "}";*/
 
 
         OfferListResponse offerListResponse = gson.fromJson(response, OfferListResponse.class);
