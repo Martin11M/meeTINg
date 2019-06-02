@@ -46,15 +46,15 @@ public class RegistrationWindowController {
             FlagResponse flagResponse = serializer.register(userDataRequest);
 
             if (flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-                ApplicationService.showErrorAlert("Username occupied :(");
+                ApplicationService.showErrorAlert("Username is already in use");
             }
             else if (flagResponse.getFlag().equals(ResponseFlag.REGISTR.toString())) {
-                ApplicationService.showInformationAlert("Information Dialog", "Account created :)");
+                ApplicationService.showInformationAlert("Information Dialog", "Registration completed");
                 cancelClicked(event);
             }
         }
         else {
-            infoLabel.setText("Passwords doesnt match");
+            infoLabel.setText("Passwords do not match");
         }
     }
 

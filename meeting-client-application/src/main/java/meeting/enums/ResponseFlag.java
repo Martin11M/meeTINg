@@ -1,7 +1,7 @@
 package meeting.enums;
 
 public enum ResponseFlag {
-    LOGGING, // pomyślne logowanie
+
     REGISTR, // pomyślna rejestracja
 
     USERGRP, // grupy użytkownika
