@@ -57,7 +57,7 @@ void ServerController::selectAction(int fd, json messageJson, ConnectionManager 
             response = userLogin(messageJson["username"], messageJson["password"] , dbc);
             break;
         case REGISTR:
-            response = userRegistration(messageJson["username"], messageJson["password"], dbc);
+            response = userRegistration(messageJson["username"], messageJson["password"], messageJson["isLeader"], dbc);
             break;
         case USERGRP:
             response = userGroups(messageJson["userId"], dbc);
@@ -105,11 +105,10 @@ void ServerController::selectAction(int fd, json messageJson, ConnectionManager 
             response = makeComment(messageJson["userId"],messageJson["eventId"], messageJson["message"], messageJson["postDate"], dbc);
             break;
         case NEWVOTE:
-            cout << messageJson;
             response = makeVote(messageJson["offerId"], messageJson["userId"], dbc);
             break;
         default:
-            cout << "default switch" << endl;
+            cout << "UNKNOW REUQUEST" << endl;
             break;
     }
 
@@ -117,7 +116,7 @@ void ServerController::selectAction(int fd, json messageJson, ConnectionManager 
 }
 
 void ServerController::sendResponse(int fd, string response, ConnectionManager &cm){
-    //cout << response << endl;
+
     char header[4];
     PackageSizeParser::serialize_int_32(header, response.size());
 
@@ -149,10 +148,10 @@ string ServerController::userLogin(string userName, string userPassword, DataBas
     return returnMessage;
 }
 
-string ServerController::userRegistration(string userName, string userPassword, DataBaseConnection &dbc) {
+string ServerController::userRegistration(string userName, string userPassword, bool isLeader, DataBaseConnection &dbc) {
     string returnMessage;
 
-    if (!dbc.correctRegistration(userName, userPassword)) {
+    if (!dbc.correctRegistration(userName, userPassword, isLeader)) {
         returnMessage = "{\"flag\":\"__ERROR\"}";
     } else {
         returnMessage = "{\"flag\":\"REGISTR\"}";
@@ -161,30 +160,27 @@ string ServerController::userRegistration(string userName, string userPassword, 
 }
 
 string ServerController::userGroups(int userId, DataBaseConnection &dbc) {
-    string returnMessage;
+    string returnMessage = dbc.userGroupsList(userId);
 
-    returnMessage = "{\"flag\":\"USERGRP\",";
-    returnMessage += dbc.userGroupsList(userId);
+    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
 
-    return returnMessage;
+    return "{\"flag\":\"USERGRP\"," + returnMessage;
 }
 
 string ServerController::allGroups(int userId, DataBaseConnection &dbc) {
-    string returnMessage;
+    string returnMessage = dbc.allGroups(userId);
 
-    returnMessage = "{\"flag\":\"GRPLIST\",";
-    returnMessage += dbc.allGroups(userId);
+    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
 
-    return returnMessage;
+    return "{\"flag\":\"GRPLIST\"," + returnMessage;
 }
 
 string ServerController::makeGroup(int userId, string groupName, DataBaseConnection &dbc) {
-    string returnMessage;
+    string returnMessage = dbc.makeGroup(userId, groupName);
 
-    returnMessage = "{\"flag\":\"MAKEGRP\",";
-    returnMessage += dbc.makeGroup(userId, groupName);
+    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
 
-    return returnMessage;
+    return "{\"flag\":\"MAKEGRP\"," + returnMessage;
 }
 
 string ServerController::applyGroup(int userId, int groupId, DataBaseConnection &dbc) {
@@ -198,12 +194,11 @@ string ServerController::applyGroup(int userId, int groupId, DataBaseConnection 
 }
 
 string ServerController::userRequest(int leaderId, DataBaseConnection &dbc) {
-    string returnMessage;
+    string returnMessage = dbc.userRequest(leaderId);
 
-    returnMessage = "{\"flag\":\"USERREQ\",";
-    returnMessage += dbc.userRequest(leaderId);
+    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
 
-    return returnMessage;
+    return "{\"flag\":\"USERREQ\"," + returnMessage;
 }
 
 string ServerController::userAccept(int userId, int groupId, DataBaseConnection &dbc) {
@@ -227,12 +222,11 @@ string ServerController::userDecline(int userId, int groupId, DataBaseConnection
 }
 
 string ServerController::groupEvents(int groupId, DataBaseConnection &dbc)  {
-    string returnMessage;
+    string returnMessage = dbc.groupEvents(groupId);
 
-    returnMessage = "{\"flag\":\"GRPEVNT\",";
-    returnMessage += dbc.groupEvents(groupId);
+    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
 
-    return returnMessage;
+    return "{\"flag\":\"GRPEVNT\"," + returnMessage;
 }
 
 string ServerController::makeEvent(int groupId, string eventName, DataBaseConnection &dbc)  {
@@ -246,12 +240,11 @@ string ServerController::makeEvent(int groupId, string eventName, DataBaseConnec
 }
 
 string ServerController::showEventOffer(int eventId, int userId, DataBaseConnection &dbc)  {
-    string returnMessage;
+    string returnMessage = dbc.showEventOffer(eventId) + dbc.showEventComment(eventId) + dbc.showUserVotes(eventId, userId);
 
-    returnMessage = "{\"flag\":\"EVNTOFR\",";
-    returnMessage += dbc.showEventOffer(eventId) + dbc.showEventComment(eventId) + dbc.showUserVotes(eventId, userId);
+    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
 
-    return returnMessage;
+    return "{\"flag\":\"EVNTOFR\"," + returnMessage;
 }
 
 

@@ -59,6 +59,7 @@ public class LoginWindowController {
         Gson gson = builder.create();
 
         String requestString = gson.toJson(request);
+        System.out.println(requestString);
 
         System.out.println("Dlugosc requestString: " + requestString.length());
 

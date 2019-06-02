@@ -15,7 +15,6 @@ using namespace sql;
 
 class DataBaseConnection {
 
-    int userId = 0;    //id zalogowanego uzytkownika
     sql::Connection *con;
     sql::Driver *driver;
     sql::Statement *stmt;
@@ -26,8 +25,7 @@ public:
     void usersList();
     void closeConnection();
     string userLoginData(string userName);
-    bool correctRegistration(string userName, string password);
-    //ResultSet groupsList();
+    bool correctRegistration(string userName, string password, bool isLeader);
     string userGroupsList(int userId);
     string allGroups(int userId);
     string makeGroup(int userId, string groupName);
