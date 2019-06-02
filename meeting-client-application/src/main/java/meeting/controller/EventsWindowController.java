@@ -64,11 +64,7 @@ public class EventsWindowController {
     @FXML
     public void returnClicked(ActionEvent actionEvent) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/GroupsWindow.fxml"));
-            ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
-            GroupsWindowController groupsWindowController = fxmlLoader.getController();
-            groupsWindowController.setClient(client);
-            groupsWindowController.setUser(user);
+            ApplicationService.loadPreviousWindow(actionEvent, EventsWindowController.class, client, user, null, "/fxml/GroupsWindow.fxml");
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -180,15 +176,15 @@ public class EventsWindowController {
         }
     }
 
-    void setPickedGroup(Group pickedGroup) {
+    public void setPickedGroup(Group pickedGroup) {
         this.pickedGroup = pickedGroup;
     }
 
-    void setClient(Client client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 
-    void setUser(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

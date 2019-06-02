@@ -10,9 +10,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import meeting.Main;
 import meeting.client.Client;
-import meeting.controller.LoginWindowController;
+import meeting.controller.*;
 
 import javafx.event.ActionEvent;
+import meeting.model.Event;
+import meeting.model.Group;
+import meeting.model.User;
+
 import java.util.Optional;
 
 public class ApplicationService {
@@ -59,5 +63,29 @@ public class ApplicationService {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.show();
+    }
+
+    public static void loadPreviousWindow(ActionEvent actionEvent, Class theClass, Client client, User user, Group group, String resource) {
+        FXMLLoader fxmlLoader = new FXMLLoader(theClass.getResource(resource));
+        ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
+        if (theClass == AllGroupsWindowController.class || theClass == EventsWindowController.class || theClass == RequestsReviewWindowController.class) {
+            prepareGroupsWindowController(fxmlLoader, client, user);
+        }
+        else if (theClass == OffersWindowController.class) {
+            prepareEventsWindowController(fxmlLoader, client, user, group);
+        }
+    }
+
+    private static void prepareGroupsWindowController(FXMLLoader fxmlLoader, Client client, User user) {
+        GroupsWindowController groupsWindowController = fxmlLoader.getController();
+        groupsWindowController.setClient(client);
+        groupsWindowController.setUser(user);
+    }
+
+    private static void prepareEventsWindowController(FXMLLoader fxmlLoader, Client client, User user, Group group) {
+        EventsWindowController eventsWindowController = fxmlLoader.getController();
+        eventsWindowController.setPickedGroup(group);
+        eventsWindowController.setClient(client);
+        eventsWindowController.setUser(user);
     }
 }

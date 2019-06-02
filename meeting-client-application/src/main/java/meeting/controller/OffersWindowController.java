@@ -127,12 +127,7 @@ public class OffersWindowController {
     @FXML
     public void returnClicked(ActionEvent actionEvent) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/EventsWindow.fxml"));
-            ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
-            EventsWindowController eventsWindowController = fxmlLoader.getController();
-            eventsWindowController.setPickedGroup(pickedGroup);
-            eventsWindowController.setClient(client);
-            eventsWindowController.setUser(user);
+            ApplicationService.loadPreviousWindow(actionEvent, OffersWindowController.class, client, user, pickedGroup, "/fxml/EventsWindow.fxml");
         } catch(Exception e) {
             e.printStackTrace();
         }

@@ -62,11 +62,7 @@ public class RequestsReviewWindowController {
     @FXML
     public void returnClicked(ActionEvent actionEvent) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/GroupsWindow.fxml"));
-            ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
-            GroupsWindowController groupsWindowController = fxmlLoader.getController();
-            groupsWindowController.setClient(client);
-            groupsWindowController.setUser(user);
+            ApplicationService.loadPreviousWindow(actionEvent, RequestsReviewWindowController.class, client, user, null, "/fxml/GroupsWindow.fxml");
         } catch(Exception e) {
             e.printStackTrace();
         }

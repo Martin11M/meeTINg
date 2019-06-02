@@ -195,11 +195,11 @@ public class GroupsWindowController {
         });
     }
 
-    void setClient(Client client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 
-    void setUser(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }
