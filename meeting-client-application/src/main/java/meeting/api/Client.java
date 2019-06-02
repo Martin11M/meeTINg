@@ -1,4 +1,4 @@
-package meeting.client;
+package meeting.api;
 
 import java.io.*;
 

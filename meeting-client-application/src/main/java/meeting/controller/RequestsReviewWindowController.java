@@ -6,16 +6,13 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import meeting.api.request.RequestDecisionRequest;
 import meeting.api.request.RequestReviewListRequest;
 import meeting.api.response.FlagResponse;
 import meeting.api.response.RequestReviewListResponse;
-import meeting.client.Client;
+import meeting.api.Client;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import meeting.model.RequestReview;
@@ -156,19 +153,11 @@ public class RequestsReviewWindowController {
         }
 
         if(flagInApp.equals(RequestFlag.USERACC.toString())) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText("User \"" + pickedRequest.getUserName() +"\" accepted to group \"" + pickedRequest.getGroupName() + "\"");
-            alert.showAndWait();
+            ApplicationService.showInformationAlert("Information Dialog", "User \"" + pickedRequest.getUserName() +"\" accepted to group \"" + pickedRequest.getGroupName() + "\"");
         }
         else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText("User \"" + pickedRequest.getUserName() +"\" not accepted to group \"" + pickedRequest.getGroupName() + "\"");
-            alert.showAndWait();
+            ApplicationService.showInformationAlert("Information Dialog", "User \"" + pickedRequest.getUserName() +"\" not accepted to group \"" + pickedRequest.getGroupName() + "\"");
         }
-
-        // odswiezam zeby nie bylo juz tego wiersza w kolumnie
         refreshClicked();
     }
 

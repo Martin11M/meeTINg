@@ -5,18 +5,14 @@ import meeting.api.request.GroupListRequest;
 import meeting.api.request.MembershipRequest;
 import meeting.api.response.FlagResponse;
 import meeting.api.response.GroupListResponse;
-import meeting.client.Client;
+import meeting.api.Client;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.stage.Stage;
 import meeting.model.Group;
 import meeting.model.User;
 import meeting.service.ApplicationService;
@@ -72,11 +68,7 @@ public class AllGroupsWindowController {
             return;
         }
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText("Membership request sent to leader of group");
-        alert.showAndWait();
-
+        ApplicationService.showInformationAlert("Information Dialog", "Membership request sent to leader of group");
         refreshClicked();
     }
 

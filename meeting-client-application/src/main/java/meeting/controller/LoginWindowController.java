@@ -2,7 +2,7 @@ package meeting.controller;
 
 import meeting.api.request.UserDataRequest;
 import meeting.api.response.UserLoginResponse;
-import meeting.client.Client;
+import meeting.api.Client;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import meeting.enums.RequestFlag;
@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;

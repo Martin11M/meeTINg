@@ -4,7 +4,7 @@ import meeting.api.request.GroupListRequest;
 import meeting.api.request.NewGroupRequest;
 import meeting.api.response.GroupListResponse;
 import meeting.api.response.NewGroupResponse;
-import meeting.client.Client;
+import meeting.api.Client;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import meeting.enums.RequestFlag;
