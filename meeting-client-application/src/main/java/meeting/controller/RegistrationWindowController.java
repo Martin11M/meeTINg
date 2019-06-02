@@ -47,11 +47,10 @@ public class RegistrationWindowController {
 
             if (flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
                 ApplicationService.showErrorAlert("Username is already in use");
+                return;
             }
-            else if (flagResponse.getFlag().equals(ResponseFlag.REGISTR.toString())) {
-                ApplicationService.showInformationAlert("Information Dialog", "Registration completed");
-                cancelClicked(event);
-            }
+            ApplicationService.showInformationAlert("Information Dialog", "Registration completed");
+            cancelClicked(event);
         }
         else {
             infoLabel.setText("Passwords do not match");
