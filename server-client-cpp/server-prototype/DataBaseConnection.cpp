@@ -570,7 +570,7 @@ string DataBaseConnection::showUserVotes(int eventId, int userId) {
             iterator++;
 
             response += "{\"id\":\"" + res->getString("vote_id") + "\",";
-            response += "\"offer_id\":\"" + res->getString("offer_id") + "\"},";
+            response += "\"offerId\":\"" + res->getString("offer_id") + "\"},";
 
         }
         if(iterator != 0) response.pop_back();
