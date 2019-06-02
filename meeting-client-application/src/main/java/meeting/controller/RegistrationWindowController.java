@@ -64,11 +64,7 @@ public class RegistrationWindowController {
             }
             // jesli odpowiedz ze zapisano uzytkownika to komunikat i do okna logowania
             else if(response.getFlag().equals(ResponseFlag.REGISTR.toString())) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText("Account created :)");
-                alert.showAndWait();
-
+                ApplicationService.showInformationAlert("Information Dialog", "Account created :)");
                 cancelClicked(event);
             }
         }

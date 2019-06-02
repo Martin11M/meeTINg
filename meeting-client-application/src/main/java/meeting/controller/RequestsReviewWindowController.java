@@ -153,19 +153,11 @@ public class RequestsReviewWindowController {
         }
 
         if(flagInApp.equals(RequestFlag.USERACC.toString())) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText("User \"" + pickedRequest.getUserName() +"\" accepted to group \"" + pickedRequest.getGroupName() + "\"");
-            alert.showAndWait();
+            ApplicationService.showInformationAlert("Information Dialog", "User \"" + pickedRequest.getUserName() +"\" accepted to group \"" + pickedRequest.getGroupName() + "\"");
         }
         else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText("User \"" + pickedRequest.getUserName() +"\" not accepted to group \"" + pickedRequest.getGroupName() + "\"");
-            alert.showAndWait();
+            ApplicationService.showInformationAlert("Information Dialog", "User \"" + pickedRequest.getUserName() +"\" not accepted to group \"" + pickedRequest.getGroupName() + "\"");
         }
-
-        // odswiezam zeby nie bylo juz tego wiersza w kolumnie
         refreshClicked();
     }
 

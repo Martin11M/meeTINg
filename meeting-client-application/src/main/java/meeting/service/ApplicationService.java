@@ -64,6 +64,13 @@ public class ApplicationService {
         alert.show();
     }
 
+    public static void showInformationAlert(String title, String header) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.showAndWait();
+    }
+
     public static void loadPreviousWindow(ActionEvent actionEvent, Class theClass, Client client, User user, Group group, String resource) {
         FXMLLoader fxmlLoader = new FXMLLoader(theClass.getResource(resource));
         ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);

@@ -68,11 +68,7 @@ public class AllGroupsWindowController {
             return;
         }
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText("Membership request sent to leader of group");
-        alert.showAndWait();
-
+        ApplicationService.showInformationAlert("Information Dialog", "Membership request sent to leader of group");
         refreshClicked();
     }
 

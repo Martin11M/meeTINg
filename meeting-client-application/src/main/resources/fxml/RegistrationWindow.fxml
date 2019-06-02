@@ -17,7 +17,7 @@
       <Button fx:id="registerButton" disable="true" layoutX="200.0" layoutY="308.0" mnemonicParsing="false" onAction="#registerClicked" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 1.5px; -fx-border-radius: 20px;" text="Register" />
       <Button layoutX="310.0" layoutY="308.0" mnemonicParsing="false" onAction="#cancelClicked" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 1.5px; -fx-border-radius: 20px;" text="Cancel" />
       <TextField fx:id="username" layoutX="270.0" layoutY="125.0" onKeyReleased="#fieldChanged" prefWidth="200.0" />
-      <Label fx:id="infoLabel" alignment="CENTER" layoutX="130.0" layoutY="240.0" prefHeight="20.0" prefWidth="340.0" textAlignment="CENTER" textFill="#e40000" />
+      <Label fx:id="infoLabel" alignment="CENTER" layoutX="130.0" layoutY="280.0" prefHeight="20.0" prefWidth="340.0" textAlignment="CENTER" textFill="#e40000" />
       <Label layoutX="130.0" layoutY="250.0" text="Team leader" />
       <CheckBox fx:id="isLeader" layoutX="270.0" layoutY="245.0" mnemonicParsing="false" />
    </children>
