@@ -4,18 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Comment.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/Comment.cpp.o"
   "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConnectionManager.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/ConnectionManager.cpp.o"
   "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConsoleManager.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/ConsoleManager.cpp.o"
   "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/DataBaseConnection.cpp.o"
-  "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Event.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/Event.cpp.o"
-  "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Group.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/Group.cpp.o"
   "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/MessageParser.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/MessageParser.cpp.o"
-  "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Offer.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/Offer.cpp.o"
   "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/PackageSizeParser.cpp.o"
   "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ServerController.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/ServerController.cpp.o"
-  "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/User.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/User.cpp.o"
-  "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Vote.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/Vote.cpp.o"
   "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/main.cpp" "/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/server_prototype.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

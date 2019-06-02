@@ -23,6 +23,8 @@ Odbieranie pakietu w strukturze klienckiej i wywolywanie z zewnatrz ze ma odebra
 (male) ----------------------------------------------------- ZROBIONE, KACPER
 Serialize int 32 ma byc w kolejnosci sieciowej!!!
 
+(duze) ------------------------------------------------------ ZROBIONE, MICHAL
+Zrobic klase ktora przyjmuje flage i obiekt/obiekty, zamienia obiekty na json i skleja flage i jsona i podaje to do wyslania warstwie nizszej
 
 
 // TODO
@@ -30,8 +32,6 @@ Serialize int 32 ma byc w kolejnosci sieciowej!!!
 (raczej male - poczytac co zwraca receive jesli wyskoczy przypadkowo - czy wgl moze?? jeli moze to to zabezpieczyc (receive teraz w clientstructure))
 Jak przypadkowo wyskoczy z selecta co zwraca receive przy nie blokujacym deskryptorze klienta
 
-(duze - chodzi zeby zrobic klase ktora przyjmuje flage i obiekt/obiekty, zamienia obiekty na json i skleja flage i jsona i podaje to do wyslania warstwie nizszej)
-Wyodrebnione warstwy serializacji i deserializacji
 
 (spore - chyba trzeba dodac w struct client miejsce na bufor do wysylania i zrobic to samo co dla receive)
 Send jest blokujacy - send all

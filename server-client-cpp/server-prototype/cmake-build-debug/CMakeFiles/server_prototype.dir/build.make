@@ -135,87 +135,9 @@ CMakeFiles/server_prototype.dir/ServerController.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_prototype.dir/ServerController.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ServerController.cpp -o CMakeFiles/server_prototype.dir/ServerController.cpp.s
 
-CMakeFiles/server_prototype.dir/Offer.cpp.o: CMakeFiles/server_prototype.dir/flags.make
-CMakeFiles/server_prototype.dir/Offer.cpp.o: ../Offer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server_prototype.dir/Offer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server_prototype.dir/Offer.cpp.o -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Offer.cpp
-
-CMakeFiles/server_prototype.dir/Offer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_prototype.dir/Offer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Offer.cpp > CMakeFiles/server_prototype.dir/Offer.cpp.i
-
-CMakeFiles/server_prototype.dir/Offer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_prototype.dir/Offer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Offer.cpp -o CMakeFiles/server_prototype.dir/Offer.cpp.s
-
-CMakeFiles/server_prototype.dir/Event.cpp.o: CMakeFiles/server_prototype.dir/flags.make
-CMakeFiles/server_prototype.dir/Event.cpp.o: ../Event.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server_prototype.dir/Event.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server_prototype.dir/Event.cpp.o -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Event.cpp
-
-CMakeFiles/server_prototype.dir/Event.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_prototype.dir/Event.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Event.cpp > CMakeFiles/server_prototype.dir/Event.cpp.i
-
-CMakeFiles/server_prototype.dir/Event.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_prototype.dir/Event.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Event.cpp -o CMakeFiles/server_prototype.dir/Event.cpp.s
-
-CMakeFiles/server_prototype.dir/Group.cpp.o: CMakeFiles/server_prototype.dir/flags.make
-CMakeFiles/server_prototype.dir/Group.cpp.o: ../Group.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server_prototype.dir/Group.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server_prototype.dir/Group.cpp.o -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Group.cpp
-
-CMakeFiles/server_prototype.dir/Group.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_prototype.dir/Group.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Group.cpp > CMakeFiles/server_prototype.dir/Group.cpp.i
-
-CMakeFiles/server_prototype.dir/Group.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_prototype.dir/Group.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Group.cpp -o CMakeFiles/server_prototype.dir/Group.cpp.s
-
-CMakeFiles/server_prototype.dir/User.cpp.o: CMakeFiles/server_prototype.dir/flags.make
-CMakeFiles/server_prototype.dir/User.cpp.o: ../User.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server_prototype.dir/User.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server_prototype.dir/User.cpp.o -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/User.cpp
-
-CMakeFiles/server_prototype.dir/User.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_prototype.dir/User.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/User.cpp > CMakeFiles/server_prototype.dir/User.cpp.i
-
-CMakeFiles/server_prototype.dir/User.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_prototype.dir/User.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/User.cpp -o CMakeFiles/server_prototype.dir/User.cpp.s
-
-CMakeFiles/server_prototype.dir/Vote.cpp.o: CMakeFiles/server_prototype.dir/flags.make
-CMakeFiles/server_prototype.dir/Vote.cpp.o: ../Vote.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server_prototype.dir/Vote.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server_prototype.dir/Vote.cpp.o -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Vote.cpp
-
-CMakeFiles/server_prototype.dir/Vote.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_prototype.dir/Vote.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Vote.cpp > CMakeFiles/server_prototype.dir/Vote.cpp.i
-
-CMakeFiles/server_prototype.dir/Vote.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_prototype.dir/Vote.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Vote.cpp -o CMakeFiles/server_prototype.dir/Vote.cpp.s
-
-CMakeFiles/server_prototype.dir/Comment.cpp.o: CMakeFiles/server_prototype.dir/flags.make
-CMakeFiles/server_prototype.dir/Comment.cpp.o: ../Comment.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/server_prototype.dir/Comment.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server_prototype.dir/Comment.cpp.o -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Comment.cpp
-
-CMakeFiles/server_prototype.dir/Comment.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_prototype.dir/Comment.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Comment.cpp > CMakeFiles/server_prototype.dir/Comment.cpp.i
-
-CMakeFiles/server_prototype.dir/Comment.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_prototype.dir/Comment.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Comment.cpp -o CMakeFiles/server_prototype.dir/Comment.cpp.s
-
 CMakeFiles/server_prototype.dir/MessageParser.cpp.o: CMakeFiles/server_prototype.dir/flags.make
 CMakeFiles/server_prototype.dir/MessageParser.cpp.o: ../MessageParser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/server_prototype.dir/MessageParser.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server_prototype.dir/MessageParser.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server_prototype.dir/MessageParser.cpp.o -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/MessageParser.cpp
 
 CMakeFiles/server_prototype.dir/MessageParser.cpp.i: cmake_force
@@ -234,12 +156,6 @@ server_prototype_OBJECTS = \
 "CMakeFiles/server_prototype.dir/ConsoleManager.cpp.o" \
 "CMakeFiles/server_prototype.dir/DataBaseConnection.cpp.o" \
 "CMakeFiles/server_prototype.dir/ServerController.cpp.o" \
-"CMakeFiles/server_prototype.dir/Offer.cpp.o" \
-"CMakeFiles/server_prototype.dir/Event.cpp.o" \
-"CMakeFiles/server_prototype.dir/Group.cpp.o" \
-"CMakeFiles/server_prototype.dir/User.cpp.o" \
-"CMakeFiles/server_prototype.dir/Vote.cpp.o" \
-"CMakeFiles/server_prototype.dir/Comment.cpp.o" \
 "CMakeFiles/server_prototype.dir/MessageParser.cpp.o"
 
 # External object files for target server_prototype
@@ -251,16 +167,10 @@ server_prototype: CMakeFiles/server_prototype.dir/ConnectionManager.cpp.o
 server_prototype: CMakeFiles/server_prototype.dir/ConsoleManager.cpp.o
 server_prototype: CMakeFiles/server_prototype.dir/DataBaseConnection.cpp.o
 server_prototype: CMakeFiles/server_prototype.dir/ServerController.cpp.o
-server_prototype: CMakeFiles/server_prototype.dir/Offer.cpp.o
-server_prototype: CMakeFiles/server_prototype.dir/Event.cpp.o
-server_prototype: CMakeFiles/server_prototype.dir/Group.cpp.o
-server_prototype: CMakeFiles/server_prototype.dir/User.cpp.o
-server_prototype: CMakeFiles/server_prototype.dir/Vote.cpp.o
-server_prototype: CMakeFiles/server_prototype.dir/Comment.cpp.o
 server_prototype: CMakeFiles/server_prototype.dir/MessageParser.cpp.o
 server_prototype: CMakeFiles/server_prototype.dir/build.make
 server_prototype: CMakeFiles/server_prototype.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable server_prototype"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable server_prototype"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server_prototype.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

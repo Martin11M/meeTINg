@@ -123,33 +123,6 @@ server_prototype/fast:
 	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/build
 .PHONY : server_prototype/fast
 
-Comment.o: Comment.cpp.o
-
-.PHONY : Comment.o
-
-# target to build an object file
-Comment.cpp.o:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Comment.cpp.o
-.PHONY : Comment.cpp.o
-
-Comment.i: Comment.cpp.i
-
-.PHONY : Comment.i
-
-# target to preprocess a source file
-Comment.cpp.i:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Comment.cpp.i
-.PHONY : Comment.cpp.i
-
-Comment.s: Comment.cpp.s
-
-.PHONY : Comment.s
-
-# target to generate assembly for a file
-Comment.cpp.s:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Comment.cpp.s
-.PHONY : Comment.cpp.s
-
 ConnectionManager.o: ConnectionManager.cpp.o
 
 .PHONY : ConnectionManager.o
@@ -231,60 +204,6 @@ DataBaseConnection.cpp.s:
 	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/DataBaseConnection.cpp.s
 .PHONY : DataBaseConnection.cpp.s
 
-Event.o: Event.cpp.o
-
-.PHONY : Event.o
-
-# target to build an object file
-Event.cpp.o:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Event.cpp.o
-.PHONY : Event.cpp.o
-
-Event.i: Event.cpp.i
-
-.PHONY : Event.i
-
-# target to preprocess a source file
-Event.cpp.i:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Event.cpp.i
-.PHONY : Event.cpp.i
-
-Event.s: Event.cpp.s
-
-.PHONY : Event.s
-
-# target to generate assembly for a file
-Event.cpp.s:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Event.cpp.s
-.PHONY : Event.cpp.s
-
-Group.o: Group.cpp.o
-
-.PHONY : Group.o
-
-# target to build an object file
-Group.cpp.o:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Group.cpp.o
-.PHONY : Group.cpp.o
-
-Group.i: Group.cpp.i
-
-.PHONY : Group.i
-
-# target to preprocess a source file
-Group.cpp.i:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Group.cpp.i
-.PHONY : Group.cpp.i
-
-Group.s: Group.cpp.s
-
-.PHONY : Group.s
-
-# target to generate assembly for a file
-Group.cpp.s:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Group.cpp.s
-.PHONY : Group.cpp.s
-
 MessageParser.o: MessageParser.cpp.o
 
 .PHONY : MessageParser.o
@@ -311,33 +230,6 @@ MessageParser.s: MessageParser.cpp.s
 MessageParser.cpp.s:
 	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/MessageParser.cpp.s
 .PHONY : MessageParser.cpp.s
-
-Offer.o: Offer.cpp.o
-
-.PHONY : Offer.o
-
-# target to build an object file
-Offer.cpp.o:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Offer.cpp.o
-.PHONY : Offer.cpp.o
-
-Offer.i: Offer.cpp.i
-
-.PHONY : Offer.i
-
-# target to preprocess a source file
-Offer.cpp.i:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Offer.cpp.i
-.PHONY : Offer.cpp.i
-
-Offer.s: Offer.cpp.s
-
-.PHONY : Offer.s
-
-# target to generate assembly for a file
-Offer.cpp.s:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Offer.cpp.s
-.PHONY : Offer.cpp.s
 
 PackageSizeParser.o: PackageSizeParser.cpp.o
 
@@ -393,60 +285,6 @@ ServerController.cpp.s:
 	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/ServerController.cpp.s
 .PHONY : ServerController.cpp.s
 
-User.o: User.cpp.o
-
-.PHONY : User.o
-
-# target to build an object file
-User.cpp.o:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/User.cpp.o
-.PHONY : User.cpp.o
-
-User.i: User.cpp.i
-
-.PHONY : User.i
-
-# target to preprocess a source file
-User.cpp.i:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/User.cpp.i
-.PHONY : User.cpp.i
-
-User.s: User.cpp.s
-
-.PHONY : User.s
-
-# target to generate assembly for a file
-User.cpp.s:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/User.cpp.s
-.PHONY : User.cpp.s
-
-Vote.o: Vote.cpp.o
-
-.PHONY : Vote.o
-
-# target to build an object file
-Vote.cpp.o:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Vote.cpp.o
-.PHONY : Vote.cpp.o
-
-Vote.i: Vote.cpp.i
-
-.PHONY : Vote.i
-
-# target to preprocess a source file
-Vote.cpp.i:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Vote.cpp.i
-.PHONY : Vote.cpp.i
-
-Vote.s: Vote.cpp.s
-
-.PHONY : Vote.s
-
-# target to generate assembly for a file
-Vote.cpp.s:
-	$(MAKE) -f CMakeFiles/server_prototype.dir/build.make CMakeFiles/server_prototype.dir/Vote.cpp.s
-.PHONY : Vote.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -483,9 +321,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... server_prototype"
 	@echo "... edit_cache"
-	@echo "... Comment.o"
-	@echo "... Comment.i"
-	@echo "... Comment.s"
 	@echo "... ConnectionManager.o"
 	@echo "... ConnectionManager.i"
 	@echo "... ConnectionManager.s"
@@ -495,30 +330,15 @@ help:
 	@echo "... DataBaseConnection.o"
 	@echo "... DataBaseConnection.i"
 	@echo "... DataBaseConnection.s"
-	@echo "... Event.o"
-	@echo "... Event.i"
-	@echo "... Event.s"
-	@echo "... Group.o"
-	@echo "... Group.i"
-	@echo "... Group.s"
 	@echo "... MessageParser.o"
 	@echo "... MessageParser.i"
 	@echo "... MessageParser.s"
-	@echo "... Offer.o"
-	@echo "... Offer.i"
-	@echo "... Offer.s"
 	@echo "... PackageSizeParser.o"
 	@echo "... PackageSizeParser.i"
 	@echo "... PackageSizeParser.s"
 	@echo "... ServerController.o"
 	@echo "... ServerController.i"
 	@echo "... ServerController.s"
-	@echo "... User.o"
-	@echo "... User.i"
-	@echo "... User.s"
-	@echo "... Vote.o"
-	@echo "... Vote.i"
-	@echo "... Vote.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
