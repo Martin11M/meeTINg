@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import meeting.model.Group;
 import meeting.model.User;
+import meeting.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,27 +108,8 @@ public class GroupsWindowController {
     }
 
     @FXML
-    private void signOutClicked(ActionEvent event){
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText(null);
-        alert.setContentText("Do you want to sign out?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent()) {
-            ButtonType reloadedResult = result.get();
-            if (reloadedResult == ButtonType.OK){
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginWindow.fxml"));
-                    StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
-                    LoginWindowController loginWindowController = fxmlLoader.getController();
-                    loginWindowController.setClient(client);
-                } catch(Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
+    private void signOutClicked(ActionEvent actionEvent){
+        UserService.signOut(actionEvent, EventsWindowController.class, client);
     }
 
     @FXML

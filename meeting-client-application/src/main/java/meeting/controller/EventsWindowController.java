@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import meeting.model.Event;
 import meeting.model.Group;
 import meeting.model.User;
-import sun.rmi.runtime.Log;
+import meeting.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,25 +59,7 @@ public class EventsWindowController {
 
     @FXML
     public void signOutClicked(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText(null);
-        alert.setContentText("Do you want to sign out?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent()) {
-            ButtonType reloadedResult = result.get();
-            if (reloadedResult == ButtonType.OK){
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginWindow.fxml"));
-                    StageLoader.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
-                    LoginWindowController loginWindowController = fxmlLoader.getController();
-                    loginWindowController.setClient(client);
-                } catch(Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
+        UserService.signOut(actionEvent, EventsWindowController.class, client);
     }
 
     @FXML
