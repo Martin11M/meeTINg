@@ -6,5 +6,5 @@ CXX_FLAGS = -pthread -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/. -I/usr/include/cppconn 
+CXX_INCLUDES = -I/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/. -I/usr/include/cppconn 
 

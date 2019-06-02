@@ -33,6 +33,7 @@ void *handle_client(void* args)
 int main(int argc, char* argv[])
 {
     int pipefd[2];
+    int pipefd2[2];
     int port = atoi(argv[1]);
     if (!port) {
         perror("Illegal argument (port)");
@@ -48,7 +49,7 @@ int main(int argc, char* argv[])
     // utworz nowy watek i przekaz mu deskryptor do pipe do read
     pthread_t thread_id;
 
-    int thread_args[3] = {pipefd[0], pipefd[1], port};
+    int thread_args[5] = {pipefd[0], pipefd[1], pipefd2[0], pipefd2[1], port};
 
     if(pthread_create(&thread_id, NULL, handle_client, (void *) (intptr_t) &thread_args) < 0)
     {
@@ -56,11 +57,15 @@ int main(int argc, char* argv[])
         exit(EXIT_FAILURE);
     }
 
-    int writefd = pipefd[1];
+    int readfd = pipefd[0]; // readfd = 3
+    int writefd = pipefd[1]; // writefd = 4
+    int readfd2 = pipefd2[0]; // readfd2 = 5
+    int writefd2 = pipefd2[1]; // writefd2 = 6
 
-    ConsoleManager::runConsole(writefd);
+    ConsoleManager::runConsole(readfd, writefd, readfd2, writefd2);
 
     close(writefd);
+    close(writefd2);
     pthread_join(thread_id, NULL);
 
     return 0;

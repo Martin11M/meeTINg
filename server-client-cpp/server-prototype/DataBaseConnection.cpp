@@ -21,7 +21,7 @@ DataBaseConnection::DataBaseConnection(string userName, string password) {
 
         /* Create a connection */
         driver = get_driver_instance();
-        con = driver->connect("tcp://127.0.0.1:3306", "root", "admin");
+        con = driver->connect("tcp://127.0.0.1:3306", "root", "marcin11");
         /* Connect to the MySQL test database */
         con->setSchema("meeting");
 
@@ -744,4 +744,305 @@ bool DataBaseConnection::offerConfirm(int offerId) {
         return 0;
     }
 
+}
+char DataBaseConnection::showAllGroups() {
+
+    string response;
+
+    try {
+        int count = 1;
+
+        sql::ResultSet *res;
+
+        stmt = con->createStatement();
+
+        res = stmt->executeQuery(
+                "SELECT name FROM GROUPS;");
+        while (res->next()) {
+
+            cout <<endl << count++ << ".  " << res->getString("name");
+
+        }
+
+        stmt->close();
+        res->close();
+        delete res;
+        delete stmt;
+        return 's';
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return 'e';
+    }
+}
+
+char DataBaseConnection::showAllUsers() {
+
+    try {
+        int count = 1;
+
+        sql::ResultSet *res;
+
+        stmt = con->createStatement();
+
+        res = stmt->executeQuery(
+                "SELECT username FROM USER WHERE system_role=0;");
+        while (res->next()) {
+
+            cout <<endl << count++ << ".  " << res->getString("username");
+
+        }
+
+        stmt->close();
+        res->close();
+        delete res;
+        delete stmt;
+        return 's';
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return 'e';
+    }
+}
+
+
+char DataBaseConnection::showLeaders() {
+
+    try {
+        int count = 1;
+
+        sql::ResultSet *res;
+
+        stmt = con->createStatement();
+
+        res = stmt->executeQuery(
+                "SELECT username FROM USER where system_role='1';");
+        while (res->next()) {
+
+            cout <<endl << count++ << ".  " << res->getString("username");
+
+        }
+
+        stmt->close();
+        res->close();
+        delete res;
+        delete stmt;
+
+        return 's';
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return 'e';
+    }
+}
+
+char DataBaseConnection::deleteUser(int id) {
+    try {
+        stmt = con->createStatement();
+
+        stmt->executeUpdate(
+                "DELETE FROM GROUP_USER WHERE user_id = '" + to_string(id)+"'");
+        stmt->executeUpdate(
+                "DELETE FROM COMMENT WHERE user_id = '" + to_string(id)+"'");
+        stmt->executeUpdate(
+                "DELETE FROM VOTE WHERE user_id = '" + to_string(id)+"'");
+        stmt->executeUpdate(
+                "DELETE FROM OFFER WHERE user_id = '" + to_string(id)+"'");
+        stmt->executeUpdate(
+                "DELETE FROM USER WHERE user_id = '" + to_string(id)+"'");
+
+        stmt->close();
+        delete stmt;
+        return 's';
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return 'e';
+    }
+}
+
+char DataBaseConnection::deleteGroup(int id) {
+    try {
+        sql::ResultSet *res;
+
+        stmt = con->createStatement();
+
+        res = stmt->executeQuery(
+                "SELECT event_id FROM EVENT where group_id='" + to_string(id)+"'");
+
+        while(res->next()){
+            sql::ResultSet *res1;
+            res = stmt->executeQuery(
+                    "SELECT offer_id FROM offer where event_id='" + res->getString("event_id"));
+            while(res1->next()){
+                stmt->executeUpdate(
+                        "DELETE FROM VOTE WHERE offer_id = " + res1->getString("event_id"));
+            }
+            stmt->executeUpdate(
+                    "DELETE FROM OFFER WHERE event_id = " + res->getString("event_id"));
+        }
+        stmt->executeUpdate(
+                "DELETE FROM EVENT WHERE froup_id = " + to_string(id));
+
+        stmt->executeUpdate(
+                "DELETE FROM GROUPS WHERE group_id = " + to_string(id));
+
+        stmt->close();
+        delete stmt;
+        return 's';
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return 'e';
+    }
+}
+
+int DataBaseConnection::groupCount() {
+
+    try {
+        int count = 0;
+
+        sql::ResultSet *res;
+
+        stmt = con->createStatement();
+
+        res = stmt->executeQuery(
+                "SELECT name FROM GROUPS;");
+        while (res->next()) {
+            ++count;
+        }
+
+        stmt->close();
+        res->close();
+        delete res;
+        delete stmt;
+        return count;
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return -1;
+    }
+}
+
+int DataBaseConnection::userCount() {
+
+    try {
+        int count = 0;
+
+        sql::ResultSet *res;
+
+        stmt = con->createStatement();
+
+        res = stmt->executeQuery(
+                "SELECT username FROM USER WHERE system_role=0;");
+        while (res->next()) {
+            ++count;
+        }
+
+        stmt->close();
+        res->close();
+        delete res;
+        delete stmt;
+        return count;
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return -1;
+    }
+}
+
+
+int DataBaseConnection::getGroupID(int choice) {
+
+    try {
+        int count = 0;
+        sql::ResultSet *res;
+
+        stmt = con->createStatement();
+
+        res = stmt->executeQuery(
+                "SELECT group_id FROM GROUPS;");
+        while (res->next()) {
+            count++;
+            if(count == choice){
+                cout <<"UWAGA ID:  "<< stoi(res->getString("group_id"));
+                return stoi(res->getString("group_id"));
+            }
+        }
+
+        stmt->close();
+        res->close();
+        delete res;
+        delete stmt;
+        return count;
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return -1;
+    }
+}
+int DataBaseConnection::getUserID(int choice) {
+
+    try {
+        int count = 0;
+        sql::ResultSet *res;
+
+        stmt = con->createStatement();
+
+        res = stmt->executeQuery(
+                "SELECT user_id FROM USERS where system_role=0;");
+        while (res->next()) {
+            ++count;
+            if(count == choice){
+                cout << "id!!!!!  "<< std::stoi(res->getString("user_id"));
+                return  std::stoi(res->getString("user_id"));
+            }
+        }
+
+        stmt->close();
+        res->close();
+        delete res;
+        delete stmt;
+        return count;
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return -1;
+    }
 }

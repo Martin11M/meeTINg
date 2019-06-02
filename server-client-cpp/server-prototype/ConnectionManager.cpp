@@ -96,19 +96,91 @@ int ConnectionManager::handle_console_request() {
         exit(EXIT_FAILURE);
     }
 
-    if(buf == 'x' || buf == 'q')
-    {
+//    if(buf == 'x' || buf == 'q')
+//    {
+//        waiter.close_all_descr();
+//
+//        if(buf == 'q')
+//        {
+//            dbc.closeConnection();
+//            work = false;
+//        }
+//
+//        return 1;
+//    }
+    int id;
+    char response;
+
+    if(buf=='x'){
         waiter.close_all_descr();
+    }else if(buf=='q'){
+        dbc.closeConnection();
+        work = false;
+    }else if(buf=='r') {
+        response = dbc.showAllGroups();
 
-        if(buf == 'q')
-        {
-            dbc.closeConnection();
-            work = false;
-        }
+    }else if(buf=='t'){
+        response = dbc.showAllUsers();
+    }else if(buf=='y'){
+        response = dbc.showLeaders();
+    }else if(buf=='u'){
+        id = showUserMenu();
+        // system("clear");
 
-        return 1;
+        //cout << "Podaj id uzytkownika do usuniecia: ";
+        //cin >> id;
+        cout << "ID to delete: " << id;
+        response = dbc.deleteUser(id);
+    }else if(buf=='i') {
+        id = showGroupMenu();
+        //system("clear");
+//        cout << "Podaj id grupy do usuniecia: ";
+//        cin >> id;
+        cout << "ID to delete: " << id;
+        response = dbc.deleteGroup(id);
     }
-    return 0;
+
+    if(write(pipe_fd2[1], &response, 1) == -1)
+    {
+        perror("write_writefd_pipe");
+        exit(EXIT_FAILURE);
+    }
+//        cout << "wyslalem" << endl;
+    return 1;
+}
+
+int ConnectionManager::showGroupMenu() {
+
+    int choice;
+    int limit = dbc.groupCount();
+    do{
+        char response = dbc.showAllGroups();
+        cin.clear();
+        cout <<endl<< "Wybierz opcje: ";
+        cin >> choice;
+    }while(choice < limit || choice > limit);
+
+    int id = dbc.getGroupID(choice);
+
+    char response = dbc.deleteGroup(id);
+}
+
+int ConnectionManager::showUserMenu(){
+
+    int choice=-1;
+    int limit = dbc.userCount();
+    cout << "limit: " << limit << endl;
+    do{
+        cin.clear();
+        char response = dbc.showAllUsers();
+
+        cout <<endl<< "Wybor: ";
+        cin >> choice;
+        cout << "---------------choice: " << choice<<endl;
+    }while(choice < 1 || choice > limit);
+
+    return dbc.getUserID(choice);
+    //char response = dbc.deleteUser(id);
 }
 
 void ConnectionManager::handle_new_connection() {

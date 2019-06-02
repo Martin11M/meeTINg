@@ -33,7 +33,8 @@ public:
     void handle_client_request(int);
     int send_all(int, char*, int*);
     void delay();
-
+    int showGroupMenu();
+    int showUserMenu();
 };
 
 #endif //SERVER_PROTOTYPE_CONNECTIONMANAGER_H
