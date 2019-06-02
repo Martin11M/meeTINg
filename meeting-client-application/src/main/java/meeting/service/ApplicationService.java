@@ -28,7 +28,7 @@ public class ApplicationService {
             scene.getStylesheets().addAll(Main.class.getResource("/css/background.css").toExternalForm());
 
             stage.setScene(scene);
-            stage.setTitle("meeTINg ConnectionManager Application");
+            stage.setTitle("meeTINg Client Application");
             stage.setResizable(false);
             stage.show();
         } catch (Exception e) {
