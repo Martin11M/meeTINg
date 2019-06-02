@@ -52,9 +52,9 @@ public class OffersWindowController {
 
     @FXML public ListView<String> commentsList;
     @FXML public Label roleInfoLabel;
+    @FXML public Label confirmedOfferLabel;
 
     private Group pickedGroup;
-
 
     private Event pickedEvent;
     private Client client;
@@ -218,7 +218,10 @@ public class OffersWindowController {
         List<FormattedOffer> formattedProposals = new ArrayList<>();
         List<String> formattedComments = new ArrayList<>();
 
-        acceptedOffers.forEach(offer -> formattedAcceptedOffers.add(new FormattedOffer(offer.getId(), offer.getStartDate().format(formatter), offer.getVotesCount(), offer.isConfirmedOffer())));
+        acceptedOffers.forEach(offer -> {
+            if(offer.isConfirmedOffer()) confirmedOfferLabel.setText("Meeting at: " + offer.getStartDate().format(formatter));
+            formattedAcceptedOffers.add(new FormattedOffer(offer.getId(), offer.getStartDate().format(formatter), offer.getVotesCount(), offer.isConfirmedOffer()));
+        });
         proposals.forEach(proposal -> formattedProposals.add(new FormattedOffer(proposal.getId(), proposal.getStartDate().format(formatter), proposal.getVotesCount(), proposal.isConfirmedOffer())));
         comments.forEach(comment -> formattedComments.add(comment.getPostDate().format(formatter) + " " + comment.getUsername() + ": " + comment.getMessage()));
 

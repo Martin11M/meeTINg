@@ -33,6 +33,11 @@
                     <font>
                         <Font size="14.0" />
                     </font></Label>
+                <Label fx:id="confirmedOfferLabel" alignment="CENTER" layoutX="250.0" layoutY="82.0" prefHeight="15.0" prefWidth="300.0" textAlignment="CENTER" textFill="#0a5e2d">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
             </children></Pane>
         <Pane layoutX="600.0" layoutY="100.0" prefHeight="480.0" prefWidth="200.0" style="-fx-background-color: #ECECEC;" styleClass="-fx-background-color">
             <children>
