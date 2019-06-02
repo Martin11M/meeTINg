@@ -59,9 +59,6 @@ public class EventsWindowController {
 
     @FXML
     public void signOutClicked(ActionEvent actionEvent) {
-        // TODO wyslanie requesta o wylogowanie, ale czy potrzeba???
-        // Tomek: potrzeba chyba przynajmniej dlatego zeby serwer mogl wywalic sockety zwiazane z tym uzytkownikiem
-
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
         alert.setContentText("Do you want to sign out?");
