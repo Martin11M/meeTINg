@@ -1,6 +1,5 @@
 package meeting.controller;
 
-import meeting.StageLoader;
 import meeting.api.request.GroupListRequest;
 import meeting.api.request.NewGroupRequest;
 import meeting.api.response.GroupListResponse;
@@ -20,7 +19,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import meeting.model.Group;
 import meeting.model.User;
-import meeting.service.UserService;
+import meeting.service.ApplicationService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +63,7 @@ public class GroupsWindowController {
     private void allGroupsClicked(Event event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/AllGroupsWindow.fxml"));
-            StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
+            ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             AllGroupsWindowController allGroupsWindowController = fxmlLoader.getController();
             allGroupsWindowController.setClient(client);
             allGroupsWindowController.setUser(user);
@@ -77,7 +76,7 @@ public class GroupsWindowController {
     private void requestsClicked(Event event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/RequestsReviewWindow.fxml"));
-            StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
+            ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             RequestsReviewWindowController reqWindowController = fxmlLoader.getController();
             reqWindowController.setClient(client);
             reqWindowController.setUser(user);
@@ -96,7 +95,7 @@ public class GroupsWindowController {
 
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/EventsWindow.fxml"));
-                StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
+                ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
                 EventsWindowController eventsWindowController = fxmlLoader.getController();
                 eventsWindowController.setPickedGroup(pickedGroup);
                 eventsWindowController.setClient(client);
@@ -109,7 +108,7 @@ public class GroupsWindowController {
 
     @FXML
     private void signOutClicked(ActionEvent actionEvent){
-        UserService.signOut(actionEvent, EventsWindowController.class, client);
+        ApplicationService.signOut(actionEvent, EventsWindowController.class, client);
     }
 
     @FXML

@@ -1,14 +1,10 @@
 package meeting.controller;
 
 import javafx.scene.control.*;
-import meeting.StageLoader;
 import meeting.api.request.GroupListRequest;
 import meeting.api.request.MembershipRequest;
-import meeting.api.request.NewGroupRequest;
-import meeting.api.response.ErrorResponse;
 import meeting.api.response.FlagResponse;
 import meeting.api.response.GroupListResponse;
-import meeting.api.response.NewGroupResponse;
 import meeting.client.Client;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,12 +19,10 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import meeting.model.Group;
 import meeting.model.User;
-import meeting.service.UserService;
-import sun.rmi.runtime.Log;
+import meeting.service.ApplicationService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static meeting.enums.SystemRole.USER;
 
@@ -95,7 +89,7 @@ public class AllGroupsWindowController {
     private void returnClicked(Event event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/GroupsWindow.fxml"));
-            StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
+            ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             GroupsWindowController groupsWindowController = fxmlLoader.getController();
             groupsWindowController.setClient(client);
             groupsWindowController.setUser(user);
@@ -117,7 +111,7 @@ public class AllGroupsWindowController {
 
     @FXML
     private void signOutClicked(ActionEvent actionEvent) {
-        UserService.signOut(actionEvent, EventsWindowController.class, client);
+        ApplicationService.signOut(actionEvent, EventsWindowController.class, client);
     }
 
     @FXML

@@ -1,10 +1,8 @@
 package meeting.controller;
 
-import meeting.StageLoader;
 import meeting.api.request.UserDataRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import meeting.api.response.ErrorResponse;
 import meeting.api.response.FlagResponse;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
@@ -15,7 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import meeting.client.Client;
-import sun.rmi.runtime.Log;
+import meeting.service.ApplicationService;
 
 import java.nio.charset.StandardCharsets;
 
@@ -91,7 +89,7 @@ public class RegistrationWindowController {
     public void cancelClicked(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginWindow.fxml"));
-            StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
+            ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             LoginWindowController loginWindowController = fxmlLoader.getController();
             loginWindowController.setClient(client);
         } catch(Exception e) {

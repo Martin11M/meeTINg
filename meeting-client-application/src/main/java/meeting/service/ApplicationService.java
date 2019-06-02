@@ -3,17 +3,35 @@ package meeting.service;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import meeting.StageLoader;
+import meeting.Main;
 import meeting.client.Client;
 import meeting.controller.LoginWindowController;
 
 import javafx.event.ActionEvent;
 import java.util.Optional;
 
-public class UserService {
+public class ApplicationService {
+
+    public static void loadStage(Stage stage, FXMLLoader fxmlLoader)
+    {
+        try {
+            AnchorPane root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().addAll(Main.class.getResource("/css/background.css").toExternalForm());
+
+            stage.setScene(scene);
+            stage.setTitle("meeTINg Client Application");
+            stage.setResizable(false);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void signOut(ActionEvent actionEvent, Class theClass, Client client) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -26,7 +44,7 @@ public class UserService {
             if (reloadedResult == ButtonType.OK){
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(theClass.getResource("/fxml/LoginWindow.fxml"));
-                    StageLoader.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
+                    loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
                     LoginWindowController loginWindowController = fxmlLoader.getController();
                     loginWindowController.setClient(client);
                 } catch(Exception e) {

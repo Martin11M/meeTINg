@@ -11,10 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import meeting.StageLoader;
 import meeting.api.request.RequestDecisionRequest;
 import meeting.api.request.RequestReviewListRequest;
-import meeting.api.response.ErrorResponse;
 import meeting.api.response.FlagResponse;
 import meeting.api.response.RequestReviewListResponse;
 import meeting.client.Client;
@@ -22,11 +20,10 @@ import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import meeting.model.RequestReview;
 import meeting.model.User;
-import meeting.service.UserService;
+import meeting.service.ApplicationService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class RequestsReviewWindowController {
 
@@ -59,14 +56,14 @@ public class RequestsReviewWindowController {
 
     @FXML
     public void signOutClicked(ActionEvent actionEvent) {
-        UserService.signOut(actionEvent, EventsWindowController.class, client);
+        ApplicationService.signOut(actionEvent, EventsWindowController.class, client);
     }
 
     @FXML
     public void returnClicked(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/GroupsWindow.fxml"));
-            StageLoader.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
+            ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
             GroupsWindowController groupsWindowController = fxmlLoader.getController();
             groupsWindowController.setClient(client);
             groupsWindowController.setUser(user);

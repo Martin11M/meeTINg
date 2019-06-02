@@ -10,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import meeting.StageLoader;
 import meeting.api.request.*;
 import meeting.api.response.FlagResponse;
 import meeting.api.response.NewCommentResponse;
@@ -21,6 +20,7 @@ import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import meeting.enums.SystemRole;
 import meeting.model.*;
+import meeting.service.ApplicationService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -114,7 +114,7 @@ public class OffersWindowController {
             if (reloadedResult == ButtonType.OK){
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginWindow.fxml"));
-                    StageLoader.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
+                    ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
                     LoginWindowController loginWindowController = fxmlLoader.getController();
                     loginWindowController.setClient(client);
                 } catch(Exception e) {
@@ -128,7 +128,7 @@ public class OffersWindowController {
     public void returnClicked(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/EventsWindow.fxml"));
-            StageLoader.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
+            ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
             EventsWindowController eventsWindowController = fxmlLoader.getController();
             eventsWindowController.setPickedGroup(pickedGroup);
             eventsWindowController.setClient(client);

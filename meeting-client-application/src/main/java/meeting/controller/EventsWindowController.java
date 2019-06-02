@@ -1,7 +1,6 @@
 package meeting.controller;
 
 import javafx.scene.control.*;
-import meeting.StageLoader;
 import meeting.api.request.EventListRequest;
 import meeting.api.request.NewEventRequest;
 import meeting.api.response.EventListResponse;
@@ -20,7 +19,7 @@ import javafx.stage.Stage;
 import meeting.model.Event;
 import meeting.model.Group;
 import meeting.model.User;
-import meeting.service.UserService;
+import meeting.service.ApplicationService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,14 +58,14 @@ public class EventsWindowController {
 
     @FXML
     public void signOutClicked(ActionEvent actionEvent) {
-        UserService.signOut(actionEvent, EventsWindowController.class, client);
+        ApplicationService.signOut(actionEvent, EventsWindowController.class, client);
     }
 
     @FXML
     public void returnClicked(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/GroupsWindow.fxml"));
-            StageLoader.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
+            ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
             GroupsWindowController groupsWindowController = fxmlLoader.getController();
             groupsWindowController.setClient(client);
             groupsWindowController.setUser(user);
@@ -176,7 +175,7 @@ public class EventsWindowController {
 
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/OffersWindow.fxml"));
-                StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
+                ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
                 OffersWindowController offersWindowController = fxmlLoader.getController();
                 offersWindowController.setPickedGroup(pickedGroup);
                 offersWindowController.setPickedEvent(pickedEvent);

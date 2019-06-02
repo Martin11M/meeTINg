@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import meeting.client.Client;
 import meeting.controller.LoginWindowController;
+import meeting.service.ApplicationService;
 
 
 public class Main extends Application {
@@ -16,7 +17,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/LoginWindow.fxml"));
-        StageLoader.loadStage(new Stage(), fxmlLoader);
+        ApplicationService.loadStage(new Stage(), fxmlLoader);
         LoginWindowController loginWindowController = fxmlLoader.getController();
         loginWindowController.setClient(new Client());
     }

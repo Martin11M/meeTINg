@@ -1,6 +1,5 @@
 package meeting.controller;
 
-import meeting.StageLoader;
 import meeting.api.request.UserDataRequest;
 import meeting.api.response.UserLoginResponse;
 import meeting.client.Client;
@@ -18,6 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import meeting.model.User;
+import meeting.service.ApplicationService;
 
 import java.nio.charset.StandardCharsets;
 
@@ -83,7 +83,7 @@ public class LoginWindowController {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/GroupsWindow.fxml"));
-            StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
+            ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             GroupsWindowController groupsWindowController = fxmlLoader.getController();
             groupsWindowController.setClient(client);
             groupsWindowController.setUser(user);
@@ -97,7 +97,7 @@ public class LoginWindowController {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/RegistrationWindow.fxml"));
-            StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
+            ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             RegistrationWindowController registrationWindowController = fxmlLoader.getController();
             registrationWindowController.setClient(client);
         } catch(Exception e) {
