@@ -27,7 +27,7 @@ public:
     static void sendResponse(int fd, string response, ConnectionManager &cm);
 
     static string userLogin(string, string, DataBaseConnection &dbc);
-    static string userRegistration(string, string, DataBaseConnection &dbc);
+    static string userRegistration(string, string, bool, DataBaseConnection &dbc);
     static string userGroups(int userId, DataBaseConnection &dbc);
     static string allGroups(int userId, DataBaseConnection &dbc);
     static string makeGroup(int userId, string groupName, DataBaseConnection &dbc);

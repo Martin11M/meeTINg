@@ -62,8 +62,9 @@ bool DataBaseConnection::correctLogon(string userName, string password) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return 0;
     }
-    return 0;
+
 }
 
 string DataBaseConnection::userLoginData(string userName) {
@@ -99,14 +100,16 @@ string DataBaseConnection::userLoginData(string userName) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return "__ERROR";
     }
 
 
 }
 
-bool DataBaseConnection::correctRegistration(string userName, string password) {
+bool DataBaseConnection::correctRegistration(string userName, string password, bool isLeader) {
     int count;
     int indeks = freeID("USER", "user_id");
+
     try {
         sql::ResultSet *res;
 
@@ -122,7 +125,10 @@ bool DataBaseConnection::correctRegistration(string userName, string password) {
 
             stmt->executeUpdate(
                     "INSERT INTO USER VALUES(\"" + to_string(indeks) + "\",\"" + userName + "\",\"" + password +
-                    "\",\"0\")");
+                    "\",\"" + to_string(isLeader) + "\")");
+
+            cout << "INSERT INTO USER VALUES(\"" + to_string(indeks) + "\",\"" + userName + "\",\"" + password +
+                    "\",\"" + to_string(isLeader) + "\")";
 
             return 1;
         }
@@ -138,9 +144,10 @@ bool DataBaseConnection::correctRegistration(string userName, string password) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return 0;
 
     }
-    return 0;
+
 }
 
 
@@ -189,6 +196,7 @@ string DataBaseConnection::userGroupsList(int userId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return "__ERROR";
     }
 
 }
@@ -227,6 +235,7 @@ string DataBaseConnection::allGroups(int userId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return "__ERROR";
     }
 
 }
@@ -267,6 +276,7 @@ string DataBaseConnection::makeGroup(int userId, string groupName) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return "__ERROR";
     }
 
 
@@ -324,9 +334,9 @@ bool DataBaseConnection::applyGroup(int userId, int groupId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-
+        return 0;
     }
-    return 0;
+
 }
 
 string DataBaseConnection::userRequest(int leaderId) {
@@ -364,6 +374,7 @@ string DataBaseConnection::userRequest(int leaderId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return "__ERROR";
     }
 
 }
@@ -384,9 +395,9 @@ bool DataBaseConnection::userAccept(int userId, int groupId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-
+        return 0;
     }
-    return 0;
+
 }
 
 bool DataBaseConnection::userDecline(int userId, int groupId) {
@@ -405,9 +416,9 @@ bool DataBaseConnection::userDecline(int userId, int groupId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-
+        return 0;
     }
-    return 0;
+
 }
 
 string DataBaseConnection::groupEvents(int groupId) {
@@ -444,6 +455,7 @@ string DataBaseConnection::groupEvents(int groupId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return "__ERROR";
     }
 }
 
@@ -466,9 +478,9 @@ bool DataBaseConnection::makeEvent(int groupId, string eventName) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-
+        return 0;
     }
-    return 0;
+
 }
 
 string DataBaseConnection::showEventOffer(int eventId) {
@@ -485,11 +497,9 @@ string DataBaseConnection::showEventOffer(int eventId) {
             iterator++;
             string acceptedOffer = (res->getString("accepted_offer") == "1")? "true" : "false";
             string confirmedOffer = (res->getString("confirmed_offer") == "1")? "true" : "false";
-            string date = res->getString("start_date");
-
 
             response += "{\"id\":\"" + res->getString("offer_id") + "\",";
-            response += "\"startDate\":\"" + date + "\",";
+            response += "\"startDate\":\"" + res->getString("start_date") + "\",";
             response += "\"votesCount\":\"" + res->getString("votes_count") + "\",";
             response += "\"acceptedOffer\":\"" + acceptedOffer + "\",";
             response += "\"confirmedOffer\":\"" + confirmedOffer + "\"},";
@@ -511,6 +521,7 @@ string DataBaseConnection::showEventOffer(int eventId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return "__ERROR";
     }
 
 }
@@ -527,13 +538,11 @@ string DataBaseConnection::showEventComment(int eventId) {
                 "SELECT comment_id, user_id, message, post_date FROM COMMENT WHERE event_id = " + to_string(eventId));
         while (res->next()) {
             iterator++;
-            string date = res->getString("post_date");
-
 
             response += "{\"id\":\"" + res->getString("comment_id") + "\",";
             response += "\"username\":\"" + res->getString("user_id") + "\",";
             response += "\"message\":\"" + res->getString("message") + "\",";
-            response += "\"postDate\":\"" + date + "\"},";
+            response += "\"postDate\":\"" + res->getString("post_date") + "\"},";
 
         }
         if(iterator != 0) response.pop_back();
@@ -552,6 +561,7 @@ string DataBaseConnection::showEventComment(int eventId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return "__ERROR";
     }
 
 }
@@ -589,6 +599,7 @@ string DataBaseConnection::showUserVotes(int eventId, int userId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        return "__ERROR";
     }
 
 }
@@ -612,9 +623,9 @@ string DataBaseConnection::makeOffer(int eventId, int userId, string dateTime) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-
+        return "__ERROR";
     }
-    return "__ERROR";
+
 }
 
 string DataBaseConnection::makePropOffer(int eventId, int userId, string dateTime) {
@@ -636,9 +647,9 @@ string DataBaseConnection::makePropOffer(int eventId, int userId, string dateTim
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-
+        return "__ERROR";
     }
-    return "__ERROR";
+
 }
 
 bool DataBaseConnection::offerAccept(int offerId) {
@@ -658,9 +669,9 @@ bool DataBaseConnection::offerAccept(int offerId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-
+        return 0;
     }
-    return 0;
+
 }
 
 string DataBaseConnection::makeComment(int userId, int eventId, string message, string dateTime) {
@@ -683,9 +694,9 @@ string DataBaseConnection::makeComment(int userId, int eventId, string message, 
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-
+        return "__ERROR";
     }
-    return "__ERROR";
+
 }
 
 bool DataBaseConnection::makeVote(int offerId, int userId) {
@@ -706,9 +717,9 @@ bool DataBaseConnection::makeVote(int offerId, int userId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-
+        return 0;
     }
-    return 0;
+
 }
 
 bool DataBaseConnection::offerConfirm(int offerId) {
@@ -728,7 +739,7 @@ bool DataBaseConnection::offerConfirm(int offerId) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-
+        return 0;
     }
-    return 0;
+
 }
