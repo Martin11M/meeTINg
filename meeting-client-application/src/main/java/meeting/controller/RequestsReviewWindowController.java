@@ -70,6 +70,8 @@ public class RequestsReviewWindowController {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginWindow.fxml"));
                     StageLoader.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
+                    LoginWindowController loginWindowController = fxmlLoader.getController();
+                    loginWindowController.setClient(client);
                 } catch(Exception e) {
                     e.printStackTrace();
                 }

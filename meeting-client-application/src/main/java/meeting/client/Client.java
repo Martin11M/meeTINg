@@ -29,7 +29,7 @@ public class Client {
 
             init();
 
-            System.out.println("Klient rozstawil gniazdo");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Klient rozstawil gniazdo");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import meeting.model.Event;
 import meeting.model.Group;
 import meeting.model.User;
+import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,8 @@ public class EventsWindowController {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginWindow.fxml"));
                     StageLoader.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
+                    LoginWindowController loginWindowController = fxmlLoader.getController();
+                    loginWindowController.setClient(client);
                 } catch(Exception e) {
                     e.printStackTrace();
                 }
