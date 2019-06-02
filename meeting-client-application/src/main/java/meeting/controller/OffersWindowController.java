@@ -148,9 +148,9 @@ public class OffersWindowController {
                 .build();
 
         String request = gson.toJson(groupRequest);
-        System.out.println(request);
 
         String response = client.sendRequestRecResponse(request);
+        System.out.println(response);
 
         // fake response:
 
@@ -503,13 +503,14 @@ public class OffersWindowController {
                 .build();
 
         String request = gson.toJson(voteRequest);
-//        String response = client.sendRequestRecResponse(request);
-//        System.out.println(response);
+
+        String response = client.sendRequestRecResponse(request);
+        System.out.println(response);
 
         // fake response
-        String response = "{\n" +
+        /*String response = "{\n" +
                 "  \"flag\": \"NEWVOTE\"\n" +
-                "}";
+                "}";*/
 
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 

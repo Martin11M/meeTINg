@@ -687,3 +687,26 @@ string DataBaseConnection::makeComment(int userId, int eventId, string message, 
     }
     return "__ERROR";
 }
+
+bool DataBaseConnection::makeVote(int offerId, int userId) {
+    int indeks = freeID("VOTE", "vote_id");
+    try {
+        stmt = con->createStatement();
+        stmt->executeUpdate(
+                "INSERT INTO VOTE VALUES(\"" + to_string(indeks) + "\",\"" + to_string(offerId) + "\",\"" + to_string(userId) + "\")");
+
+        stmt->executeUpdate("UPDATE OFFER SET votes_count = votes_count + 1 WHERE offer_id = " + to_string(offerId));
+        stmt->close();
+        delete stmt;
+        return 1;
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+
+    }
+    return 0;
+}

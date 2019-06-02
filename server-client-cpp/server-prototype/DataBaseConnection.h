@@ -45,11 +45,14 @@ public:
     string makePropOffer(int groupId, int userId, string dateTime);
     bool offerAccept(int offerId);
     string makeComment(int userId, int eventId, string message, string dateTime);
+    bool makeVote(int offerId, int userId);
 };
-/*{
-"flag": "EVNTOFR",
-"eventId": 9,
+/*
+{
+"flag": "NEWVOTE",
+"offerId": 1,
 "userId": 9
-}*/
+}
+*/
 
 #endif //TESTDB_DATABASECONNECTION_H

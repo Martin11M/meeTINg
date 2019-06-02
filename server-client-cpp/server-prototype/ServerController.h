@@ -42,6 +42,8 @@ public:
     static string makePropOffer(int eventId, int userId, string dateTime, DataBaseConnection &dbc);
     static string offerAccept(int offerId, DataBaseConnection &dbc);
     static string makeComment(int userId, int eventId, string message, string dateTime, DataBaseConnection &dbc);
+    static string makeVote(int offerId, int userId, DataBaseConnection &dbc);
+
 
 };
 

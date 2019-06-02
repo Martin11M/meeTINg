@@ -37,6 +37,7 @@ ResponseFlag convert(const std::string& str)
     else if(str == "PROPOFR") return PROPOFR;
     else if(str == "OFRACPT") return OFRACPT;
     else if(str == "COMMENT") return COMMENT;
+    else if(str == "NEWVOTE") return NEWVOTE;
 
 }
 
@@ -99,6 +100,10 @@ void ServerController::selectAction(int fd, json messageJson, ConnectionManager 
         case COMMENT:
             response = makeComment(messageJson["userId"],messageJson["eventId"], messageJson["message"], messageJson["postDate"], dbc);
             break;
+        case NEWVOTE:
+            cout << messageJson;
+            response = makeVote(messageJson["offerId"], messageJson["userId"], dbc);
+            break;
         default:
             cout << "default switch" << endl;
             break;
@@ -108,7 +113,7 @@ void ServerController::selectAction(int fd, json messageJson, ConnectionManager 
 }
 
 void ServerController::sendResponse(int fd, string response, ConnectionManager &cm){
-    cout << response << endl;
+    //cout << response << endl;
     char header[4];
     PackageSizeParser::serialize_int_32(header, response.size());
 
@@ -277,6 +282,16 @@ string ServerController::makeComment(int userId, int eventId, string message, st
 
     if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
 
+    return returnMessage;
+}
+
+string ServerController::makeVote(int offerId, int userId, DataBaseConnection &dbc) {
+    string returnMessage;
+
+    returnMessage = "{\"flag\":\"NEWVOTE\"}";
+    if (dbc.makeVote(offerId, userId)) return returnMessage;
+
+    returnMessage = "{\"flag\":\"__ERROR\"}";
     return returnMessage;
 }
 
