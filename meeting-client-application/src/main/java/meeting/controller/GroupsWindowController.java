@@ -120,6 +120,8 @@ public class GroupsWindowController {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginWindow.fxml"));
                     StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
+                    LoginWindowController loginWindowController = fxmlLoader.getController();
+                    loginWindowController.setClient(client);
                 } catch(Exception e) {
                     e.printStackTrace();
                 }

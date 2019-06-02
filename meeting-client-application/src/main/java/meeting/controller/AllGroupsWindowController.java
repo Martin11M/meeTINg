@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import meeting.model.Group;
 import meeting.model.User;
+import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,8 +128,8 @@ public class AllGroupsWindowController {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginWindow.fxml"));
                     StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
-
-                    // TODO dac ustawianie clienta jak tomek juz ogarnie
+                    LoginWindowController loginWindowController = fxmlLoader.getController();
+                    loginWindowController.setClient(client);
                 } catch(Exception e) {
                     e.printStackTrace();
                 }

@@ -25,7 +25,7 @@ import static com.google.common.hash.Hashing.sha256;
 
 public class LoginWindowController {
 
-    private Client client = new Client();
+    private Client client;
 
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
@@ -130,6 +130,10 @@ public class LoginWindowController {
 
     private boolean validateCredentials() {
         return !usernameField.getText().trim().equals("") && !passwordField.getText().trim().equals("");
+    }
+
+    public void setClient(Client client) {
+        if (this.client == null) this.client = client;
     }
 }
 

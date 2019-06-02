@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import meeting.client.Client;
+import sun.rmi.runtime.Log;
 
 import java.nio.charset.StandardCharsets;
 
@@ -88,7 +89,8 @@ public class RegistrationWindowController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginWindow.fxml"));
             StageLoader.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
-            // TODO dac set client na loginwindow jak tomek wyrzuci tworzenie clienta w loginwindow
+            LoginWindowController loginWindowController = fxmlLoader.getController();
+            loginWindowController.setClient(client);
         } catch(Exception e) {
             e.printStackTrace();
         }
