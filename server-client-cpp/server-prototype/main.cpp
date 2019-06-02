@@ -32,8 +32,6 @@ void *handle_client(void* args)
 
 int main(int argc, char* argv[])
 {
-//    DataBaseConnection dbc("root", "admin");
-//    cout << dbc.applyGroup(5,6) << endl;
     int pipefd[2];
     int port = atoi(argv[1]);
     if (!port) {
