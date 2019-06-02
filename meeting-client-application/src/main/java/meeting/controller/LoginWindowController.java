@@ -34,7 +34,7 @@ public class LoginWindowController {
     public void signInClicked(ActionEvent event) {
 
         if(!validateCredentials()) {
-            showLoginErrorAlert();
+            ApplicationService.showErrorAlert("Wrong username or password!");
             return;
         }
 
@@ -69,7 +69,7 @@ public class LoginWindowController {
         UserLoginResponse response = gson.fromJson(responseString, UserLoginResponse.class);
 
         if (response.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            showLoginErrorAlert();
+            ApplicationService.showErrorAlert("Wrong username or password!");
             return;
         }
 
@@ -103,29 +103,6 @@ public class LoginWindowController {
         } catch(Exception e) {
             e.printStackTrace();
         }
-    }
-
-//    private void loadStage(Stage stage, String resourcePath, String title)
-//    {
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader(LoginWindowController.class.getResource(resourcePath));
-//            AnchorPane root = fxmlLoader.load();
-//            root.setId("userLogin");
-//            Scene scene = new Scene(root);
-//            scene.getStylesheets().addAll(this.getClass().getResource("../../resources/css/background.css").toExternalForm());
-//            stage.setScene(scene);
-//            stage.setTitle(title);
-//            stage.setResizable(false);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-    private void showLoginErrorAlert() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setContentText("Wrong username or password!");
-        alert.show();
     }
 
     private boolean validateCredentials() {

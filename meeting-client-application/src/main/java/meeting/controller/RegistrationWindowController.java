@@ -60,8 +60,7 @@ public class RegistrationWindowController {
 
             // jesli odpowiedz ze blad, to komunikat i od nowa
             if(response.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-                showErrorAlert("Username occupied :(");
-                return;
+                ApplicationService.showErrorAlert("Username occupied :(");
             }
             // jesli odpowiedz ze zapisano uzytkownika to komunikat i do okna logowania
             else if(response.getFlag().equals(ResponseFlag.REGISTR.toString())) {
@@ -76,13 +75,6 @@ public class RegistrationWindowController {
         else {
             infoLabel.setText("Passwords doesnt match");
         }
-    }
-
-    private void showErrorAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.show();
     }
 
     @FXML

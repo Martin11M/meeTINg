@@ -159,10 +159,7 @@ public class OffersWindowController {
         OfferListResponse offerListResponse = gson.fromJson(response, OfferListResponse.class);
 
         if(offerListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Error response for EVNTOFR");
-            alert.show();
+            ApplicationService.showErrorAlert("Error response for EVNTOFR");
             return;
         }
 
@@ -255,20 +252,10 @@ public class OffersWindowController {
         String response = client.sendRequestRecResponse(request);
         System.out.println(response);
 
-        // fake response:
-
-        /*String fakeResponse = "{\n" +
-                "  \"flag\": \"COMMENT\",\n" +
-                "  \"commentId\": 603\n" +
-                "}";*/
-
         NewCommentResponse newCommentResponse = gson.fromJson(response, NewCommentResponse.class);
 
         if(newCommentResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Error response for COMMENT");
-            alert.show();
+            ApplicationService.showErrorAlert("Error response for COMMENT");
             return;
         }
 
@@ -315,10 +302,7 @@ public class OffersWindowController {
         OfferResponse offerResponse = gson.fromJson(response, OfferResponse.class);
 
         if(offerResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Error response for " + flag.toString());
-            alert.show();
+            ApplicationService.showErrorAlert("Error response for " + flag.toString());
             return;
         }
 
@@ -381,10 +365,7 @@ public class OffersWindowController {
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Error response for OFRACPT");
-            alert.show();
+            ApplicationService.showErrorAlert("Error response for OFRACPT");
             return;
         }
 
@@ -422,10 +403,7 @@ public class OffersWindowController {
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Error response for NEWVOTE");
-            alert.show();
+            ApplicationService.showErrorAlert("Error response for NEWVOTE");
             return;
         }
 
@@ -461,10 +439,7 @@ public class OffersWindowController {
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Error response for CFRMOFR");
-            alert.show();
+            ApplicationService.showErrorAlert("Error response for CFRMOFR");
             return;
         }
 

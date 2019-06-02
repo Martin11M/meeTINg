@@ -91,7 +91,7 @@ public class RequestsReviewWindowController {
         RequestReviewListResponse reqRevListResponse = gson.fromJson(response, RequestReviewListResponse.class);
 
         if(reqRevListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            showErrorAlert("Cannot do request USERREQ");
+            ApplicationService.showErrorAlert("Error response for USERREQ");
             return;
         }
 
@@ -155,7 +155,7 @@ public class RequestsReviewWindowController {
         FlagResponse response = gson.fromJson(decisionResponse, FlagResponse.class);
 
         if(response.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            showErrorAlert("Cannot do request USERACC/USERDEC");
+            ApplicationService.showErrorAlert("Error response for USERACC/USERDEC");
             return;
         }
 
@@ -174,13 +174,6 @@ public class RequestsReviewWindowController {
 
         // odswiezam zeby nie bylo juz tego wiersza w kolumnie
         refreshClicked();
-    }
-
-    private void showErrorAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.show();
     }
 
     private void initCols() {

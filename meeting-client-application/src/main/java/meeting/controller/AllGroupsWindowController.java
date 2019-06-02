@@ -42,11 +42,10 @@ public class AllGroupsWindowController {
 
         applyButton.setDisable(true);
 
-        Platform.runLater(() ->{
+        Platform.runLater(() -> {
             if(user.getSystemRole() == USER) {
                 roleInfoLabel.setText("Logged as User (limited options)");
             }
-
             refreshClicked();
         });
     }
@@ -54,7 +53,6 @@ public class AllGroupsWindowController {
     @FXML
     private void applyClicked() {
 
-        // robie JSONa
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
@@ -66,13 +64,11 @@ public class AllGroupsWindowController {
                 .build();
 
         String requestString = gson.toJson(membershipRequest);
-
         String membershipResponseString = client.sendRequestRecResponse(requestString);
-
         FlagResponse response = gson.fromJson(membershipResponseString, FlagResponse.class);
 
         if(response.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            showErrorAlert("Cannot do request MEMBREQ");
+            ApplicationService.showErrorAlert("Error response for MEMBREQ");
             return;
         }
 
@@ -81,7 +77,6 @@ public class AllGroupsWindowController {
         alert.setHeaderText("Membership request sent to leader of group");
         alert.showAndWait();
 
-        // zeby po aplikowaniu uzytkownika nie pokazala mu sie znow ta sama grupa zeby nie mogl w nia kliknac
         refreshClicked();
     }
 
@@ -100,7 +95,6 @@ public class AllGroupsWindowController {
 
     @FXML
     private void listClicked(){
-        // warunek zeby po kliknieciu w puste pola sie nie wywolywalo i zeby po kliknieciu w puste pole nie odpalalo sie dla biezacego pickedGroup
         if(listView.getSelectionModel().getSelectedItem() != null &&
                 listView.getSelectionModel().getSelectedItem() != pickedGroup) {
 
@@ -116,12 +110,11 @@ public class AllGroupsWindowController {
 
     @FXML
     private void refreshClicked() {
-        // robie JSONa
+
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
-        // id uzytkownia idzie po to zeby przyslali spowrotem tylko te grupy do ktorych uzytkownik nie nalezy
         GroupListRequest allGroupsRequest = GroupListRequest.builder()
                 .flag(RequestFlag.GRPLIST.toString())
                 .userId(user.getId())
@@ -134,7 +127,7 @@ public class AllGroupsWindowController {
         GroupListResponse groupListResponse = gson.fromJson(allGroupsResponseString, GroupListResponse.class);
 
         if(groupListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            showErrorAlert("Cannot do request GRPLIST");
+            ApplicationService.showErrorAlert("Error response for GRPLIST");
             return;
         }
 
@@ -151,13 +144,6 @@ public class AllGroupsWindowController {
 
         listView.getItems().clear();
         listView.getItems().addAll(groups);
-    }
-
-    private void showErrorAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.show();
     }
 
     void setClient(Client client) {

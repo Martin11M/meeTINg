@@ -53,4 +53,11 @@ public class ApplicationService {
             }
         }
     }
+
+    public static void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
+    }
 }
