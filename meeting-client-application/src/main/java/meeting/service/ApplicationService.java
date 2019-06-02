@@ -9,12 +9,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import meeting.Main;
-import meeting.api.ConnectionManager;
 import meeting.controller.*;
 
 import javafx.event.ActionEvent;
 import meeting.model.Group;
 import meeting.model.User;
+import meeting.serializer.Serializer;
 
 import java.util.Optional;
 
@@ -36,7 +36,7 @@ public class ApplicationService {
         }
     }
 
-    public static void signOut(ActionEvent actionEvent, Class theClass, ConnectionManager connectionManager) {
+    public static void signOut(ActionEvent actionEvent, Class theClass, Serializer serializer) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
         alert.setContentText("Do you want to sign out?");
@@ -49,7 +49,7 @@ public class ApplicationService {
                     FXMLLoader fxmlLoader = new FXMLLoader(theClass.getResource("/fxml/LoginWindow.fxml"));
                     loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
                     LoginWindowController loginWindowController = fxmlLoader.getController();
-                    loginWindowController.setConnectionManager(connectionManager);
+                    loginWindowController.setSerializer(serializer);
                 } catch(Exception e) {
                     e.printStackTrace();
                 }
@@ -71,27 +71,27 @@ public class ApplicationService {
         alert.showAndWait();
     }
 
-    public static void loadPreviousWindow(ActionEvent actionEvent, Class theClass, ConnectionManager connectionManager, User user, Group group, String resource) {
+    public static void loadPreviousWindow(ActionEvent actionEvent, Class theClass, Serializer serializer, User user, Group group, String resource) {
         FXMLLoader fxmlLoader = new FXMLLoader(theClass.getResource(resource));
         ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
         if (theClass == AllGroupsWindowController.class || theClass == EventsWindowController.class || theClass == RequestsReviewWindowController.class) {
-            prepareGroupsWindowController(fxmlLoader, connectionManager, user);
+            prepareGroupsWindowController(fxmlLoader, serializer, user);
         }
         else if (theClass == OffersWindowController.class) {
-            prepareEventsWindowController(fxmlLoader, connectionManager, user, group);
+            prepareEventsWindowController(fxmlLoader, serializer, user, group);
         }
     }
 
-    private static void prepareGroupsWindowController(FXMLLoader fxmlLoader, ConnectionManager connectionManager, User user) {
+    private static void prepareGroupsWindowController(FXMLLoader fxmlLoader, Serializer serializer, User user) {
         GroupsWindowController groupsWindowController = fxmlLoader.getController();
-        groupsWindowController.setConnectionManager(connectionManager);
+        groupsWindowController.setSerializer(serializer);
         groupsWindowController.setUser(user);
     }
 
-    private static void prepareEventsWindowController(FXMLLoader fxmlLoader, ConnectionManager connectionManager, User user, Group group) {
+    private static void prepareEventsWindowController(FXMLLoader fxmlLoader, Serializer serializer, User user, Group group) {
         EventsWindowController eventsWindowController = fxmlLoader.getController();
         eventsWindowController.setPickedGroup(group);
-        eventsWindowController.setConnectionManager(connectionManager);
+        eventsWindowController.setSerializer(serializer);
         eventsWindowController.setUser(user);
     }
 }

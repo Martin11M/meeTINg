@@ -1,7 +1,6 @@
 package meeting.controller;
 
 import javafx.scene.control.*;
-import meeting.api.ConnectionManager;
 import meeting.api.request.EventListRequest;
 import meeting.api.request.NewEventRequest;
 import meeting.api.response.EventListResponse;
@@ -38,7 +37,6 @@ public class EventsWindowController {
 
     private Group pickedGroup;
     private Event pickedEvent;
-    private ConnectionManager connectionManager;
     private User user;
 
     private Serializer serializer;
@@ -53,20 +51,19 @@ public class EventsWindowController {
             else {
                 roleInfoLabel.setText("Logged as " + user.getUsername() + " (Team Leader)");
             }
-            serializer = new Serializer(connectionManager);
             refreshClicked();
         });
     }
 
     @FXML
     public void signOutClicked(ActionEvent actionEvent) {
-        ApplicationService.signOut(actionEvent, EventsWindowController.class, connectionManager);
+        ApplicationService.signOut(actionEvent, EventsWindowController.class, serializer);
     }
 
     @FXML
     public void returnClicked(ActionEvent actionEvent) {
         try {
-            ApplicationService.loadPreviousWindow(actionEvent, EventsWindowController.class, connectionManager, user, null, "/fxml/GroupsWindow.fxml");
+            ApplicationService.loadPreviousWindow(actionEvent, EventsWindowController.class, serializer, user, null, "/fxml/GroupsWindow.fxml");
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -154,7 +151,7 @@ public class EventsWindowController {
                 OffersWindowController offersWindowController = fxmlLoader.getController();
                 offersWindowController.setPickedGroup(pickedGroup);
                 offersWindowController.setPickedEvent(pickedEvent);
-                offersWindowController.setConnectionManager(connectionManager);
+                offersWindowController.setSerializer(serializer);
                 offersWindowController.setUser(user);
             } catch(Exception e) {
                 e.printStackTrace();
@@ -166,11 +163,11 @@ public class EventsWindowController {
         this.pickedGroup = pickedGroup;
     }
 
-    public void setConnectionManager(ConnectionManager connectionManager) {
-        this.connectionManager = connectionManager;
-    }
-
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setSerializer(Serializer serializer) {
+        this.serializer = serializer;
     }
 }

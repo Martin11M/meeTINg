@@ -1,6 +1,5 @@
 package meeting.controller;
 
-import meeting.api.ConnectionManager;
 import meeting.api.request.GroupListRequest;
 import meeting.api.request.NewGroupRequest;
 import meeting.api.response.GroupListResponse;
@@ -35,7 +34,6 @@ public class GroupsWindowController {
     @FXML Label roleInfoLabel;
 
     private Group pickedGroup;
-    private ConnectionManager connectionManager;
     private User user;
 
     private Serializer serializer;
@@ -53,7 +51,6 @@ public class GroupsWindowController {
                 allGroupsButton.setDisable(true);
                 roleInfoLabel.setText("Logged as " + user.getUsername() + " (Team Leader)");
             }
-            serializer = new Serializer(connectionManager);
             refreshClicked();
         });
     }
@@ -64,7 +61,7 @@ public class GroupsWindowController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/AllGroupsWindow.fxml"));
             ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             AllGroupsWindowController allGroupsWindowController = fxmlLoader.getController();
-            allGroupsWindowController.setConnectionManager(connectionManager);
+            allGroupsWindowController.setSerializer(serializer);
             allGroupsWindowController.setUser(user);
         } catch(Exception e) {
             e.printStackTrace();
@@ -77,7 +74,7 @@ public class GroupsWindowController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/RequestsReviewWindow.fxml"));
             ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             RequestsReviewWindowController reqWindowController = fxmlLoader.getController();
-            reqWindowController.setConnectionManager(connectionManager);
+            reqWindowController.setSerializer(serializer);
             reqWindowController.setUser(user);
         } catch(Exception e) {
             e.printStackTrace();
@@ -97,7 +94,7 @@ public class GroupsWindowController {
                 ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
                 EventsWindowController eventsWindowController = fxmlLoader.getController();
                 eventsWindowController.setPickedGroup(pickedGroup);
-                eventsWindowController.setConnectionManager(connectionManager);
+                eventsWindowController.setSerializer(serializer);
                 eventsWindowController.setUser(user);
             } catch(Exception e) {
                 e.printStackTrace();
@@ -107,7 +104,7 @@ public class GroupsWindowController {
 
     @FXML
     private void signOutClicked(ActionEvent actionEvent){
-        ApplicationService.signOut(actionEvent, EventsWindowController.class, connectionManager);
+        ApplicationService.signOut(actionEvent, EventsWindowController.class, serializer);
     }
 
     @FXML
@@ -177,11 +174,11 @@ public class GroupsWindowController {
         });
     }
 
-    public void setConnectionManager(ConnectionManager connectionManager) {
-        this.connectionManager = connectionManager;
-    }
-
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setSerializer(Serializer serializer) {
+        this.serializer = serializer;
     }
 }

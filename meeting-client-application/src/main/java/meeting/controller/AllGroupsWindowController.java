@@ -1,7 +1,6 @@
 package meeting.controller;
 
 import javafx.scene.control.*;
-import meeting.api.ConnectionManager;
 import meeting.api.request.GroupListRequest;
 import meeting.api.request.MembershipRequest;
 import meeting.api.response.FlagResponse;
@@ -29,7 +28,6 @@ public class AllGroupsWindowController {
     @FXML Label roleInfoLabel;
 
     private Group pickedGroup;
-    private ConnectionManager connectionManager;
     private User user;
 
     private Serializer serializer;
@@ -41,7 +39,6 @@ public class AllGroupsWindowController {
             if(user.getSystemRole() == USER) {
                 roleInfoLabel.setText("Logged as User (limited options)");
             }
-            serializer = new Serializer(connectionManager);
             applyButton.setDisable(true);
             refreshClicked();
         });
@@ -63,14 +60,14 @@ public class AllGroupsWindowController {
             return;
         }
 
-        ApplicationService.showInformationAlert("Information Dialog", "Membership request sent to leader of group");
+        ApplicationService.showInformationAlert("Information Dialog", "Membership request sent");
         refreshClicked();
     }
 
     @FXML
     private void returnClicked(ActionEvent actionEvent) {
         try {
-            ApplicationService.loadPreviousWindow(actionEvent, AllGroupsWindowController.class, connectionManager, user, null, "/fxml/GroupsWindow.fxml");
+            ApplicationService.loadPreviousWindow(actionEvent, AllGroupsWindowController.class, serializer, user, null, "/fxml/GroupsWindow.fxml");
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -88,7 +85,7 @@ public class AllGroupsWindowController {
 
     @FXML
     private void signOutClicked(ActionEvent actionEvent) {
-        ApplicationService.signOut(actionEvent, EventsWindowController.class, connectionManager);
+        ApplicationService.signOut(actionEvent, EventsWindowController.class, serializer);
     }
 
     @FXML
@@ -121,11 +118,11 @@ public class AllGroupsWindowController {
         listView.getItems().addAll(groups);
     }
 
-    void setConnectionManager(ConnectionManager connectionManager) {
-        this.connectionManager = connectionManager;
-    }
-
     void setUser(User user) {
         this.user = user;
+    }
+
+    public void setSerializer(Serializer serializer) {
+        this.serializer = serializer;
     }
 }

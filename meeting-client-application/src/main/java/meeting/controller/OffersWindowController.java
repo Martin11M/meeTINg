@@ -10,7 +10,6 @@ import meeting.api.response.FlagResponse;
 import meeting.api.response.NewCommentResponse;
 import meeting.api.response.OfferListResponse;
 import meeting.api.response.OfferResponse;
-import meeting.api.ConnectionManager;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import meeting.enums.SystemRole;
@@ -53,7 +52,6 @@ public class OffersWindowController {
     private Group pickedGroup;
 
     private Event pickedEvent;
-    private ConnectionManager connectionManager;
     private User user;
 
     private FormattedOffer pickedOffer;
@@ -66,22 +64,6 @@ public class OffersWindowController {
     private List<Vote> votes = new ArrayList<>();
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-    void setPickedGroup(Group pickedGroup) {
-        this.pickedGroup = pickedGroup;
-    }
-
-    void setPickedEvent(Event pickedEvent) {
-        this.pickedEvent = pickedEvent;
-    }
-
-    void setConnectionManager(ConnectionManager connectionManager) {
-        this.connectionManager = connectionManager;
-    }
-
-    void setUser(User user) {
-        this.user = user;
-    }
 
     @FXML
     public void initialize() {
@@ -96,20 +78,19 @@ public class OffersWindowController {
                 roleInfoLabel.setText("Logged as " + user.getUsername() + " (Team Leader)");
                 proposeButton.setDisable(true);
             }
-            serializer = new Serializer(connectionManager);
             refreshClicked();
         });
     }
 
     @FXML
     public void signOutClicked(ActionEvent actionEvent) {
-        ApplicationService.signOut(actionEvent, OffersWindowController.class, connectionManager);
+        ApplicationService.signOut(actionEvent, OffersWindowController.class, serializer);
     }
 
     @FXML
     public void returnClicked(ActionEvent actionEvent) {
         try {
-            ApplicationService.loadPreviousWindow(actionEvent, OffersWindowController.class, connectionManager, user, pickedGroup, "/fxml/EventsWindow.fxml");
+            ApplicationService.loadPreviousWindow(actionEvent, OffersWindowController.class, serializer, user, pickedGroup, "/fxml/EventsWindow.fxml");
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -411,6 +392,22 @@ public class OffersWindowController {
         voteButton.setDisable(true);
         acceptButton.setDisable(true);
         confirmButton.setDisable(true);
+    }
+
+    void setPickedGroup(Group pickedGroup) {
+        this.pickedGroup = pickedGroup;
+    }
+
+    void setPickedEvent(Event pickedEvent) {
+        this.pickedEvent = pickedEvent;
+    }
+
+    void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setSerializer(Serializer serializer) {
+        this.serializer = serializer;
     }
 
     public class FormattedOffer {

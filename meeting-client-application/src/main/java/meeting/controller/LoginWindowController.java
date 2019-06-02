@@ -1,7 +1,5 @@
 package meeting.controller;
 
-import javafx.application.Platform;
-import meeting.api.ConnectionManager;
 import meeting.api.request.UserDataRequest;
 import meeting.api.response.UserLoginResponse;
 import meeting.enums.RequestFlag;
@@ -24,17 +22,10 @@ import static com.google.common.hash.Hashing.sha256;
 
 public class LoginWindowController {
 
-    private ConnectionManager connectionManager;
-
     private Serializer serializer;
 
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
-
-    @FXML
-    public void initialize() {
-        Platform.runLater(() -> serializer = new Serializer(connectionManager));
-    }
 
     @FXML
     public void signInClicked(ActionEvent event) {
@@ -72,7 +63,7 @@ public class LoginWindowController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/GroupsWindow.fxml"));
             ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             GroupsWindowController groupsWindowController = fxmlLoader.getController();
-            groupsWindowController.setConnectionManager(connectionManager);
+            groupsWindowController.setSerializer(serializer);
             groupsWindowController.setUser(user);
         } catch(Exception e) {
             e.printStackTrace();
@@ -86,7 +77,7 @@ public class LoginWindowController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/RegistrationWindow.fxml"));
             ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             RegistrationWindowController registrationWindowController = fxmlLoader.getController();
-            registrationWindowController.setConnectionManager(connectionManager);
+            registrationWindowController.setSerializer(serializer);
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -96,8 +87,8 @@ public class LoginWindowController {
         return !usernameField.getText().trim().equals("") && !passwordField.getText().trim().equals("");
     }
 
-    public void setConnectionManager(ConnectionManager connectionManager) {
-        if (this.connectionManager == null) this.connectionManager = connectionManager;
+    public void setSerializer(Serializer serializer) {
+        this.serializer = serializer;
     }
 }
 

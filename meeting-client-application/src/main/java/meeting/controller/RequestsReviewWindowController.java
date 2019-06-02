@@ -10,7 +10,6 @@ import meeting.api.request.RequestDecisionRequest;
 import meeting.api.request.RequestReviewListRequest;
 import meeting.api.response.FlagResponse;
 import meeting.api.response.RequestReviewListResponse;
-import meeting.api.ConnectionManager;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import meeting.model.RequestReview;
@@ -35,7 +34,6 @@ public class RequestsReviewWindowController {
     @FXML private TableColumn<RequestReview, String> userNameCol;
     @FXML private TableColumn<RequestReview, Long> userIdCol;
 
-    private ConnectionManager connectionManager;
     private User user;
     private Serializer serializer;
 
@@ -44,21 +42,18 @@ public class RequestsReviewWindowController {
     @FXML
     public void initialize() {
         initCols();
-        Platform.runLater(() -> {
-            serializer = new Serializer(connectionManager);
-            refreshClicked();
-        });
+        Platform.runLater(this::refreshClicked);
     }
 
     @FXML
     public void signOutClicked(ActionEvent actionEvent) {
-        ApplicationService.signOut(actionEvent, EventsWindowController.class, connectionManager);
+        ApplicationService.signOut(actionEvent, EventsWindowController.class, serializer);
     }
 
     @FXML
     public void returnClicked(ActionEvent actionEvent) {
         try {
-            ApplicationService.loadPreviousWindow(actionEvent, RequestsReviewWindowController.class, connectionManager, user, null, "/fxml/GroupsWindow.fxml");
+            ApplicationService.loadPreviousWindow(actionEvent, RequestsReviewWindowController.class, serializer, user, null, "/fxml/GroupsWindow.fxml");
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -151,11 +146,11 @@ public class RequestsReviewWindowController {
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
 
-    void setConnectionManager(ConnectionManager connectionManager) {
-        this.connectionManager = connectionManager;
-    }
-
     void setUser(User user) {
         this.user = user;
+    }
+
+    public void setSerializer(Serializer serializer) {
+        this.serializer = serializer;
     }
 }
