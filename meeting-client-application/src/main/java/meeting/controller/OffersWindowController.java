@@ -54,6 +54,8 @@ public class OffersWindowController {
     @FXML public Label roleInfoLabel;
 
     private Group pickedGroup;
+
+
     private Event pickedEvent;
     private Client client;
     private User user;
@@ -89,7 +91,7 @@ public class OffersWindowController {
 
         Platform.runLater(() ->{
             if(user.getSystemRole() == USER) {
-                disableActionButtons();
+                createButton.setDisable(true);
                 roleInfoLabel.setText("Logged as " + user.getUsername() + " (User)");
             }
             else {
@@ -153,91 +155,6 @@ public class OffersWindowController {
 
         String response = client.sendRequestRecResponse(request);
         System.out.println(response);
-
-        // fake response:
-
-        /*String response = "{\n" +
-                "  \"flag\": \"EVNTOFR\",\n" +
-                "  \"offers\": [\n" +
-                "    {\n" +
-                "      \"id\" : 101,\n" +
-                "      \"startDate\" : \"2019-05-25 16:00:00\",\n" +
-                "      \"votesCount\" : 3,\n" +
-                "      \"acceptedOffer\" : true,\n" +
-                "      \"confirmedOffer\" : false\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"id\" : 102,\n" +
-                "      \"startDate\" : \"2019-05-25 18:00:00\",\n" +
-                "      \"votesCount\" : 5,\n" +
-                "      \"acceptedOffer\" : false,\n" +
-                "      \"confirmedOffer\" : false\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"id\" : 103,\n" +
-                "      \"startDate\" : \"2019-05-28 16:00:00\",\n" +
-                "      \"votesCount\" : 3,\n" +
-                "      \"acceptedOffer\" : true,\n" +
-                "      \"confirmedOffer\" : false\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"id\" : 104,\n" +
-                "      \"startDate\" : \"2019-05-28 19:00:00\",\n" +
-                "      \"votesCount\" : 6,\n" +
-                "      \"acceptedOffer\" : false,\n" +
-                "      \"confirmedOffer\" : false\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"id\" : 105,\n" +
-                "      \"startDate\" : \"2019-05-28 20:30:00\",\n" +
-                "      \"votesCount\" : 9,\n" +
-                "      \"acceptedOffer\" : true,\n" +
-                "      \"confirmedOffer\" : false\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"id\" : 106,\n" +
-                "      \"startDate\" : \"2019-06-03 18:00:00\",\n" +
-                "      \"votesCount\" : 9,\n" +
-                "      \"acceptedOffer\" : true,\n" +
-                "      \"confirmedOffer\" : false\n" +
-                "    }\n" +
-                "  ],\n" +
-                "  \"comments\": [\n" +
-                "    {\n" +
-                "      \"id\" : 255,\n" +
-                "      \"username\" : \"piotrek wariat\",\n" +
-                "      \"message\" : \"siemano wariatyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\",\n" +
-                "      \"postDate\" : \"2019-05-27 20:30:00\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"id\" : 256,\n" +
-                "      \"username\" : \"pawelek z ustronia\",\n" +
-                "      \"message\" : \"ustronalia to gUWno niesamowite\",\n" +
-                "      \"postDate\" : \"2019-05-28 16:32:25\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"id\" : 257,\n" +
-                "      \"username\" : \"Maria (Lwow)\",\n" +
-                "      \"message\" : \"w paszczu pisiont, w zopu sto\",\n" +
-                "      \"postDate\" : \"2019-05-28 20:58:10\"\n" +
-                "    }\n" +
-                "  ],\n" +
-                "  \"votes\": [\n" +
-                "    {\n" +
-                "      \"id\" : 80,\n" +
-                "      \"offerId\" : \"104\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"id\" : 81,\n" +
-                "      \"offerId\" : \"4\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"id\" : 82,\n" +
-                "      \"offerId\" : \"5\"\n" +
-                "    }\n" +
-                "  ]\n" +
-                "}";*/
-
 
         OfferListResponse offerListResponse = gson.fromJson(response, OfferListResponse.class);
 
@@ -392,13 +309,6 @@ public class OffersWindowController {
         System.out.println(request);
         String response = client.sendRequestRecResponse(request);
 
-        // fake response:
-
-        String fakeResponse = "{\n" +
-                "  \"flag\": \"PROPOFR\",\n" +
-                "  \"offerId\": 69\n" +
-                "}";
-
         OfferResponse offerResponse = gson.fromJson(response, OfferResponse.class);
 
         if(offerResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
@@ -433,6 +343,8 @@ public class OffersWindowController {
             FormattedOffer formattedOffer = new FormattedOffer(offerResponse.getOfferId(), proposalDate.format(formatter), 0, false);
             offersTable.getItems().add(formattedOffer);
         }
+
+        refreshClicked();
     }
 
     @FXML
@@ -462,11 +374,6 @@ public class OffersWindowController {
         System.out.println(request);
 
         String response = client.sendRequestRecResponse(request);
-
-        // fake response
-        /*String response = "{\n" +
-                "  \"flag\": \"OFRACPT\"\n" +
-                "}";*/
 
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 
@@ -509,11 +416,6 @@ public class OffersWindowController {
         String response = client.sendRequestRecResponse(request);
         System.out.println(response);
 
-        // fake response
-        /*String response = "{\n" +
-                "  \"flag\": \"NEWVOTE\"\n" +
-                "}";*/
-
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
@@ -538,7 +440,7 @@ public class OffersWindowController {
     }
 
     @FXML
-    public void confirmClicked(ActionEvent actionEvent) {
+    public void confirmClicked() {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
@@ -552,11 +454,6 @@ public class OffersWindowController {
 
 
         String response = client.sendRequestRecResponse(request);
-
-        // fake response
-        /*String response = "{\n" +
-                "  \"flag\": \"CFRMOFR\"\n" +
-                "}";*/
 
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 
