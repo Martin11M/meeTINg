@@ -710,3 +710,25 @@ bool DataBaseConnection::makeVote(int offerId, int userId) {
     }
     return 0;
 }
+
+bool DataBaseConnection::offerConfirm(int offerId) {
+
+    try {
+        stmt = con->createStatement();
+        stmt->executeUpdate(
+                "UPDATE OFFER SET confirmed_offer = 1 WHERE offer_id = " + to_string(offerId));
+
+        stmt->close();
+        delete stmt;
+        return 1;
+
+    } catch (sql::SQLException &e) {
+        cout << "# ERR: SQLException in " << __FILE__;
+        cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+        cout << "# ERR: " << e.what();
+        cout << " (MySQL error code: " << e.getErrorCode();
+        cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+
+    }
+    return 0;
+}

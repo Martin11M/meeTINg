@@ -44,15 +44,10 @@ public:
     string makeOffer(int groupId, int userId, string dateTime);
     string makePropOffer(int groupId, int userId, string dateTime);
     bool offerAccept(int offerId);
+    bool offerConfirm(int offerId);
     string makeComment(int userId, int eventId, string message, string dateTime);
     bool makeVote(int offerId, int userId);
 };
-/*
-{
-"flag": "NEWVOTE",
-"offerId": 1,
-"userId": 9
-}
-*/
+
 
 #endif //TESTDB_DATABASECONNECTION_H

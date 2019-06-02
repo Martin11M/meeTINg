@@ -547,14 +547,14 @@ public class OffersWindowController {
                 .build();
 
         String request = gson.toJson(offerConfirmRequest);
-        System.out.println(request);
 
-        //String response = client.sendRequestRecResponse(request);
+
+        String response = client.sendRequestRecResponse(request);
 
         // fake response
-        String response = "{\n" +
+        /*String response = "{\n" +
                 "  \"flag\": \"CFRMOFR\"\n" +
-                "}";
+                "}";*/
 
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 

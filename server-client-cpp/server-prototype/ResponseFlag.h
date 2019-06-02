@@ -34,6 +34,7 @@ enum ResponseFlag {
     RMEVENT, // usuń event
 
     EVNTOFR, // pokaż terminy eventu
+    CFRMOFR, // zatwierdź termin
     SHOWOFR, // wybierz konkretny termin
     MAKEOFR, // stwórz nowy termin
     PROPOFR, // proponuj nowy termin

@@ -38,6 +38,7 @@ ResponseFlag convert(const std::string& str)
     else if(str == "OFRACPT") return OFRACPT;
     else if(str == "COMMENT") return COMMENT;
     else if(str == "NEWVOTE") return NEWVOTE;
+    else if(str == "CFRMOFR") return CFRMOFR;
 
 }
 
@@ -96,6 +97,9 @@ void ServerController::selectAction(int fd, json messageJson, ConnectionManager 
             break;
         case OFRACPT:
             response = offerAccept(messageJson["offerId"], dbc);
+            break;
+        case CFRMOFR:
+            response = offerConfirm(messageJson["offerId"], dbc);
             break;
         case COMMENT:
             response = makeComment(messageJson["userId"],messageJson["eventId"], messageJson["message"], messageJson["postDate"], dbc);
@@ -290,6 +294,16 @@ string ServerController::makeVote(int offerId, int userId, DataBaseConnection &d
 
     returnMessage = "{\"flag\":\"NEWVOTE\"}";
     if (dbc.makeVote(offerId, userId)) return returnMessage;
+
+    returnMessage = "{\"flag\":\"__ERROR\"}";
+    return returnMessage;
+}
+
+string ServerController::offerConfirm(int offerId, DataBaseConnection &dbc) {
+    string returnMessage;
+
+    returnMessage = "{\"flag\":\"CFRMOFR\"}";
+    if (dbc.offerConfirm(offerId)) return returnMessage;
 
     returnMessage = "{\"flag\":\"__ERROR\"}";
     return returnMessage;
