@@ -45,10 +45,8 @@ public class RequestsReviewWindowController {
     public void initialize() {
         initCols();
 
-        Platform.runLater(() -> {
-            // blokowanie accept i decline w tej funkcji, bo odswiezac mozna samemu, wtedy sie wiersz odznacza
-            refreshClicked();
-        });
+        // blokowanie accept i decline w tej funkcji, bo odswiezac mozna samemu, wtedy sie wiersz odznacza
+        Platform.runLater(this::refreshClicked);
     }
 
     @FXML

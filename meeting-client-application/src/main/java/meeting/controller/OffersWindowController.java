@@ -5,11 +5,8 @@ import com.google.gson.GsonBuilder;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import meeting.api.request.*;
 import meeting.api.response.FlagResponse;
 import meeting.api.response.NewCommentResponse;
@@ -104,24 +101,7 @@ public class OffersWindowController {
 
     @FXML
     public void signOutClicked(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText(null);
-        alert.setContentText("Do you want to sign out?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent()) {
-            ButtonType reloadedResult = result.get();
-            if (reloadedResult == ButtonType.OK){
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginWindow.fxml"));
-                    ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
-                    LoginWindowController loginWindowController = fxmlLoader.getController();
-                    loginWindowController.setClient(client);
-                } catch(Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        ApplicationService.signOut(actionEvent, OffersWindowController.class, client);
     }
 
     @FXML
@@ -354,9 +334,7 @@ public class OffersWindowController {
 
         String request = gson.toJson(offerAcceptRequest);
         System.out.println(request);
-
         String response = client.sendRequestRecResponse(request);
-
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
@@ -391,10 +369,8 @@ public class OffersWindowController {
                 .build();
 
         String request = gson.toJson(voteRequest);
-
         String response = client.sendRequestRecResponse(request);
         System.out.println(response);
-
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
@@ -427,10 +403,7 @@ public class OffersWindowController {
                 .build();
 
         String request = gson.toJson(offerConfirmRequest);
-
-
         String response = client.sendRequestRecResponse(request);
-
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
