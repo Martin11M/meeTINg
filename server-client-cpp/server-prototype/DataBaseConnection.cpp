@@ -728,8 +728,8 @@ bool DataBaseConnection::offerConfirm(int offerId) {
         stmt = con->createStatement();
         stmt->executeUpdate(
                 "UPDATE OFFER SET confirmed_offer = 1 WHERE offer_id = " + to_string(offerId));
-        /*stmt->executeUpdate(
-                "UPDATE OFFER SET confirmed_offer = 1 WHERE offer_id = " + to_string(offerId));*/
+        stmt->executeUpdate(
+                "UPDATE OFFER SET confirmed_offer = 0 WHERE OFFER.offer_id != " + to_string(offerId)  + " and event_id IN (SELECT * FROM (select OFFER.event_id from OFFER where offer_id = " + to_string(offerId) + ") AS X)");
 
         stmt->close();
         delete stmt;
