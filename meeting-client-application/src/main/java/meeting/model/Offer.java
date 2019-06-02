@@ -18,4 +18,6 @@ public class Offer {
     private int votesCount;
 
     private boolean acceptedOffer;
+
+    private boolean confirmedOffer;
 }

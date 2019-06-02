@@ -5,11 +5,9 @@ import lombok.Data;
 
 @Data
 @Builder
-public class OfferListRequest {
+public class OfferConfirmRequest {
 
     private String flag;
 
-    private long eventId;
-
-    private long userId;
+    private long offerId;
 }

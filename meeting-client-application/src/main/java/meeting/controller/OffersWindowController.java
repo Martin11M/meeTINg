@@ -40,6 +40,7 @@ public class OffersWindowController {
     @FXML public Button proposeButton;
     @FXML public Button voteButton;
     @FXML public Button commentButton;
+    @FXML public Button confirmButton;
 
     @FXML public TableView<FormattedOffer> offersTable;
     @FXML public TableColumn<FormattedOffer, String> offerDate;
@@ -58,11 +59,11 @@ public class OffersWindowController {
     private User user;
 
     private FormattedOffer pickedOffer;
-    private FormattedOffer pickedProposal;
 
     private List<Offer> acceptedOffers = new ArrayList<>();
     private List<Offer> proposals = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
+    private List<Vote> votes = new ArrayList<>();
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
@@ -88,8 +89,7 @@ public class OffersWindowController {
 
         Platform.runLater(() ->{
             if(user.getSystemRole() == USER) {
-                createButton.setDisable(true);
-                acceptButton.setDisable(true);
+                disableActionButtons();
                 roleInfoLabel.setText("Logged as " + user.getUsername() + " (User)");
             }
             else {
@@ -144,52 +144,59 @@ public class OffersWindowController {
         OfferListRequest groupRequest = OfferListRequest.builder()
                 .flag(RequestFlag.EVNTOFR.toString())
                 .eventId(pickedEvent.getId())
+                .userId(user.getId())
                 .build();
 
         String request = gson.toJson(groupRequest);
 
-        String response = client.sendRequestRecResponse(request);
+   //     String response = client.sendRequestRecResponse(request);
 
         // fake response:
 
-        /*String response = "{\n" +
+        String response = "{\n" +
                 "  \"flag\": \"EVNTOFR\",\n" +
                 "  \"offers\": [\n" +
                 "    {\n" +
                 "      \"id\" : 101,\n" +
                 "      \"startDate\" : \"2019-05-25 16:00:00\",\n" +
                 "      \"votesCount\" : 3,\n" +
-                "      \"acceptedOffer\" : true\n" +
+                "      \"acceptedOffer\" : true,\n" +
+                "      \"confirmedOffer\" : false\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 102,\n" +
                 "      \"startDate\" : \"2019-05-25 18:00:00\",\n" +
                 "      \"votesCount\" : 5,\n" +
-                "      \"acceptedOffer\" : false\n" +
+                "      \"acceptedOffer\" : false,\n" +
+                "      \"confirmedOffer\" : false\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 103,\n" +
                 "      \"startDate\" : \"2019-05-28 16:00:00\",\n" +
                 "      \"votesCount\" : 3,\n" +
-                "      \"acceptedOffer\" : true\n" +
+                "      \"acceptedOffer\" : true,\n" +
+                "      \"confirmedOffer\" : false\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 104,\n" +
                 "      \"startDate\" : \"2019-05-28 19:00:00\",\n" +
                 "      \"votesCount\" : 6,\n" +
-                "      \"acceptedOffer\" : false\n" +
+                "      \"acceptedOffer\" : false,\n" +
+                "      \"confirmedOffer\" : false\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 105,\n" +
                 "      \"startDate\" : \"2019-05-28 20:30:00\",\n" +
                 "      \"votesCount\" : 9,\n" +
-                "      \"acceptedOffer\" : true\n" +
+                "      \"acceptedOffer\" : true,\n" +
+                "      \"confirmedOffer\" : false\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"id\" : 106,\n" +
                 "      \"startDate\" : \"2019-06-03 18:00:00\",\n" +
                 "      \"votesCount\" : 9,\n" +
-                "      \"acceptedOffer\" : true\n" +
+                "      \"acceptedOffer\" : true,\n" +
+                "      \"confirmedOffer\" : false\n" +
                 "    }\n" +
                 "  ],\n" +
                 "  \"comments\": [\n" +
@@ -211,9 +218,23 @@ public class OffersWindowController {
                 "      \"message\" : \"w paszczu pisiont, w zopu sto\",\n" +
                 "      \"postDate\" : \"2019-05-28 20:58:10\"\n" +
                 "    }\n" +
+                "  ],\n" +
+                "  \"votes\": [\n" +
+                "    {\n" +
+                "      \"id\" : 80,\n" +
+                "      \"offerId\" : \"104\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"id\" : 81,\n" +
+                "      \"offerId\" : \"4\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"id\" : 82,\n" +
+                "      \"offerId\" : \"5\"\n" +
+                "    }\n" +
                 "  ]\n" +
                 "}";
-*/
+
 
         OfferListResponse offerListResponse = gson.fromJson(response, OfferListResponse.class);
 
@@ -228,6 +249,7 @@ public class OffersWindowController {
         acceptedOffers.clear();
         proposals.clear();
         comments.clear();
+        votes.clear();
 
         offerListResponse.getOffers().forEach(offer -> {
             Offer o = Offer.builder()
@@ -235,6 +257,7 @@ public class OffersWindowController {
                     .startDate(LocalDateTime.parse(offer.getStartDate(), formatter))
                     .votesCount(offer.getVotesCount())
                     .acceptedOffer(offer.isAcceptedOffer())
+                    .confirmedOffer(offer.isConfirmedOffer())
                     .build();
             if(offer.isAcceptedOffer()) acceptedOffers.add(o);
             else proposals.add(o);
@@ -250,10 +273,17 @@ public class OffersWindowController {
             comments.add(c);
         });
 
-        fillTables(acceptedOffers, proposals, comments);
+        offerListResponse.getVotes().forEach(vote -> {
+            Vote v = Vote.builder()
+                    .id(vote.getId())
+                    .offerId(vote.getOfferId())
+                    .userId(user.getId())
+                    .build();
+            votes.add(v);
+        });
 
-        acceptButton.setDisable(true);
-        voteButton.setDisable(true);
+        fillTables(acceptedOffers, proposals, comments);
+        disableActionButtons();
     }
 
     private void initCols() {
@@ -268,8 +298,8 @@ public class OffersWindowController {
         List<FormattedOffer> formattedProposals = new ArrayList<>();
         List<String> formattedComments = new ArrayList<>();
 
-        acceptedOffers.forEach(offer -> formattedAcceptedOffers.add(new FormattedOffer(offer.getId(), offer.getStartDate().format(formatter), offer.getVotesCount())));
-        proposals.forEach(proposal -> formattedProposals.add(new FormattedOffer(proposal.getId(), proposal.getStartDate().format(formatter), proposal.getVotesCount())));
+        acceptedOffers.forEach(offer -> formattedAcceptedOffers.add(new FormattedOffer(offer.getId(), offer.getStartDate().format(formatter), offer.getVotesCount(), offer.isConfirmedOffer())));
+        proposals.forEach(proposal -> formattedProposals.add(new FormattedOffer(proposal.getId(), proposal.getStartDate().format(formatter), proposal.getVotesCount(), proposal.isConfirmedOffer())));
         comments.forEach(comment -> formattedComments.add(comment.getPostDate().format(formatter) + " " + comment.getUsername() + ": " + comment.getMessage()));
 
         offersTable.getItems().clear();
@@ -385,7 +415,7 @@ public class OffersWindowController {
                             .acceptedOffer(false)
                             .build()
             );
-            FormattedOffer formattedOffer = new FormattedOffer(offerResponse.getOfferId(), proposalDate.format(formatter), 0);
+            FormattedOffer formattedOffer = new FormattedOffer(offerResponse.getOfferId(), proposalDate.format(formatter), 0, false);
             proposalsTable.getItems().add(formattedOffer);
         }
         else if (flag == RequestFlag.MAKEOFR) {
@@ -397,7 +427,7 @@ public class OffersWindowController {
                             .acceptedOffer(true)
                             .build()
             );
-            FormattedOffer formattedOffer = new FormattedOffer(offerResponse.getOfferId(), proposalDate.format(formatter), 0);
+            FormattedOffer formattedOffer = new FormattedOffer(offerResponse.getOfferId(), proposalDate.format(formatter), 0, false);
             offersTable.getItems().add(formattedOffer);
         }
     }
@@ -422,7 +452,7 @@ public class OffersWindowController {
 
         OfferAcceptRequest offerAcceptRequest = OfferAcceptRequest.builder()
                 .flag(RequestFlag.OFRACPT.toString())
-                .offerId(pickedProposal.getId())
+                .offerId(pickedOffer.getId())
                 .build();
 
         String request = gson.toJson(offerAcceptRequest);
@@ -465,21 +495,20 @@ public class OffersWindowController {
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
-        // TODO moze byc pickedOffer zamiast pickedProposal
         VoteRequest voteRequest = VoteRequest.builder()
                 .flag(RequestFlag.NEWVOTE.toString())
-                .offerId(pickedProposal.getId())
+                .offerId(pickedOffer.getId())
                 .userId(user.getId())
                 .build();
 
         String request = gson.toJson(voteRequest);
-        String response = client.sendRequestRecResponse(request);
-        System.out.println(response);
+//        String response = client.sendRequestRecResponse(request);
+//        System.out.println(response);
 
         // fake response
-        /*String response = "{\n" +
+        String response = "{\n" +
                 "  \"flag\": \"NEWVOTE\"\n" +
-                "}";*/
+                "}";
 
         FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
 
@@ -505,24 +534,78 @@ public class OffersWindowController {
     }
 
     @FXML
+    public void confirmClicked(ActionEvent actionEvent) {
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+
+        OfferConfirmRequest offerConfirmRequest = OfferConfirmRequest.builder()
+                .flag(RequestFlag.CFRMOFR.toString())
+                .offerId(pickedOffer.getId())
+                .build();
+
+        String request = gson.toJson(offerConfirmRequest);
+        System.out.println(request);
+
+        //String response = client.sendRequestRecResponse(request);
+
+        // fake response
+        String response = "{\n" +
+                "  \"flag\": \"CFRMOFR\"\n" +
+                "}";
+
+        FlagResponse flagResponse = gson.fromJson(response, FlagResponse.class);
+
+        if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Error response for CFRMOFR");
+            alert.show();
+            return;
+        }
+
+        refreshClicked();
+    }
+
+    @FXML
     public void acceptedOffersTableClicked() {
         if(offersTable.getSelectionModel().getSelectedItem() != null &&
                 offersTable.getSelectionModel().getSelectedItem() != pickedOffer) {
 
+            disableActionButtons();
             pickedOffer = offersTable.getSelectionModel().getSelectedItem();
-            voteButton.setDisable(false);
+            if (user.getSystemRole() == SystemRole.TEAM_LEADER && !pickedOffer.isConfirmedOffer()) confirmButton.setDisable(false);
+            if (voteAllowed()) voteButton.setDisable(false);
         }
     }
 
     @FXML
     public void proposalsTableClicked() {
         if(proposalsTable.getSelectionModel().getSelectedItem() != null &&
-                proposalsTable.getSelectionModel().getSelectedItem() != pickedProposal) {
+                proposalsTable.getSelectionModel().getSelectedItem() != pickedOffer) {
 
-            pickedProposal = proposalsTable.getSelectionModel().getSelectedItem();
+            disableActionButtons();
+            pickedOffer = proposalsTable.getSelectionModel().getSelectedItem();
             if (user.getSystemRole() == SystemRole.TEAM_LEADER) acceptButton.setDisable(false);
-            voteButton.setDisable(false);
+            if (voteAllowed()) {
+                voteButton.setDisable(false);
+            }
         }
+    }
+
+    private boolean voteAllowed() {
+        for (Vote vote : votes) {
+            if (vote.getOfferId() == pickedOffer.getId()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void disableActionButtons() {
+        voteButton.setDisable(true);
+        acceptButton.setDisable(true);
+        confirmButton.setDisable(true);
     }
 
     public class FormattedOffer {
@@ -533,10 +616,13 @@ public class OffersWindowController {
 
         private int votesCount;
 
-        FormattedOffer(long id, String startDate, int votesCount) {
+        private boolean confirmedOffer;
+
+        FormattedOffer(long id, String startDate, int votesCount, boolean confirmedOffer) {
             this.id = id;
             this.startDate = startDate;
             this.votesCount = votesCount;
+            this.confirmedOffer = confirmedOffer;
         }
 
         public long getId() {
@@ -549,6 +635,10 @@ public class OffersWindowController {
 
         public int getVotesCount() {
             return votesCount;
+        }
+
+        public boolean isConfirmedOffer() {
+            return confirmedOffer;
         }
     }
 }

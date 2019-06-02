@@ -14,4 +14,6 @@ public class OfferListItemResponse {
     private int votesCount;
 
     private boolean acceptedOffer;
+
+    private boolean confirmedOffer;
 }

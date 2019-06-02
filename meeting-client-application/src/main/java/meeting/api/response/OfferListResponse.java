@@ -14,4 +14,6 @@ public class OfferListResponse {
     private List<OfferListItemResponse> offers;
 
     private List<CommentResponse> comments;
+
+    private List<VoteResponse> votes;
 }

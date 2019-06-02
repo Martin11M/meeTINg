@@ -24,7 +24,7 @@ public enum RequestFlag {
     RMEVENT, // usuń event
 
     EVNTOFR, // pokaż terminy eventu
-    SHOWOFR, // wybierz konkretny termin
+    CFRMOFR, // zatwierdź termin
     MAKEOFR, // stwórz nowy termin
     PROPOFR, // proponuj nowy termin
     RMOFFER, // usuń termin

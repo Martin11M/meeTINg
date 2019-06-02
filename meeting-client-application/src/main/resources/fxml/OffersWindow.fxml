@@ -68,7 +68,15 @@
                         <FontIcon iconColor="WHITE" iconLiteral="typ-tick" iconSize="22" strokeType="OUTSIDE" strokeWidth="0.0" />
                     </graphic>
                 </Button>
-                <Button fx:id="proposeButton" layoutX="20.0" layoutY="230.0" mnemonicParsing="false" onAction="#proposeClicked" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #000000;" text=" PROPOSE" textFill="WHITE">
+                <Button fx:id="confirmButton" layoutX="20.0" layoutY="230.0" mnemonicParsing="false" onAction="#confirmClicked" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #000000;" text=" CONFIRM" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                    <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="typ-tick" iconSize="22" strokeType="OUTSIDE" strokeWidth="0.0" />
+                    </graphic>
+                </Button>
+                <Button fx:id="proposeButton" layoutX="20.0" layoutY="280.0" mnemonicParsing="false" onAction="#proposeClicked" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #000000;" text=" PROPOSE" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
@@ -76,7 +84,7 @@
                         <FontIcon iconColor="WHITE" iconLiteral="typ-plus-outline" iconSize="22" strokeType="OUTSIDE" strokeWidth="0.0" />
                     </graphic>
                 </Button>
-                <Button fx:id="voteButton" layoutX="20.0" layoutY="300.0" mnemonicParsing="false" onAction="#voteClicked" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #000000;" text=" VOTE" textFill="WHITE">
+                <Button fx:id="voteButton" layoutX="20.0" layoutY="350.0" mnemonicParsing="false" onAction="#voteClicked" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #000000;" text=" VOTE" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
@@ -84,7 +92,7 @@
                         <FontIcon iconColor="WHITE" iconLiteral="typ-thumbs-up" iconSize="22" strokeType="OUTSIDE" strokeWidth="0.0" />
                     </graphic>
                 </Button>
-                <Button fx:id="commentButton" layoutX="20.0" layoutY="370.0" mnemonicParsing="false" onAction="#commentClicked" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #000000;" text=" COMMENT" textFill="WHITE">
+                <Button fx:id="commentButton" layoutX="20.0" layoutY="420.0" mnemonicParsing="false" onAction="#commentClicked" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #000000;" text=" COMMENT" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
@@ -98,8 +106,8 @@
          <content>
             <TableView fx:id="offersTable" onMouseClicked="#acceptedOffersTableClicked" prefHeight="200.0" prefWidth="582.0">
                 <columns>
-                    <TableColumn fx:id="offerDate" prefWidth="350.0" text="Date" style="-fx-alignment: center"/>
-                    <TableColumn fx:id="offerVotes" prefWidth="231.0" text="Votes" style="-fx-alignment: center"/>
+                    <TableColumn fx:id="offerDate" prefWidth="350.0" style="-fx-alignment: center" text="Date" />
+                    <TableColumn fx:id="offerVotes" prefWidth="231.0" style="-fx-alignment: center" text="Votes" />
                 </columns>
             </TableView>
          </content></ScrollPane>
@@ -112,8 +120,8 @@
          <content>
             <TableView fx:id="proposalsTable" onMouseClicked="#proposalsTableClicked" prefHeight="200.0" prefWidth="582.0">
              <columns>
-                 <TableColumn fx:id="proposalDate" prefWidth="350.0" text="Date" style="-fx-alignment: center"/>
-                 <TableColumn fx:id="proposalVotes" prefWidth="231.0" text="Votes" style="-fx-alignment: center"/>
+                 <TableColumn fx:id="proposalDate" prefWidth="350.0" style="-fx-alignment: center" text="Date" />
+                 <TableColumn fx:id="proposalVotes" prefWidth="231.0" style="-fx-alignment: center" text="Votes" />
              </columns>
             </TableView>
          </content></ScrollPane>
