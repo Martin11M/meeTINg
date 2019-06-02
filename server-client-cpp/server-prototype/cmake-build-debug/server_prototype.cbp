@@ -91,12 +91,6 @@
 		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ClientStructure.h">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Comment.cpp">
-			<Option target="server_prototype"/>
-		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Comment.h">
-			<Option target="server_prototype"/>
-		</Unit>
 		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConnectionManager.cpp">
 			<Option target="server_prototype"/>
 		</Unit>
@@ -115,37 +109,16 @@
 		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Event.cpp">
-			<Option target="server_prototype"/>
-		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Event.h">
-			<Option target="server_prototype"/>
-		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Group.cpp">
-			<Option target="server_prototype"/>
-		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Group.h">
-			<Option target="server_prototype"/>
-		</Unit>
 		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/MessageParser.cpp">
 			<Option target="server_prototype"/>
 		</Unit>
 		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/MessageParser.h">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Offer.cpp">
-			<Option target="server_prototype"/>
-		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Offer.h">
-			<Option target="server_prototype"/>
-		</Unit>
 		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.cpp">
 			<Option target="server_prototype"/>
 		</Unit>
 		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h">
-			<Option target="server_prototype"/>
-		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/RequestFlag.h">
 			<Option target="server_prototype"/>
 		</Unit>
 		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ResponseFlag.h">
@@ -155,18 +128,6 @@
 			<Option target="server_prototype"/>
 		</Unit>
 		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ServerController.h">
-			<Option target="server_prototype"/>
-		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/User.cpp">
-			<Option target="server_prototype"/>
-		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/User.h">
-			<Option target="server_prototype"/>
-		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Vote.cpp">
-			<Option target="server_prototype"/>
-		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Vote.h">
 			<Option target="server_prototype"/>
 		</Unit>
 		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Waiter.h">

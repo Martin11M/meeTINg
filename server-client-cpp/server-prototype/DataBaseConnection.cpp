@@ -535,12 +535,12 @@ string DataBaseConnection::showEventComment(int eventId) {
 
         stmt = con->createStatement();
         res = stmt->executeQuery(
-                "SELECT comment_id, user_id, message, post_date FROM COMMENT WHERE event_id = " + to_string(eventId));
+                "SELECT comment_id, USER.username, message, post_date FROM COMMENT join USER on COMMENT.user_id = USER.user_id WHERE event_id = " + to_string(eventId));
         while (res->next()) {
             iterator++;
 
             response += "{\"id\":\"" + res->getString("comment_id") + "\",";
-            response += "\"username\":\"" + res->getString("user_id") + "\",";
+            response += "\"username\":\"" + res->getString("username") + "\",";
             response += "\"message\":\"" + res->getString("message") + "\",";
             response += "\"postDate\":\"" + res->getString("post_date") + "\"},";
 
