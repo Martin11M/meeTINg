@@ -465,7 +465,7 @@ bool DataBaseConnection::makeEvent(int groupId, string eventName) {
     try {
         stmt = con->createStatement();
         stmt->executeUpdate(
-                "INSERT INTO EVENT VALUES(\"" + to_string(indeks) + "\",\"" + eventName + "\",\"" + to_string(groupId) + "\", \"deafult_description\", NULL)");
+                "INSERT INTO EVENT VALUES(\"" + to_string(indeks) + "\",\"" + eventName + "\",\"" + to_string(groupId) + "\")");
 
 
         stmt->close();
@@ -728,6 +728,8 @@ bool DataBaseConnection::offerConfirm(int offerId) {
         stmt = con->createStatement();
         stmt->executeUpdate(
                 "UPDATE OFFER SET confirmed_offer = 1 WHERE offer_id = " + to_string(offerId));
+        /*stmt->executeUpdate(
+                "UPDATE OFFER SET confirmed_offer = 1 WHERE offer_id = " + to_string(offerId));*/
 
         stmt->close();
         delete stmt;
