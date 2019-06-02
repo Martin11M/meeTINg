@@ -93,7 +93,7 @@ public class EventsWindowController {
         EventListResponse eventListResponse = gson.fromJson(response, EventListResponse.class);
 
         if(eventListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            showEventErrorAlert("Cannot do request GRPEVNT");
+            ApplicationService.showErrorAlert("Error response for GRPEVNT");
             return;
         }
 
@@ -121,7 +121,7 @@ public class EventsWindowController {
         Optional<String> result = dialog.showAndWait();
 
         result.ifPresent(name -> {
-            if (name.equals("")) showEventErrorAlert("Field can not be empty!");
+            if (name.equals("")) ApplicationService.showErrorAlert("Field can not be empty!");
             else {
                 sendNewEventRequest(name);
             }
@@ -147,7 +147,7 @@ public class EventsWindowController {
         NewEventResponse newEventResponse = gson.fromJson(response, NewEventResponse.class);
 
         if(newEventRequest.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            showEventErrorAlert("Cannot do request MAKEEVT");
+            ApplicationService.showErrorAlert("Cannot do request MAKEEVT");
             return;
         }
 
@@ -157,13 +157,6 @@ public class EventsWindowController {
                 .build();
 
         eventList.getItems().add(e);
-    }
-
-    private void showEventErrorAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.show();
     }
 
     @FXML

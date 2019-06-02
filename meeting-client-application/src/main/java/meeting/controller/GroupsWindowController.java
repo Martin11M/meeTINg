@@ -131,7 +131,7 @@ public class GroupsWindowController {
         GroupListResponse groupListResponse = gson.fromJson(groupResponseString, GroupListResponse.class);
 
         if(groupListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-            showErrorAlert("Cannot do request USERGRP");
+            ApplicationService.showErrorAlert("Error response for USERGRP");
             return;
         }
 
@@ -160,7 +160,7 @@ public class GroupsWindowController {
         Optional<String> result = dialog.showAndWait();
 
         result.ifPresent(name -> {
-            if (name.equals("")) showErrorAlert("Field can not be empty!");
+            if (name.equals("")) ApplicationService.showErrorAlert("Field can not be empty!");
             else {
                 // robie JSONa
                 GsonBuilder builder = new GsonBuilder();
@@ -180,7 +180,7 @@ public class GroupsWindowController {
                 NewGroupResponse newGroupResponse = gson.fromJson(response, NewGroupResponse.class);
 
                 if(newGroupResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
-                    showErrorAlert("Cannot do request MAKEGRP");
+                    ApplicationService.showErrorAlert("Error response for MAKEGRP");
                     return;
                 }
 
@@ -193,13 +193,6 @@ public class GroupsWindowController {
                 listView.getItems().add(g);
             }
         });
-    }
-
-    private void showErrorAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.show();
     }
 
     void setClient(Client client) {
