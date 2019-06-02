@@ -1,9 +1,9 @@
 package meeting.controller;
 
 import javafx.application.Platform;
+import meeting.api.ConnectionManager;
 import meeting.api.request.UserDataRequest;
 import meeting.api.response.UserLoginResponse;
-import meeting.api.Client;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import meeting.enums.SystemRole;
@@ -24,7 +24,7 @@ import static com.google.common.hash.Hashing.sha256;
 
 public class LoginWindowController {
 
-    private Client client;
+    private ConnectionManager connectionManager;
 
     private Serializer serializer;
 
@@ -33,7 +33,7 @@ public class LoginWindowController {
 
     @FXML
     public void initialize() {
-        Platform.runLater(() -> serializer = new Serializer(client));
+        Platform.runLater(() -> serializer = new Serializer(connectionManager));
     }
 
     @FXML
@@ -72,7 +72,7 @@ public class LoginWindowController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/GroupsWindow.fxml"));
             ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             GroupsWindowController groupsWindowController = fxmlLoader.getController();
-            groupsWindowController.setClient(client);
+            groupsWindowController.setConnectionManager(connectionManager);
             groupsWindowController.setUser(user);
         } catch(Exception e) {
             e.printStackTrace();
@@ -86,7 +86,7 @@ public class LoginWindowController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/RegistrationWindow.fxml"));
             ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             RegistrationWindowController registrationWindowController = fxmlLoader.getController();
-            registrationWindowController.setClient(client);
+            registrationWindowController.setConnectionManager(connectionManager);
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -96,8 +96,8 @@ public class LoginWindowController {
         return !usernameField.getText().trim().equals("") && !passwordField.getText().trim().equals("");
     }
 
-    public void setClient(Client client) {
-        if (this.client == null) this.client = client;
+    public void setConnectionManager(ConnectionManager connectionManager) {
+        if (this.connectionManager == null) this.connectionManager = connectionManager;
     }
 }
 

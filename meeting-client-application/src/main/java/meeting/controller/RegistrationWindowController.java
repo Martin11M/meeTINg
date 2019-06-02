@@ -1,6 +1,7 @@
 package meeting.controller;
 
 import javafx.application.Platform;
+import meeting.api.ConnectionManager;
 import meeting.api.request.UserDataRequest;
 import meeting.api.response.FlagResponse;
 import meeting.enums.RequestFlag;
@@ -11,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import meeting.api.Client;
 import meeting.serializer.Serializer;
 import meeting.service.ApplicationService;
 
@@ -28,12 +28,12 @@ public class RegistrationWindowController {
     @FXML private Button registerButton;
     @FXML private Label infoLabel;
 
-    private Client client;
+    private ConnectionManager connectionManager;
     private Serializer serializer;
 
     @FXML
     public void initialize() {
-        Platform.runLater(() -> serializer = new Serializer(client));
+        Platform.runLater(() -> serializer = new Serializer(connectionManager));
     }
 
     @FXML
@@ -72,7 +72,7 @@ public class RegistrationWindowController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginWindow.fxml"));
             ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             LoginWindowController loginWindowController = fxmlLoader.getController();
-            loginWindowController.setClient(client);
+            loginWindowController.setConnectionManager(connectionManager);
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -87,7 +87,7 @@ public class RegistrationWindowController {
             infoLabel.setText("");
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setConnectionManager(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
     }
 }

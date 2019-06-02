@@ -3,7 +3,7 @@ package meeting;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import meeting.api.Client;
+import meeting.api.ConnectionManager;
 import meeting.controller.LoginWindowController;
 import meeting.service.ApplicationService;
 
@@ -19,6 +19,6 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/fxml/LoginWindow.fxml"));
         ApplicationService.loadStage(new Stage(), fxmlLoader);
         LoginWindowController loginWindowController = fxmlLoader.getController();
-        loginWindowController.setClient(new Client());
+        loginWindowController.setConnectionManager(new ConnectionManager());
     }
 }

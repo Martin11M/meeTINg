@@ -1,11 +1,11 @@
 package meeting.controller;
 
 import javafx.scene.control.*;
+import meeting.api.ConnectionManager;
 import meeting.api.request.EventListRequest;
 import meeting.api.request.NewEventRequest;
 import meeting.api.response.EventListResponse;
 import meeting.api.response.NewEventResponse;
-import meeting.api.Client;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import javafx.application.Platform;
@@ -38,7 +38,7 @@ public class EventsWindowController {
 
     private Group pickedGroup;
     private Event pickedEvent;
-    private Client client;
+    private ConnectionManager connectionManager;
     private User user;
 
     private Serializer serializer;
@@ -53,20 +53,20 @@ public class EventsWindowController {
             else {
                 roleInfoLabel.setText("Logged as " + user.getUsername() + " (Team Leader)");
             }
-            serializer = new Serializer(client);
+            serializer = new Serializer(connectionManager);
             refreshClicked();
         });
     }
 
     @FXML
     public void signOutClicked(ActionEvent actionEvent) {
-        ApplicationService.signOut(actionEvent, EventsWindowController.class, client);
+        ApplicationService.signOut(actionEvent, EventsWindowController.class, connectionManager);
     }
 
     @FXML
     public void returnClicked(ActionEvent actionEvent) {
         try {
-            ApplicationService.loadPreviousWindow(actionEvent, EventsWindowController.class, client, user, null, "/fxml/GroupsWindow.fxml");
+            ApplicationService.loadPreviousWindow(actionEvent, EventsWindowController.class, connectionManager, user, null, "/fxml/GroupsWindow.fxml");
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -154,7 +154,7 @@ public class EventsWindowController {
                 OffersWindowController offersWindowController = fxmlLoader.getController();
                 offersWindowController.setPickedGroup(pickedGroup);
                 offersWindowController.setPickedEvent(pickedEvent);
-                offersWindowController.setClient(client);
+                offersWindowController.setConnectionManager(connectionManager);
                 offersWindowController.setUser(user);
             } catch(Exception e) {
                 e.printStackTrace();
@@ -166,8 +166,8 @@ public class EventsWindowController {
         this.pickedGroup = pickedGroup;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setConnectionManager(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
     }
 
     public void setUser(User user) {

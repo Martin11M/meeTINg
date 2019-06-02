@@ -9,7 +9,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import meeting.Main;
-import meeting.api.Client;
+import meeting.api.ConnectionManager;
 import meeting.controller.*;
 
 import javafx.event.ActionEvent;
@@ -28,7 +28,7 @@ public class ApplicationService {
             scene.getStylesheets().addAll(Main.class.getResource("/css/background.css").toExternalForm());
 
             stage.setScene(scene);
-            stage.setTitle("meeTINg Client Application");
+            stage.setTitle("meeTINg ConnectionManager Application");
             stage.setResizable(false);
             stage.show();
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class ApplicationService {
         }
     }
 
-    public static void signOut(ActionEvent actionEvent, Class theClass, Client client) {
+    public static void signOut(ActionEvent actionEvent, Class theClass, ConnectionManager connectionManager) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
         alert.setContentText("Do you want to sign out?");
@@ -49,7 +49,7 @@ public class ApplicationService {
                     FXMLLoader fxmlLoader = new FXMLLoader(theClass.getResource("/fxml/LoginWindow.fxml"));
                     loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
                     LoginWindowController loginWindowController = fxmlLoader.getController();
-                    loginWindowController.setClient(client);
+                    loginWindowController.setConnectionManager(connectionManager);
                 } catch(Exception e) {
                     e.printStackTrace();
                 }
@@ -71,27 +71,27 @@ public class ApplicationService {
         alert.showAndWait();
     }
 
-    public static void loadPreviousWindow(ActionEvent actionEvent, Class theClass, Client client, User user, Group group, String resource) {
+    public static void loadPreviousWindow(ActionEvent actionEvent, Class theClass, ConnectionManager connectionManager, User user, Group group, String resource) {
         FXMLLoader fxmlLoader = new FXMLLoader(theClass.getResource(resource));
         ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
         if (theClass == AllGroupsWindowController.class || theClass == EventsWindowController.class || theClass == RequestsReviewWindowController.class) {
-            prepareGroupsWindowController(fxmlLoader, client, user);
+            prepareGroupsWindowController(fxmlLoader, connectionManager, user);
         }
         else if (theClass == OffersWindowController.class) {
-            prepareEventsWindowController(fxmlLoader, client, user, group);
+            prepareEventsWindowController(fxmlLoader, connectionManager, user, group);
         }
     }
 
-    private static void prepareGroupsWindowController(FXMLLoader fxmlLoader, Client client, User user) {
+    private static void prepareGroupsWindowController(FXMLLoader fxmlLoader, ConnectionManager connectionManager, User user) {
         GroupsWindowController groupsWindowController = fxmlLoader.getController();
-        groupsWindowController.setClient(client);
+        groupsWindowController.setConnectionManager(connectionManager);
         groupsWindowController.setUser(user);
     }
 
-    private static void prepareEventsWindowController(FXMLLoader fxmlLoader, Client client, User user, Group group) {
+    private static void prepareEventsWindowController(FXMLLoader fxmlLoader, ConnectionManager connectionManager, User user, Group group) {
         EventsWindowController eventsWindowController = fxmlLoader.getController();
         eventsWindowController.setPickedGroup(group);
-        eventsWindowController.setClient(client);
+        eventsWindowController.setConnectionManager(connectionManager);
         eventsWindowController.setUser(user);
     }
 }

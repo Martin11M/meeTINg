@@ -10,7 +10,7 @@ import meeting.api.response.FlagResponse;
 import meeting.api.response.NewCommentResponse;
 import meeting.api.response.OfferListResponse;
 import meeting.api.response.OfferResponse;
-import meeting.api.Client;
+import meeting.api.ConnectionManager;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import meeting.enums.SystemRole;
@@ -53,7 +53,7 @@ public class OffersWindowController {
     private Group pickedGroup;
 
     private Event pickedEvent;
-    private Client client;
+    private ConnectionManager connectionManager;
     private User user;
 
     private FormattedOffer pickedOffer;
@@ -75,8 +75,8 @@ public class OffersWindowController {
         this.pickedEvent = pickedEvent;
     }
 
-    void setClient(Client client) {
-        this.client = client;
+    void setConnectionManager(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
     }
 
     void setUser(User user) {
@@ -96,20 +96,20 @@ public class OffersWindowController {
                 roleInfoLabel.setText("Logged as " + user.getUsername() + " (Team Leader)");
                 proposeButton.setDisable(true);
             }
-            serializer = new Serializer(client);
+            serializer = new Serializer(connectionManager);
             refreshClicked();
         });
     }
 
     @FXML
     public void signOutClicked(ActionEvent actionEvent) {
-        ApplicationService.signOut(actionEvent, OffersWindowController.class, client);
+        ApplicationService.signOut(actionEvent, OffersWindowController.class, connectionManager);
     }
 
     @FXML
     public void returnClicked(ActionEvent actionEvent) {
         try {
-            ApplicationService.loadPreviousWindow(actionEvent, OffersWindowController.class, client, user, pickedGroup, "/fxml/EventsWindow.fxml");
+            ApplicationService.loadPreviousWindow(actionEvent, OffersWindowController.class, connectionManager, user, pickedGroup, "/fxml/EventsWindow.fxml");
         } catch(Exception e) {
             e.printStackTrace();
         }

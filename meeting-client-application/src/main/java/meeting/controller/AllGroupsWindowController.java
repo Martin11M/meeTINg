@@ -1,11 +1,11 @@
 package meeting.controller;
 
 import javafx.scene.control.*;
+import meeting.api.ConnectionManager;
 import meeting.api.request.GroupListRequest;
 import meeting.api.request.MembershipRequest;
 import meeting.api.response.FlagResponse;
 import meeting.api.response.GroupListResponse;
-import meeting.api.Client;
 import meeting.enums.RequestFlag;
 import meeting.enums.ResponseFlag;
 import javafx.application.Platform;
@@ -29,7 +29,7 @@ public class AllGroupsWindowController {
     @FXML Label roleInfoLabel;
 
     private Group pickedGroup;
-    private Client client;
+    private ConnectionManager connectionManager;
     private User user;
 
     private Serializer serializer;
@@ -41,7 +41,7 @@ public class AllGroupsWindowController {
             if(user.getSystemRole() == USER) {
                 roleInfoLabel.setText("Logged as User (limited options)");
             }
-            serializer = new Serializer(client);
+            serializer = new Serializer(connectionManager);
             applyButton.setDisable(true);
             refreshClicked();
         });
@@ -70,7 +70,7 @@ public class AllGroupsWindowController {
     @FXML
     private void returnClicked(ActionEvent actionEvent) {
         try {
-            ApplicationService.loadPreviousWindow(actionEvent, AllGroupsWindowController.class, client, user, null, "/fxml/GroupsWindow.fxml");
+            ApplicationService.loadPreviousWindow(actionEvent, AllGroupsWindowController.class, connectionManager, user, null, "/fxml/GroupsWindow.fxml");
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -88,7 +88,7 @@ public class AllGroupsWindowController {
 
     @FXML
     private void signOutClicked(ActionEvent actionEvent) {
-        ApplicationService.signOut(actionEvent, EventsWindowController.class, client);
+        ApplicationService.signOut(actionEvent, EventsWindowController.class, connectionManager);
     }
 
     @FXML
@@ -121,8 +121,8 @@ public class AllGroupsWindowController {
         listView.getItems().addAll(groups);
     }
 
-    void setClient(Client client) {
-        this.client = client;
+    void setConnectionManager(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
     }
 
     void setUser(User user) {

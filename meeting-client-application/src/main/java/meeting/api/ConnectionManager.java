@@ -8,7 +8,7 @@ import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-public class Client {
+public class ConnectionManager {
 
     private OutputStream writer;
     private DataInputStream reader;
@@ -21,7 +21,7 @@ public class Client {
     private int packageSize; // jak juz wiemy ile ma paczka, inaczej -1
     private int bytesFromRead; // ile bajtow pobrac read socket
 
-    public Client() {
+    public ConnectionManager() {
         try {
             Socket clientSocket = new Socket("localhost", 9543);
             writer = clientSocket.getOutputStream();
@@ -127,7 +127,7 @@ public class Client {
 
             System.out.println("packageSize: " + packageSize);
 
-            //tu sie wywala client
+            //tu sie wywala client (connectionManager)
             System.arraycopy(tmp, 0, bufferPackage, 0, bytesReceived);
 
         }
