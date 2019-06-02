@@ -164,18 +164,19 @@ void ConnectionManager::delay()
 }
 
 void ConnectionManager::create_listener(int PORT, int BACKLOG) {
-    // TODO mozna dodac tak samo ograniczona ilosc prob stworzenia socketu nasluchujacego (tak jak w handle_new_connection), ale to do ustalenia
+
     bool listener_set = false;
 
     listeneraddr.sin_family = AF_INET;
     listeneraddr.sin_port = htons(PORT);
     inet_pton(AF_INET, "0.0.0.0", &listeneraddr.sin_addr);
+    int attempts = 0;
 
-     while (!listener_set) {
+     while (attempts < 20 && !listener_set) {
 
         if((listenerfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
         {
-            perror("socket");
+            attempts++;
             delay();
             continue;
         }
@@ -190,6 +191,7 @@ void ConnectionManager::create_listener(int PORT, int BACKLOG) {
         if (fcntl(listenerfd, F_SETFL, flags | O_NONBLOCK) == -1) {
             perror("F_SETFL listenerfd");
             close(listenerfd);
+            attempts++;
             delay();
             continue;
         }
@@ -198,6 +200,7 @@ void ConnectionManager::create_listener(int PORT, int BACKLOG) {
         {
             perror("bind");
             close(listenerfd);
+            attempts++;
             delay();
             continue;
         }
@@ -206,12 +209,19 @@ void ConnectionManager::create_listener(int PORT, int BACKLOG) {
         {
             perror("listen");
             close(listenerfd);
+            attempts++;
             delay();
             continue;
         }
 
         listener_set = true;
+        break;
     }
+
+     if(!listener_set) {
+         perror("create_listener() failed");
+         exit(EXIT_FAILURE);
+     }
 }
 
 void ConnectionManager::manage_connections() {
