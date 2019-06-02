@@ -1,0 +1,15 @@
+title Logowanie
+
+alt decisionClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { LOGGING, username, password }
+ServerController->+DataBaseConnection: username, password
+DataBaseConnection->ServerController: id, username, password, systemRole
+ServerController->-ConnectionManager:   Json: { Logging, id, username, password, systemRole }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+end
+

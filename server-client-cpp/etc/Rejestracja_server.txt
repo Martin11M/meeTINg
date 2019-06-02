@@ -1,0 +1,15 @@
+title Rejestracja
+
+alt decisionClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { REGISTR, username, password, isLeader }
+ServerController->+DataBaseConnection: username, password, isLeader
+DataBaseConnection->ServerController: true/false
+ServerController->-ConnectionManager:   Json: { REGISTR }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+end
+

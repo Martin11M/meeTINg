@@ -1,0 +1,70 @@
+title Terminy
+
+alt createClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { MAKEOFR/PROPOFR, eventId, userId, date }
+ServerController->+DataBaseConnection: eventId, userId, date
+DataBaseConnection->ServerController: offerId
+ServerController->-ConnectionManager:   Json: { MAKEOFR/PROPOFR, offerId }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+else refreshClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { EVNTOFR, eventId, userId }
+ServerController->+DataBaseConnection: eventId, userId
+DataBaseConnection->-ServerController: <List> offers, <List> comments, <List> votes
+ServerController->-ConnectionManager: Json: { EVNTOFR, <List> offers, <List> comments, <List> votes }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+else acceptClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { OFRACPT, offerId }
+ServerController->+DataBaseConnection: offerId
+DataBaseConnection->-ServerController: true/false
+ServerController->-ConnectionManager: Json: { OFRACPT }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+else confirmClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { CFRMOFR, offerId }
+ServerController->+DataBaseConnection: offerId
+DataBaseConnection->-ServerController: true/false
+ServerController->-ConnectionManager: Json: { CFRMOFR }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+else voteClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { NEWVOTE, offerId, userId }
+ServerController->+DataBaseConnection: offerId, userId
+DataBaseConnection->-ServerController: true/false
+ServerController->-ConnectionManager: Json: { NEWVOTE }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+else commentClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { COMMENT, userId, eventId, message, postDate }
+ServerController->+DataBaseConnection: userId, eventId, message, postDate
+DataBaseConnection->-ServerController: commentId
+ServerController->-ConnectionManager: Json: { COMMENT, commentId }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+end
+

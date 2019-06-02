@@ -1,0 +1,26 @@
+title Grupy
+
+alt createClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: {MAKEGRP, leaderId, groupName }
+ServerController->+DataBaseConnection: leaderId, groupName
+DataBaseConnection->ServerController: id, name, leader
+ServerController->-ConnectionManager:   Json: { MAKEGRP, id, name, leader }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+else refreshClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { USERGRP, userId }
+ServerController->+DataBaseConnection: userId
+DataBaseConnection->-ServerController: <List> items
+ServerController->-ConnectionManager: Json: { USERGRP, <List> items }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+
+end

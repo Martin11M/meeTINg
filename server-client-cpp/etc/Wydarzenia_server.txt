@@ -1,0 +1,26 @@
+title Wydarzenia
+
+alt decisionClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { MAKEEVT, groupId, eventName }
+ServerController->+DataBaseConnection: groupId, eventName
+DataBaseConnection->ServerController: true/false
+ServerController->-ConnectionManager:   Json: { MAKEEVT, id, name }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+else refreshClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { GRPEVNT, groupId }
+ServerController->+DataBaseConnection: groupId
+DataBaseConnection->-ServerController: <List> items
+ServerController->-ConnectionManager: Json: { GRPEVNT, <List> items }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+end
+

@@ -1,0 +1,26 @@
+title Wszystkie grupy
+
+alt decisionClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { MEMBREQ, userId, groupId }
+ServerController->+DataBaseConnection: userId, groupId
+DataBaseConnection->ServerController: true/false
+ServerController->-ConnectionManager:   Json: { MEMBREQ }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+else refreshClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { GRPLIST, userId }
+ServerController->+DataBaseConnection: userId
+DataBaseConnection->-ServerController: <List> group
+ServerController->-ConnectionManager: Json: { GRPLIST, <List> groups }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+end
+

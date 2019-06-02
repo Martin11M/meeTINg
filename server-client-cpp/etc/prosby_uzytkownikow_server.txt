@@ -1,0 +1,26 @@
+title Prośby użytkowników
+
+alt decisionClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { USERACC/USERDEC, userId, groupId }
+ServerController->+DataBaseConnection: userId, groupId
+DataBaseConnection->ServerController: true/false
+ServerController->-ConnectionManager:   Json: { USERACC/USERDEC }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+else refreshClicked
+
+Client->+ConnectionManager: Header + ReqPackage
+ConnectionManager->+Serializer: ReqPackage
+Serializer->+ServerController: Json: { USERREQ, leaderId }
+ServerController->+DataBaseConnection: leaderId
+DataBaseConnection->-ServerController: <List> request
+ServerController->-ConnectionManager: Json: { USERREQ, <List> request }
+
+ConnectionManager->-Client: ResPackage: Header + Json
+
+end
+
