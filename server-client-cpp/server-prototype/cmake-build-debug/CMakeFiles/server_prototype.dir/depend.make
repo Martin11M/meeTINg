@@ -44,7 +44,6 @@ CMakeFiles/server_prototype.dir/ConnectionManager.cpp.o: ../nlohmann/json.hpp
 
 CMakeFiles/server_prototype.dir/ConsoleManager.cpp.o: ../ConsoleManager.cpp
 CMakeFiles/server_prototype.dir/ConsoleManager.cpp.o: ../ConsoleManager.h
-CMakeFiles/server_prototype.dir/ConsoleManager.cpp.o: ../DataBaseConnection.h
 
 CMakeFiles/server_prototype.dir/DataBaseConnection.cpp.o: ../DataBaseConnection.cpp
 CMakeFiles/server_prototype.dir/DataBaseConnection.cpp.o: ../DataBaseConnection.h

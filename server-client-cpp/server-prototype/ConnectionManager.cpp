@@ -20,7 +20,7 @@ ConnectionManager::ConnectionManager(DataBaseConnection &dbc, void* args, int BA
     pipe_fd2[0] = casted_args[2];
     pipe_fd2[1] = casted_args[3];
     // zainicjalizuje listenerfd, listeneraddr
-    create_listener(casted_args[2], BACKLOG);
+    create_listener(casted_args[4], BACKLOG);
 
     // tworze waitera i daje mu deskryptory ktorych ma nie usunac
     waiter = Waiter(pipe_fd[0], pipe_fd[1], pipe_fd2[0], pipe_fd2[1], listenerfd);
