@@ -17,15 +17,17 @@ ConnectionManager::ConnectionManager(DataBaseConnection &dbc, void* args, int BA
     int* casted_args = (int*) (intptr_t) args;
     pipe_fd[0] = casted_args[0];
     pipe_fd[1] = casted_args[1];
-
+    pipe_fd2[0] = casted_args[2];
+    pipe_fd2[1] = casted_args[3];
     // zainicjalizuje listenerfd, listeneraddr
     create_listener(casted_args[2], BACKLOG);
 
     // tworze waitera i daje mu deskryptory ktorych ma nie usunac
-    waiter = Waiter(pipe_fd[0], pipe_fd[1], listenerfd);
+    waiter = Waiter(pipe_fd[0], pipe_fd[1], pipe_fd2[0], pipe_fd2[1], listenerfd);
 
     waiter.add_descr(listenerfd);
     waiter.add_descr(pipe_fd[0]);
+    waiter.add_descr(pipe_fd2[0]);
 }
 
 int ConnectionManager::send_all(int fd, char *buf, int *len) {

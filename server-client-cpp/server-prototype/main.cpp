@@ -46,6 +46,10 @@ int main(int argc, char* argv[])
         exit(EXIT_FAILURE);
     }
 
+    if (pipe(pipefd2) == -1) {
+        perror("pipe");
+        exit(EXIT_FAILURE);
+    }
     // utworz nowy watek i przekaz mu deskryptor do pipe do read
     pthread_t thread_id;
 

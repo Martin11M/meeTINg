@@ -17,6 +17,7 @@ private:
     int listenerfd; // deskryptor gniazda nasluchujacego
     sockaddr_in listeneraddr; // adres nasluchujacego
     int pipe_fd[2];
+    int pipe_fd2[2];
 
     char buf; // jednobajtowe komunikaty od watka nadrzednego
     bool work = true;
