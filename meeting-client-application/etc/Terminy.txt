@@ -1,0 +1,57 @@
+title Terminy
+
+alt createClicked
+
+OffersWindowController->+Serializer: OfferRequest: MAKEOFR/PROPOFR, eventId, userId, date
+Serializer->+ConnectionManager: Json: { OfferRequest }
+ConnectionManager->+Server : ReqPackage: Header + Json
+Server->-ConnectionManager : Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-OffersWindowController: Json: { MAKEOFR/PROPOFR, offerId }
+
+else refreshClicked
+
+OffersWindowController->+Serializer: OfferListRequest: EVNTOFR, eventId, userId
+Serializer->+ConnectionManager: Json: { OfferListRequest }
+ConnectionManager->+Server : ReqPackage: Header + Json
+Server->-ConnectionManager : Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-OffersWindowController: Json: { EVNTOFR, <List> offers, <List> comments, <List> votes }
+
+else acceptClicked
+
+OffersWindowController->+Serializer: OfferAcceptRequest: OFRACPT, offerId
+Serializer->+ConnectionManager: Json: { OfferAcceptRequest }
+ConnectionManager->+Server : ReqPackage: Header + Json
+Server->-ConnectionManager : Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-OffersWindowController: Json: { OFRACPT }
+
+else confirmClicked
+
+OffersWindowController->+Serializer: OfferConfirmRequest: CFRMOFR, offerId
+Serializer->+ConnectionManager: Json: { OfferConfirmRequest }
+ConnectionManager->+Server : ReqPackage: Header + Json
+Server->-ConnectionManager : Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-OffersWindowController: Json: { CFRMOFR }
+
+else voteClicked
+
+OffersWindowController->+Serializer: VoteRequest: NEWVOTE, offerId, userId
+Serializer->+ConnectionManager: Json: { VoteRequest }
+ConnectionManager->+Server : ReqPackage: Header + Json
+Server->-ConnectionManager : Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-OffersWindowController: Json: { NEWVOTE }
+
+else commentClicked
+
+OffersWindowController->+Serializer: NewCommentRequest: COMMENT, userId, eventId, message, postDate
+Serializer->+ConnectionManager: Json: { NewCommentRequest }
+ConnectionManager->+Server : ReqPackage: Header + Json
+Server->-ConnectionManager : Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-OffersWindowController: Json: { COMMENT, commentId }
+
+end

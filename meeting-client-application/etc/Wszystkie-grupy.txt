@@ -1,0 +1,24 @@
+title Wszystkie grupy
+
+alt applyClicked
+
+AllGroupsWindowController->+Serializer: MembershipRequest: MEMBREQ, userId, groupId
+Serializer->+ConnectionManager: Json: { MembershipRequest }
+ConnectionManager->+Server: ReqPackage: Header + Json
+Server->-ConnectionManager: Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-AllGroupsWindowController: Json: { MEMBREQ }
+
+else refreshClicked
+
+AllGroupsWindowController->+Serializer: GroupListRequest: GRPLIST, userId
+Serializer->+ConnectionManager: Json: { GroupListRequest }
+ConnectionManager->+Server: ReqPackage: Header + Json
+Server->-ConnectionManager: Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-AllGroupsWindowController: Json: { REGISTR, <List> groups }
+
+end
+
+
+

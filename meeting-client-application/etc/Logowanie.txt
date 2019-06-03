@@ -1,0 +1,8 @@
+title Logowanie
+
+LoginWindowController->+Serializer: UserDataRequest: LOGGING, username, password
+Serializer->+ConnectionManager: Json: { UserDataRequest }
+ConnectionManager->+Server: ReqPackage: Header + Json
+Server->-ConnectionManager: Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-LoginWindowController: Json: { LOGGING, id, username, password, systemRole }

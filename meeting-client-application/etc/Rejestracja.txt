@@ -1,0 +1,8 @@
+title Rejestracja
+
+RegistrationWindowController->+Serializer: UserDataRequest: REGISTR, username, password, isLeader
+Serializer->+ConnectionManager: Json: { UserDataRequest }
+ConnectionManager->+Server: ReqPackage: Header + Json
+Server->-ConnectionManager: Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-RegistrationWindowController: Json: { REGISTR }

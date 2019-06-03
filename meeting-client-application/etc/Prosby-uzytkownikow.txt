@@ -1,0 +1,21 @@
+title Prośby użytkowników
+
+alt decisionClicked
+
+RequestsReviewWindowController->+Serializer: RequestDecisionRequest: USERACC/USERDEC, userId, groupId
+Serializer->+ConnectionManager: Json: { RequestDecisionRequest }
+ConnectionManager->+Server: ReqPackage: Header + Json
+Server->-ConnectionManager: ResPackage
+ConnectionManager->-Serializer: Json: { FlagResponse }
+Serializer->-RequestsReviewWindowController: FlagResponse: USERACC/USERDEC
+
+else refreshClicked
+
+RequestsReviewWindowController->+Serializer: RequestReviewListRequest: USERREQ, leaderId
+Serializer->+ConnectionManager: Json: { RequestReviewListRequest }
+ConnectionManager->+Server: ReqPackage: Header + Json
+Server->-ConnectionManager: ResPackage
+ConnectionManager->-Serializer: Json: { RequestReviewListResponse }
+Serializer->-RequestsReviewWindowController: RequestReviewListResponse: USERREQ, <List> requests
+
+end

@@ -1,0 +1,21 @@
+title Grupy
+
+alt createClicked
+
+GroupsWindowController->+Serializer: NewGroupRequest: MAKEGRP, leaderId, groupName
+Serializer->+ConnectionManager: Json: { NewGroupRequest }
+ConnectionManager->+Server : ReqPackage: Header + Json
+Server->-ConnectionManager : Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-GroupsWindowController: Json : { MAKEGRP, id, name, leader }
+
+else refreshClicked
+
+GroupsWindowController->+Serializer: GroupListRequest: USERGRP, userId
+Serializer->+ConnectionManager: Json: { GroupListRequest }
+ConnectionManager->+Server : ReqPackage: Header + Json
+Server->-ConnectionManager : Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-GroupsWindowController: Json: { USERGRP, <List> items }
+
+end

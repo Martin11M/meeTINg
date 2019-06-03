@@ -1,0 +1,21 @@
+title Wydarzenia
+
+alt createClicked
+
+EventsWindowController->+Serializer: NewEventRequest: MAKEEVT, groupId, eventName
+Serializer->+ConnectionManager: Json: { NewEventRequest }
+ConnectionManager->+Server : ReqPackage: Header + Json
+Server->-ConnectionManager : Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-EventsWindowController: Json : { MAKEEVT, id, name }
+
+else refreshClicked
+
+EventsWindowController->+Serializer: EventListRequest: GRPEVNT, groupId
+Serializer->+ConnectionManager: Json: { EventListRequest }
+ConnectionManager->+Server : ReqPackage: Header + Json
+Server->-ConnectionManager : Header + ResPackage
+ConnectionManager->-Serializer: ResPackage
+Serializer->-EventsWindowController: Json: { GRPEVNT, <List> items }
+
+end
