@@ -16,10 +16,13 @@ class Waiter {
     int pipe_write; // zeby przy zamykaniu deskryptorow ominac
     int listener; // zeby przy zamykaniu deskryptorow ominac
 
+    int pipe_read2;
+    int pipe_write2;
+
     std::vector<int> descr_in_use; // deskryptory bedace aktualnie w uzyciu
 
 public:
-    Waiter(int pr, int pw, int l) : pipe_read(pr), pipe_write(pw), listener(l) {
+    Waiter(int pr, int pw, int l, int pr2, int pw2) : pipe_read(pr), pipe_write(pw), listener(l), pipe_read2(pr2), pipe_write2(pw2) {
         FD_ZERO(&master);
         FD_ZERO(&ready);
         FD_ZERO(&errors);
@@ -68,12 +71,12 @@ public:
         for(auto &descr : descr_in_use)
         {
             // nie zamykam pipe do lacznosci z watkiem i swojego socketa nasluchujacego
-            if(descr != pipe_read && descr != pipe_write && descr != listener)
+            if(descr != pipe_read && descr != pipe_write && descr != listener && descr != pipe_read2 && descr != pipe_write2)
                 close_descr(descr);
         }
 
         // fdmax ustawiam na najnizsze mozliwe, bo zamknalem wszystkich klientow
-        fdmax = pipe_read;
+        fdmax = pipe_read2;
         set_if_higher_fd(listener);
     }
 

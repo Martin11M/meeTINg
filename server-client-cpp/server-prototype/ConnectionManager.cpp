@@ -12,20 +12,22 @@ using namespace std;
 
 
 ConnectionManager::ConnectionManager(DataBaseConnection &dbc, void* args, int BACKLOG)
-    :dbc(dbc)
+        :dbc(dbc)
 {
     int* casted_args = (int*) (intptr_t) args;
     pipe_fd[0] = casted_args[0];
     pipe_fd[1] = casted_args[1];
-
+    pipe_fd2[0] = casted_args[2];
+    pipe_fd2[1] = casted_args[3];
     // zainicjalizuje listenerfd, listeneraddr
-    create_listener(casted_args[2], BACKLOG);
+    create_listener(casted_args[4], BACKLOG);
 
     // tworze waitera i daje mu deskryptory ktorych ma nie usunac
-    waiter = Waiter(pipe_fd[0], pipe_fd[1], listenerfd);
+    waiter = Waiter(pipe_fd[0], pipe_fd[1], pipe_fd2[0], pipe_fd2[1], listenerfd);
 
     waiter.add_descr(listenerfd);
     waiter.add_descr(pipe_fd[0]);
+    waiter.add_descr(pipe_fd2[0]);
 }
 
 int ConnectionManager::send_all(int fd, char *buf, int *len) {
@@ -96,19 +98,91 @@ int ConnectionManager::handle_console_request() {
         exit(EXIT_FAILURE);
     }
 
-    if(buf == 'x' || buf == 'q')
-    {
+//    if(buf == 'x' || buf == 'q')
+//    {
+//        waiter.close_all_descr();
+//
+//        if(buf == 'q')
+//        {
+//            dbc.closeConnection();
+//            work = false;
+//        }
+//
+//        return 1;
+//    }
+    int id;
+    char response;
+
+    if(buf=='x'){
         waiter.close_all_descr();
+    }else if(buf=='q'){
+        dbc.closeConnection();
+        work = false;
+    }else if(buf=='r') {
+        response = dbc.showAllGroups();
 
-        if(buf == 'q')
-        {
-            dbc.closeConnection();
-            work = false;
-        }
+    }else if(buf=='t'){
+        response = dbc.showAllUsers();
+    }else if(buf=='y'){
+        response = dbc.showLeaders();
+    }else if(buf=='u'){
+        id = showUserMenu();
+        // system("clear");
 
-        return 1;
+        //cout << "Podaj id uzytkownika do usuniecia: ";
+        //cin >> id;
+       // cout << "ID to delete: " << id;
+        response = dbc.deleteUser(id);
+    }else if(buf=='i') {
+        id = showGroupMenu();
+        //system("clear");
+//        cout << "Podaj id grupy do usuniecia: ";
+//        cin >> id;
+        //cout << "ID to delete: " << id;
+        response = dbc.deleteGroup(id);
     }
-    return 0;
+
+    if(write(pipe_fd2[1], &response, 1) == -1)
+    {
+        perror("write_writefd_pipe");
+        exit(EXIT_FAILURE);
+    }
+//        cout << "wyslalem" << endl;
+    return 1;
+}
+
+int ConnectionManager::showGroupMenu() {
+
+    int choice;
+    int limit = dbc.groupCount();
+    do{
+        char response = dbc.showAllGroups();
+        cin.clear();
+        cout <<endl<< "Wybierz opcje: ";
+        cin >> choice;
+    }while(choice <1  || choice > limit);
+
+    int id = dbc.getGroupID(choice);
+
+    char response = dbc.deleteGroup(id);
+}
+
+int ConnectionManager::showUserMenu(){
+
+    int choice;
+    int limit = dbc.userCount();
+    //cout << "limit: " << limit << endl;
+    do{
+        cin.clear();
+        char response = dbc.showAllUsers();
+
+        cout <<endl<< "Wybor: ";
+        cin >> choice;
+        // cout << "---------------choice: " << choice<<endl;
+    }while(choice < 1 || choice > limit);
+
+    return dbc.getUserID(choice);
+    //char response = dbc.deleteUser(id);
 }
 
 void ConnectionManager::handle_new_connection() {
@@ -172,7 +246,7 @@ void ConnectionManager::create_listener(int PORT, int BACKLOG) {
     inet_pton(AF_INET, "0.0.0.0", &listeneraddr.sin_addr);
     int attempts = 0;
 
-     while (attempts < 20 && !listener_set) {
+    while (attempts < 20 && !listener_set) {
 
         if((listenerfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
         {
@@ -218,10 +292,10 @@ void ConnectionManager::create_listener(int PORT, int BACKLOG) {
         break;
     }
 
-     if(!listener_set) {
-         perror("create_listener() failed");
-         exit(EXIT_FAILURE);
-     }
+    if(!listener_set) {
+        perror("create_listener() failed");
+        exit(EXIT_FAILURE);
+    }
 }
 
 void ConnectionManager::manage_connections() {
@@ -250,4 +324,3 @@ void ConnectionManager::manage_connections() {
     close(pipe_fd[1]);
     close(listenerfd);
 }
-

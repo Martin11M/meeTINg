@@ -45,6 +45,15 @@ public:
     bool offerConfirm(int offerId);
     string makeComment(int userId, int eventId, string message, string dateTime);
     bool makeVote(int offerId, int userId);
+    char showAllGroups();
+    char showAllUsers();
+    char showLeaders();
+    char deleteGroup(int);
+    char deleteUser(int);
+    int groupCount();
+    int userCount();
+    int getGroupID(int choice);
+    int getUserID(int choice);
 };
 
 

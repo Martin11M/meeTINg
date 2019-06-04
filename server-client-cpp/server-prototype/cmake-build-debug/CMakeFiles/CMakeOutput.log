@@ -849,6 +849,7 @@ The CXX compiler identification is GNU, found in "/home/michal/Desktop/master/me
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp
 
+<<<<<<< Updated upstream
 Run Build Command(s):/usr/bin/make cmTC_e3414/fast 
 /usr/bin/make -f CMakeFiles/cmTC_e3414.dir/build.make CMakeFiles/cmTC_e3414.dir/build
 make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
@@ -857,17 +858,35 @@ Building C object CMakeFiles/cmTC_e3414.dir/testCCompiler.c.o
 Linking C executable cmTC_e3414
 /snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e3414.dir/link.txt --verbose=1
 /usr/bin/cc      CMakeFiles/cmTC_e3414.dir/testCCompiler.c.o  -o cmTC_e3414 
+=======
+Run Build Command(s):/usr/bin/make cmTC_d6a27/fast 
+/usr/bin/make -f CMakeFiles/cmTC_d6a27.dir/build.make CMakeFiles/cmTC_d6a27.dir/build
+make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d6a27.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_d6a27.dir/testCCompiler.c.o   -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_d6a27
+/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d6a27.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_d6a27.dir/testCCompiler.c.o  -o cmTC_d6a27 
+>>>>>>> Stashed changes
 make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp
 
+<<<<<<< Updated upstream
 Run Build Command(s):/usr/bin/make cmTC_53a46/fast 
 /usr/bin/make -f CMakeFiles/cmTC_53a46.dir/build.make CMakeFiles/cmTC_53a46.dir/build
 make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 Building C object CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o
 /usr/bin/cc   -v -o CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o   -c /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCCompilerABI.c
+=======
+Run Build Command(s):/usr/bin/make cmTC_63330/fast 
+/usr/bin/make -f CMakeFiles/cmTC_63330.dir/build.make CMakeFiles/cmTC_63330.dir/build
+make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc   -v -o CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o   -c /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCCompilerABI.c
+>>>>>>> Stashed changes
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 OFFLOAD_TARGET_NAMES=nvptx-none
@@ -876,8 +895,13 @@ Target: x86_64-linux-gnu
 Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.4.0-1ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
 Thread model: posix
 gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04) 
+<<<<<<< Updated upstream
 COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
  /usr/lib/gcc/x86_64-linux-gnu/7/cc1 -quiet -v -imultiarch x86_64-linux-gnu /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccvwVWuy.s
+=======
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/cc1 -quiet -v -imultiarch x86_64-linux-gnu /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/cc5nXhVa.s
+>>>>>>> Stashed changes
 GNU C11 (Ubuntu 7.4.0-1ubuntu1~18.04) version 7.4.0 (x86_64-linux-gnu)
 	compiled by GNU C version 7.4.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP
 
@@ -897,6 +921,7 @@ GNU C11 (Ubuntu 7.4.0-1ubuntu1~18.04) version 7.4.0 (x86_64-linux-gnu)
 
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 Compiler executable checksum: ed867d3a178a50a244bc36d984e23f37
+<<<<<<< Updated upstream
 COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
  as -v --64 -o CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o /tmp/ccvwVWuy.s
 GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30
@@ -906,6 +931,17 @@ COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o' 
 Linking C executable cmTC_53a46
 /snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_53a46.dir/link.txt --verbose=1
 /usr/bin/cc     -v CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o  -o cmTC_53a46 
+=======
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+ as -v --64 -o CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o /tmp/cc5nXhVa.s
+GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+Linking C executable cmTC_63330
+/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_63330.dir/link.txt --verbose=1
+/usr/bin/cc     -v CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o  -o cmTC_63330 
+>>>>>>> Stashed changes
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -917,9 +953,15 @@ Thread model: posix
 gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+<<<<<<< Updated upstream
 COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_53a46' '-mtune=generic' '-march=x86-64'
  /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccbtoX8M.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_53a46 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
 COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_53a46' '-mtune=generic' '-march=x86-64'
+=======
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_63330' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccpn5w8g.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_63330 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_63330' '-mtune=generic' '-march=x86-64'
+>>>>>>> Stashed changes
 make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -944,11 +986,19 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp]
   ignore line: []
+<<<<<<< Updated upstream
   ignore line: [Run Build Command(s):/usr/bin/make cmTC_53a46/fast ]
   ignore line: [/usr/bin/make -f CMakeFiles/cmTC_53a46.dir/build.make CMakeFiles/cmTC_53a46.dir/build]
   ignore line: [make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp']
   ignore line: [Building C object CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o]
   ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o   -c /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCCompilerABI.c]
+=======
+  ignore line: [Run Build Command(s):/usr/bin/make cmTC_63330/fast ]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_63330.dir/build.make CMakeFiles/cmTC_63330.dir/build]
+  ignore line: [make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o   -c /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCCompilerABI.c]
+>>>>>>> Stashed changes
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
@@ -957,8 +1007,13 @@ Parsed C implicit link information from above output:
   ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.4.0-1ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
   ignore line: [Thread model: posix]
   ignore line: [gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04) ]
+<<<<<<< Updated upstream
   ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
   ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/cc1 -quiet -v -imultiarch x86_64-linux-gnu /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccvwVWuy.s]
+=======
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/cc1 -quiet -v -imultiarch x86_64-linux-gnu /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/cc5nXhVa.s]
+>>>>>>> Stashed changes
   ignore line: [GNU C11 (Ubuntu 7.4.0-1ubuntu1~18.04) version 7.4.0 (x86_64-linux-gnu)]
   ignore line: [	compiled by GNU C version 7.4.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP]
   ignore line: []
@@ -978,6 +1033,7 @@ Parsed C implicit link information from above output:
   ignore line: []
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
   ignore line: [Compiler executable checksum: ed867d3a178a50a244bc36d984e23f37]
+<<<<<<< Updated upstream
   ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
   ignore line: [ as -v --64 -o CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o /tmp/ccvwVWuy.s]
   ignore line: [GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30]
@@ -987,6 +1043,17 @@ Parsed C implicit link information from above output:
   ignore line: [Linking C executable cmTC_53a46]
   ignore line: [/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_53a46.dir/link.txt --verbose=1]
   ignore line: [/usr/bin/cc     -v CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o  -o cmTC_53a46 ]
+=======
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o /tmp/cc5nXhVa.s]
+  ignore line: [GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [Linking C executable cmTC_63330]
+  ignore line: [/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_63330.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o  -o cmTC_63330 ]
+>>>>>>> Stashed changes
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -998,13 +1065,22 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
+<<<<<<< Updated upstream
   ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_53a46' '-mtune=generic' '-march=x86-64']
   link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccbtoX8M.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_53a46 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+=======
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_63330' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccpn5w8g.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_63330 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+>>>>>>> Stashed changes
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
+<<<<<<< Updated upstream
     arg [-plugin-opt=-fresolution=/tmp/ccbtoX8M.res] ==> ignore
+=======
+    arg [-plugin-opt=-fresolution=/tmp/ccpn5w8g.res] ==> ignore
+>>>>>>> Stashed changes
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -1023,7 +1099,11 @@ Parsed C implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
+<<<<<<< Updated upstream
     arg [cmTC_53a46] ==> ignore
+=======
+    arg [cmTC_63330] ==> ignore
+>>>>>>> Stashed changes
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -1035,7 +1115,11 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
+<<<<<<< Updated upstream
     arg [CMakeFiles/cmTC_53a46.dir/CMakeCCompilerABI.c.o] ==> ignore
+=======
+    arg [CMakeFiles/cmTC_63330.dir/CMakeCCompilerABI.c.o] ==> ignore
+>>>>>>> Stashed changes
     arg [-lgcc] ==> lib [gcc]
     arg [--push-state] ==> ignore
     arg [--as-needed] ==> ignore
@@ -1067,6 +1151,7 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp
 
+<<<<<<< Updated upstream
 Run Build Command(s):/usr/bin/make cmTC_84768/fast 
 /usr/bin/make -f CMakeFiles/cmTC_84768.dir/build.make CMakeFiles/cmTC_84768.dir/build
 make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
@@ -1075,6 +1160,16 @@ Building C object CMakeFiles/cmTC_84768.dir/feature_tests.c.o
 Linking C executable cmTC_84768
 /snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_84768.dir/link.txt --verbose=1
 /usr/bin/cc      CMakeFiles/cmTC_84768.dir/feature_tests.c.o  -o cmTC_84768 
+=======
+Run Build Command(s):/usr/bin/make cmTC_223e7/fast 
+/usr/bin/make -f CMakeFiles/cmTC_223e7.dir/build.make CMakeFiles/cmTC_223e7.dir/build
+make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_223e7.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_223e7.dir/feature_tests.c.o   -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_223e7
+/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_223e7.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_223e7.dir/feature_tests.c.o  -o cmTC_223e7 
+>>>>>>> Stashed changes
 make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -1087,6 +1182,7 @@ make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cp
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp
 
+<<<<<<< Updated upstream
 Run Build Command(s):/usr/bin/make cmTC_ac899/fast 
 /usr/bin/make -f CMakeFiles/cmTC_ac899.dir/build.make CMakeFiles/cmTC_ac899.dir/build
 make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
@@ -1095,6 +1191,16 @@ Building C object CMakeFiles/cmTC_ac899.dir/feature_tests.c.o
 Linking C executable cmTC_ac899
 /snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ac899.dir/link.txt --verbose=1
 /usr/bin/cc      CMakeFiles/cmTC_ac899.dir/feature_tests.c.o  -o cmTC_ac899 
+=======
+Run Build Command(s):/usr/bin/make cmTC_9406d/fast 
+/usr/bin/make -f CMakeFiles/cmTC_9406d.dir/build.make CMakeFiles/cmTC_9406d.dir/build
+make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9406d.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_9406d.dir/feature_tests.c.o   -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_9406d
+/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9406d.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_9406d.dir/feature_tests.c.o  -o cmTC_9406d 
+>>>>>>> Stashed changes
 make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -1107,6 +1213,7 @@ make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cp
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp
 
+<<<<<<< Updated upstream
 Run Build Command(s):/usr/bin/make cmTC_4b4e2/fast 
 /usr/bin/make -f CMakeFiles/cmTC_4b4e2.dir/build.make CMakeFiles/cmTC_4b4e2.dir/build
 make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
@@ -1115,6 +1222,16 @@ Building C object CMakeFiles/cmTC_4b4e2.dir/feature_tests.c.o
 Linking C executable cmTC_4b4e2
 /snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4b4e2.dir/link.txt --verbose=1
 /usr/bin/cc      CMakeFiles/cmTC_4b4e2.dir/feature_tests.c.o  -o cmTC_4b4e2 
+=======
+Run Build Command(s):/usr/bin/make cmTC_a2828/fast 
+/usr/bin/make -f CMakeFiles/cmTC_a2828.dir/build.make CMakeFiles/cmTC_a2828.dir/build
+make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a2828.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_a2828.dir/feature_tests.c.o   -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_a2828
+/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2828.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_a2828.dir/feature_tests.c.o  -o cmTC_a2828 
+>>>>>>> Stashed changes
 make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -1125,6 +1242,7 @@ make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cp
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp
 
+<<<<<<< Updated upstream
 Run Build Command(s):/usr/bin/make cmTC_96199/fast 
 /usr/bin/make -f CMakeFiles/cmTC_96199.dir/build.make CMakeFiles/cmTC_96199.dir/build
 make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
@@ -1133,17 +1251,35 @@ Building CXX object CMakeFiles/cmTC_96199.dir/testCXXCompiler.cxx.o
 Linking CXX executable cmTC_96199
 /snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_96199.dir/link.txt --verbose=1
 /usr/bin/c++       CMakeFiles/cmTC_96199.dir/testCXXCompiler.cxx.o  -o cmTC_96199 
+=======
+Run Build Command(s):/usr/bin/make cmTC_2213b/fast 
+/usr/bin/make -f CMakeFiles/cmTC_2213b.dir/build.make CMakeFiles/cmTC_2213b.dir/build
+make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_2213b.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_2213b.dir/testCXXCompiler.cxx.o -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_2213b
+/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2213b.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_2213b.dir/testCXXCompiler.cxx.o  -o cmTC_2213b 
+>>>>>>> Stashed changes
 make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp
 
+<<<<<<< Updated upstream
 Run Build Command(s):/usr/bin/make cmTC_8ad0f/fast 
 /usr/bin/make -f CMakeFiles/cmTC_8ad0f.dir/build.make CMakeFiles/cmTC_8ad0f.dir/build
 make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 Building CXX object CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o
 /usr/bin/c++    -v -o CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCXXCompilerABI.cpp
+=======
+Run Build Command(s):/usr/bin/make cmTC_509fb/fast 
+/usr/bin/make -f CMakeFiles/cmTC_509fb.dir/build.make CMakeFiles/cmTC_509fb.dir/build
+make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++    -v -o CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCXXCompilerABI.cpp
+>>>>>>> Stashed changes
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 OFFLOAD_TARGET_NAMES=nvptx-none
@@ -1152,8 +1288,13 @@ Target: x86_64-linux-gnu
 Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.4.0-1ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
 Thread model: posix
 gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04) 
+<<<<<<< Updated upstream
 COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
  /usr/lib/gcc/x86_64-linux-gnu/7/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/cccdYpV4.s
+=======
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccBRnJHl.s
+>>>>>>> Stashed changes
 GNU C++14 (Ubuntu 7.4.0-1ubuntu1~18.04) version 7.4.0 (x86_64-linux-gnu)
 	compiled by GNU C version 7.4.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP
 
@@ -1177,6 +1318,7 @@ GNU C++14 (Ubuntu 7.4.0-1ubuntu1~18.04) version 7.4.0 (x86_64-linux-gnu)
 
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 Compiler executable checksum: 3eed20556f1f27506d69be41be2e40fd
+<<<<<<< Updated upstream
 COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
  as -v --64 -o CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o /tmp/cccdYpV4.s
 GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30
@@ -1186,6 +1328,17 @@ COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp
 Linking CXX executable cmTC_8ad0f
 /snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8ad0f.dir/link.txt --verbose=1
 /usr/bin/c++      -v CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_8ad0f 
+=======
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ as -v --64 -o CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccBRnJHl.s
+GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+Linking CXX executable cmTC_509fb
+/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_509fb.dir/link.txt --verbose=1
+/usr/bin/c++      -v CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_509fb 
+>>>>>>> Stashed changes
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -1197,9 +1350,15 @@ Thread model: posix
 gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+<<<<<<< Updated upstream
 COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_8ad0f' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
  /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8DHXYk.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_8ad0f /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
 COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_8ad0f' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+=======
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_509fb' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccDHnZ3A.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_509fb /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_509fb' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+>>>>>>> Stashed changes
 make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -1230,11 +1389,19 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp]
   ignore line: []
+<<<<<<< Updated upstream
   ignore line: [Run Build Command(s):/usr/bin/make cmTC_8ad0f/fast ]
   ignore line: [/usr/bin/make -f CMakeFiles/cmTC_8ad0f.dir/build.make CMakeFiles/cmTC_8ad0f.dir/build]
   ignore line: [make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp']
   ignore line: [Building CXX object CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o]
   ignore line: [/usr/bin/c++    -v -o CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCXXCompilerABI.cpp]
+=======
+  ignore line: [Run Build Command(s):/usr/bin/make cmTC_509fb/fast ]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_509fb.dir/build.make CMakeFiles/cmTC_509fb.dir/build]
+  ignore line: [make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++    -v -o CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCXXCompilerABI.cpp]
+>>>>>>> Stashed changes
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
@@ -1243,8 +1410,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.4.0-1ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
   ignore line: [Thread model: posix]
   ignore line: [gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04) ]
+<<<<<<< Updated upstream
   ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
   ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/cccdYpV4.s]
+=======
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /snap/clion/70/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccBRnJHl.s]
+>>>>>>> Stashed changes
   ignore line: [GNU C++14 (Ubuntu 7.4.0-1ubuntu1~18.04) version 7.4.0 (x86_64-linux-gnu)]
   ignore line: [	compiled by GNU C version 7.4.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP]
   ignore line: []
@@ -1268,6 +1440,7 @@ Parsed CXX implicit link information from above output:
   ignore line: []
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
   ignore line: [Compiler executable checksum: 3eed20556f1f27506d69be41be2e40fd]
+<<<<<<< Updated upstream
   ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
   ignore line: [ as -v --64 -o CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o /tmp/cccdYpV4.s]
   ignore line: [GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30]
@@ -1277,6 +1450,17 @@ Parsed CXX implicit link information from above output:
   ignore line: [Linking CXX executable cmTC_8ad0f]
   ignore line: [/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8ad0f.dir/link.txt --verbose=1]
   ignore line: [/usr/bin/c++      -v CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_8ad0f ]
+=======
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccBRnJHl.s]
+  ignore line: [GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [Linking CXX executable cmTC_509fb]
+  ignore line: [/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_509fb.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_509fb ]
+>>>>>>> Stashed changes
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -1288,13 +1472,22 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
+<<<<<<< Updated upstream
   ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_8ad0f' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
   link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8DHXYk.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_8ad0f /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+=======
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_509fb' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccDHnZ3A.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_509fb /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+>>>>>>> Stashed changes
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
+<<<<<<< Updated upstream
     arg [-plugin-opt=-fresolution=/tmp/cc8DHXYk.res] ==> ignore
+=======
+    arg [-plugin-opt=-fresolution=/tmp/ccDHnZ3A.res] ==> ignore
+>>>>>>> Stashed changes
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -1313,7 +1506,11 @@ Parsed CXX implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
+<<<<<<< Updated upstream
     arg [cmTC_8ad0f] ==> ignore
+=======
+    arg [cmTC_509fb] ==> ignore
+>>>>>>> Stashed changes
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -1325,7 +1522,11 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
+<<<<<<< Updated upstream
     arg [CMakeFiles/cmTC_8ad0f.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+=======
+    arg [CMakeFiles/cmTC_509fb.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+>>>>>>> Stashed changes
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -1353,6 +1554,7 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
 Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp
 
+<<<<<<< Updated upstream
 Run Build Command(s):/usr/bin/make cmTC_d461f/fast 
 /usr/bin/make -f CMakeFiles/cmTC_d461f.dir/build.make CMakeFiles/cmTC_d461f.dir/build
 make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
@@ -1361,6 +1563,16 @@ Building CXX object CMakeFiles/cmTC_d461f.dir/feature_tests.cxx.o
 Linking CXX executable cmTC_d461f
 /snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d461f.dir/link.txt --verbose=1
 /usr/bin/c++       CMakeFiles/cmTC_d461f.dir/feature_tests.cxx.o  -o cmTC_d461f 
+=======
+Run Build Command(s):/usr/bin/make cmTC_26702/fast 
+/usr/bin/make -f CMakeFiles/cmTC_26702.dir/build.make CMakeFiles/cmTC_26702.dir/build
+make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_26702.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_26702.dir/feature_tests.cxx.o -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_26702
+/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_26702.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_26702.dir/feature_tests.cxx.o  -o cmTC_26702 
+>>>>>>> Stashed changes
 make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -1426,6 +1638,7 @@ make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cp
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp
 
+<<<<<<< Updated upstream
 Run Build Command(s):/usr/bin/make cmTC_49c80/fast 
 /usr/bin/make -f CMakeFiles/cmTC_49c80.dir/build.make CMakeFiles/cmTC_49c80.dir/build
 make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
@@ -1434,6 +1647,16 @@ Building CXX object CMakeFiles/cmTC_49c80.dir/feature_tests.cxx.o
 Linking CXX executable cmTC_49c80
 /snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_49c80.dir/link.txt --verbose=1
 /usr/bin/c++       CMakeFiles/cmTC_49c80.dir/feature_tests.cxx.o  -o cmTC_49c80 
+=======
+Run Build Command(s):/usr/bin/make cmTC_aafd7/fast 
+/usr/bin/make -f CMakeFiles/cmTC_aafd7.dir/build.make CMakeFiles/cmTC_aafd7.dir/build
+make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_aafd7.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_aafd7.dir/feature_tests.cxx.o -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_aafd7
+/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aafd7.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_aafd7.dir/feature_tests.cxx.o  -o cmTC_aafd7 
+>>>>>>> Stashed changes
 make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -1499,6 +1722,7 @@ make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cp
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp
 
+<<<<<<< Updated upstream
 Run Build Command(s):/usr/bin/make cmTC_86278/fast 
 /usr/bin/make -f CMakeFiles/cmTC_86278.dir/build.make CMakeFiles/cmTC_86278.dir/build
 make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
@@ -1507,6 +1731,16 @@ Building CXX object CMakeFiles/cmTC_86278.dir/feature_tests.cxx.o
 Linking CXX executable cmTC_86278
 /snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_86278.dir/link.txt --verbose=1
 /usr/bin/c++       CMakeFiles/cmTC_86278.dir/feature_tests.cxx.o  -o cmTC_86278 
+=======
+Run Build Command(s):/usr/bin/make cmTC_6af98/fast 
+/usr/bin/make -f CMakeFiles/cmTC_6af98.dir/build.make CMakeFiles/cmTC_6af98.dir/build
+make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_6af98.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_6af98.dir/feature_tests.cxx.o -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_6af98
+/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6af98.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_6af98.dir/feature_tests.cxx.o  -o cmTC_6af98 
+>>>>>>> Stashed changes
 make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 
@@ -1572,6 +1806,7 @@ make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cp
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp
 
+<<<<<<< Updated upstream
 Run Build Command(s):/usr/bin/make cmTC_6f80f/fast 
 /usr/bin/make -f CMakeFiles/cmTC_6f80f.dir/build.make CMakeFiles/cmTC_6f80f.dir/build
 make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
@@ -1580,6 +1815,16 @@ Building CXX object CMakeFiles/cmTC_6f80f.dir/feature_tests.cxx.o
 Linking CXX executable cmTC_6f80f
 /snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6f80f.dir/link.txt --verbose=1
 /usr/bin/c++       CMakeFiles/cmTC_6f80f.dir/feature_tests.cxx.o  -o cmTC_6f80f 
+=======
+Run Build Command(s):/usr/bin/make cmTC_59337/fast 
+/usr/bin/make -f CMakeFiles/cmTC_59337.dir/build.make CMakeFiles/cmTC_59337.dir/build
+make[1]: Entering directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_59337.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_59337.dir/feature_tests.cxx.o -c /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_59337
+/snap/clion/70/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_59337.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_59337.dir/feature_tests.cxx.o  -o cmTC_59337 
+>>>>>>> Stashed changes
 make[1]: Leaving directory '/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/CMakeFiles/CMakeTmp'
 
 

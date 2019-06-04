@@ -17,6 +17,7 @@ private:
     int listenerfd; // deskryptor gniazda nasluchujacego
     sockaddr_in listeneraddr; // adres nasluchujacego
     int pipe_fd[2];
+    int pipe_fd2[2];
 
     char buf; // jednobajtowe komunikaty od watka nadrzednego
     bool work = true;
@@ -33,7 +34,8 @@ public:
     void handle_client_request(int);
     int send_all(int, char*, int*);
     void delay();
-
+    int showGroupMenu();
+    int showUserMenu();
 };
 
 #endif //SERVER_PROTOTYPE_CONNECTIONMANAGER_H
