@@ -116,7 +116,7 @@ void ServerController::selectAction(int fd, json messageJson, ConnectionManager 
 }
 
 void ServerController::sendResponse(int fd, string response, ConnectionManager &cm){
-
+    cout << response << endl;
     char header[4];
     PackageSizeParser::serialize_int_32(header, response.size());
 
@@ -162,7 +162,7 @@ string ServerController::userRegistration(string userName, string userPassword, 
 string ServerController::userGroups(int userId, DataBaseConnection &dbc) {
     string returnMessage = dbc.userGroupsList(userId);
 
-    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
+    if (returnMessage == "__ERROR") return "{\"flag\":\"__ERROR\"}";
 
     return "{\"flag\":\"USERGRP\"," + returnMessage;
 }
@@ -170,7 +170,7 @@ string ServerController::userGroups(int userId, DataBaseConnection &dbc) {
 string ServerController::allGroups(int userId, DataBaseConnection &dbc) {
     string returnMessage = dbc.allGroups(userId);
 
-    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
+    if (returnMessage == "__ERROR") return "{\"flag\":\"__ERROR\"}";
 
     return "{\"flag\":\"GRPLIST\"," + returnMessage;
 }
@@ -178,7 +178,7 @@ string ServerController::allGroups(int userId, DataBaseConnection &dbc) {
 string ServerController::makeGroup(int userId, string groupName, DataBaseConnection &dbc) {
     string returnMessage = dbc.makeGroup(userId, groupName);
 
-    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
+    if (returnMessage == "__ERROR") return "{\"flag\":\"__ERROR\"}";
 
     return "{\"flag\":\"MAKEGRP\"," + returnMessage;
 }
@@ -196,7 +196,7 @@ string ServerController::applyGroup(int userId, int groupId, DataBaseConnection 
 string ServerController::userRequest(int leaderId, DataBaseConnection &dbc) {
     string returnMessage = dbc.userRequest(leaderId);
 
-    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
+    if (returnMessage == "__ERROR") return "{\"flag\":\"__ERROR\"}";
 
     return "{\"flag\":\"USERREQ\"," + returnMessage;
 }
@@ -224,7 +224,7 @@ string ServerController::userDecline(int userId, int groupId, DataBaseConnection
 string ServerController::groupEvents(int groupId, DataBaseConnection &dbc)  {
     string returnMessage = dbc.groupEvents(groupId);
 
-    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
+    if (returnMessage == "__ERROR") return "{\"flag\":\"__ERROR\"}";
 
     return "{\"flag\":\"GRPEVNT\"," + returnMessage;
 }
@@ -242,7 +242,7 @@ string ServerController::makeEvent(int groupId, string eventName, DataBaseConnec
 string ServerController::showEventOffer(int eventId, int userId, DataBaseConnection &dbc)  {
     string returnMessage = dbc.showEventOffer(eventId) + dbc.showEventComment(eventId) + dbc.showUserVotes(eventId, userId);
 
-    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
+    if (returnMessage == "__ERROR") return "{\"flag\":\"__ERROR\"}";
 
     return "{\"flag\":\"EVNTOFR\"," + returnMessage;
 }
@@ -251,7 +251,7 @@ string ServerController::showEventOffer(int eventId, int userId, DataBaseConnect
 string ServerController::makeOffer(int eventId, int userId, string dateTime , DataBaseConnection &dbc)  {
     string returnMessage = dbc.makeOffer(eventId, userId, dateTime);
 
-    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
+    if (returnMessage == "__ERROR") return "{\"flag\":\"__ERROR\"}";
 
     return returnMessage;
 }
@@ -259,7 +259,7 @@ string ServerController::makeOffer(int eventId, int userId, string dateTime , Da
 string ServerController::makePropOffer(int eventId, int userId, string dateTime , DataBaseConnection &dbc)  {
     string returnMessage = dbc.makePropOffer(eventId, userId, dateTime);
 
-    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
+    if (returnMessage == "__ERROR") return "{\"flag\":\"__ERROR\"}";
 
     return returnMessage;
 }
@@ -277,7 +277,7 @@ string ServerController::offerAccept(int offerId, DataBaseConnection &dbc) {
 string ServerController::makeComment(int userId, int eventId, string message, string dateTime , DataBaseConnection &dbc)  {
     string returnMessage = dbc.makeComment(userId, eventId, message, dateTime);
 
-    if (returnMessage == "_ERROR") return "{\"flag\":\"__ERROR\"}";
+    if (returnMessage == "__ERROR") return "{\"flag\":\"__ERROR\"}";
 
     return returnMessage;
 }
