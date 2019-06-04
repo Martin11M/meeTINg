@@ -245,6 +245,7 @@ void ConnectionManager::create_listener(int PORT, int BACKLOG) {
     listeneraddr.sin_port = htons(PORT);
     inet_pton(AF_INET, "0.0.0.0", &listeneraddr.sin_addr);
     int attempts = 0;
+    int yes = 1;
 
     while (attempts < 20 && !listener_set) {
 
@@ -254,6 +255,8 @@ void ConnectionManager::create_listener(int PORT, int BACKLOG) {
             delay();
             continue;
         }
+
+        setsockopt(listenerfd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &yes, sizeof(int));
 
         int flags = fcntl(listenerfd, F_GETFL);
         if (flags == -1) {
