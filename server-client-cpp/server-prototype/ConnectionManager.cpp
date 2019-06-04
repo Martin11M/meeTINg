@@ -56,6 +56,7 @@ int ConnectionManager::send_all(int fd, char *buf, int *len) {
 
 void ConnectionManager::handle_client_request(int fd) {
 
+
     // mowie klienckiej strukturze zeby sobie odebrala pakiet
     int status = cli_struct[fd].receive_part_message();
 
@@ -306,6 +307,7 @@ void ConnectionManager::manage_connections() {
     // glowna petla, czyli obsluguj wszystkie deskryptory
     while(work)
     {
+
         std::vector<int> ready_descr = waiter.make_select();
 
         // patrze ktory deskryptor obudzil selecta (jak select zwroci -1 to vector pusty, jak select wyskoczy to nic do niego nie wlozy wiec tez pusty)

@@ -28,6 +28,7 @@ void ConsoleManager::runConsole(int readfd, int writefd, int readfd2, int writef
             cout <<endl<< "Wybierz opcje: ";
             cin >> choice;
 
+
         } while(atoi(choice.c_str()) < 1 ||atoi(choice.c_str()) > 7);
 
         switch(atoi(choice.c_str()))

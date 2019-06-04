@@ -116,7 +116,7 @@ void ServerController::selectAction(int fd, json messageJson, ConnectionManager 
 }
 
 void ServerController::sendResponse(int fd, string response, ConnectionManager &cm){
-    cout << response << endl;
+
     char header[4];
     PackageSizeParser::serialize_int_32(header, response.size());
 

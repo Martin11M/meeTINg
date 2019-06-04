@@ -15,10 +15,12 @@ using namespace sql;
 
 class DataBaseConnection {
 
-    sql::Connection *con;
     sql::Driver *driver;
     sql::Statement *stmt;
+    sql::Connection *con;
+
 public:
+    
 
     DataBaseConnection(string userName, string password);
     bool correctLogon(string userName, string password);
@@ -45,6 +47,7 @@ public:
     bool offerConfirm(int offerId);
     string makeComment(int userId, int eventId, string message, string dateTime);
     bool makeVote(int offerId, int userId);
+
     char showAllGroups();
     char showAllUsers();
     char showLeaders();
