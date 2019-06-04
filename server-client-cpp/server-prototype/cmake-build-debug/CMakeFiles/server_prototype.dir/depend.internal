@@ -45,6 +45,7 @@ CMakeFiles/server_prototype.dir/ConnectionManager.cpp.o
 CMakeFiles/server_prototype.dir/ConsoleManager.cpp.o
  /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConsoleManager.cpp
  /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConsoleManager.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
 CMakeFiles/server_prototype.dir/DataBaseConnection.cpp.o
  /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.cpp
  /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h

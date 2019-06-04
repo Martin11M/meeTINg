@@ -538,6 +538,26 @@ Waiter.h
 netinet/in.h
 -
 
+/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.cpp
+DataBaseConnection.h
+/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
+stdlib.h
+-
+iostream
+-
+mysql_connection.h
+-
+cppconn/driver.h
+-
+cppconn/exception.h
+-
+cppconn/resultset.h
+-
+cppconn/statement.h
+-
+string
+-
+
 /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
 string
 -

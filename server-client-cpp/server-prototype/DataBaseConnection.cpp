@@ -993,7 +993,7 @@ int DataBaseConnection::getGroupID(int choice) {
         while (res->next()) {
             count++;
             if(count == choice){
-                cout <<"UWAGA ID:  "<< stoi(res->getString("group_id"));
+                //cout <<"UWAGA ID:  "<< stoi(res->getString("group_id"));
                 return stoi(res->getString("group_id"));
             }
         }
@@ -1022,11 +1022,11 @@ int DataBaseConnection::getUserID(int choice) {
         stmt = con->createStatement();
 
         res = stmt->executeQuery(
-                "SELECT user_id FROM USERS where system_role=0;");
+                "SELECT user_id FROM USER where system_role='0'");
         while (res->next()) {
             ++count;
             if(count == choice){
-                cout << "id!!!!!  "<< std::stoi(res->getString("user_id"));
+                //cout << "id!!!!!  "<< std::stoi(res->getString("user_id"));
                 return  std::stoi(res->getString("user_id"));
             }
         }

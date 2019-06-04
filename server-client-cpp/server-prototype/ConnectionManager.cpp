@@ -171,14 +171,14 @@ int ConnectionManager::showUserMenu(){
 
     int choice=-1;
     int limit = dbc.userCount();
-    cout << "limit: " << limit << endl;
+    //cout << "limit: " << limit << endl;
     do{
         cin.clear();
         char response = dbc.showAllUsers();
 
         cout <<endl<< "Wybor: ";
         cin >> choice;
-        cout << "---------------choice: " << choice<<endl;
+       // cout << "---------------choice: " << choice<<endl;
     }while(choice < 1 || choice > limit);
 
     return dbc.getUserID(choice);

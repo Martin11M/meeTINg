@@ -61,14 +61,14 @@ void ConsoleManager::runConsole(int readfd, int writefd, int readfd2, int writef
             exit(EXIT_FAILURE);
         }
 
-        if (message == 's' || message == 'e')
-        {
+  //      if (message == 's' || message == 'e')
+//        {
             char receive;
             if(read(readfd2, &receive, 1) == -1)
             {
                 perror("read_readfd_pipe 2");
                 exit(EXIT_FAILURE);
             }
-        }
+ //       }
     }
 }
