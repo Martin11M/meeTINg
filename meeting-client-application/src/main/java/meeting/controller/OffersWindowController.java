@@ -107,6 +107,12 @@ public class OffersWindowController {
 
         OfferListResponse offerListResponse = serializer.refreshOffers(groupRequest);
 
+        if(offerListResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                refreshClicked();
+            }
+            return;
+        }
         if(offerListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for EVNTOFR");
             return;
@@ -194,6 +200,12 @@ public class OffersWindowController {
 
         NewCommentResponse newCommentResponse = serializer.createComment(newCommentRequest);
 
+        if(newCommentResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                addComment(comment);
+            }
+            return;
+        }
         if(newCommentResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for COMMENT");
             return;
@@ -233,6 +245,12 @@ public class OffersWindowController {
 
         OfferResponse offerResponse = serializer.createOffer(offerRequest);
 
+        if(offerResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                newOffer(offer, flag);
+            }
+            return;
+        }
         if(offerResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for " + flag.toString());
             return;
@@ -287,6 +305,12 @@ public class OffersWindowController {
 
         FlagResponse flagResponse = serializer.acceptOffer(offerAcceptRequest);
 
+        if(flagResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                acceptClicked();
+            }
+            return;
+        }
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for OFRACPT");
             return;
@@ -317,6 +341,12 @@ public class OffersWindowController {
 
         FlagResponse flagResponse = serializer.createVote(voteRequest);
 
+        if(flagResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                voteClicked();
+            }
+            return;
+        }
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for NEWVOTE");
             return;
@@ -345,6 +375,12 @@ public class OffersWindowController {
 
         FlagResponse flagResponse = serializer.confirmOffer(offerConfirmRequest);
 
+        if(flagResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                confirmClicked();
+            }
+            return;
+        }
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for CFRMOFR");
             return;

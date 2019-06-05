@@ -115,8 +115,15 @@ public class GroupsWindowController {
                 .userId(user.getId())
                 .build();
 
+
         GroupListResponse groupListResponse = serializer.refreshGroups(groupRequest);
 
+        if(groupListResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                refreshClicked();
+            }
+            return;
+        }
         if(groupListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for USERGRP");
             return;
@@ -158,6 +165,12 @@ public class GroupsWindowController {
 
                 NewGroupResponse newGroupResponse = serializer.createGroup(newGroupRequest);
 
+                if(newGroupResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+                    if (ApplicationService.showDisconnectAlert() == 0) {
+                        createClicked();
+                    }
+                    return;
+                }
                 if(newGroupResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
                     ApplicationService.showErrorAlert("Error response for MAKEGRP");
                     return;

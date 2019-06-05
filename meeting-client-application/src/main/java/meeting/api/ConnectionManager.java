@@ -2,7 +2,9 @@ package meeting.api;
 
 import java.io.*;
 
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
@@ -12,6 +14,7 @@ public class ConnectionManager {
 
     private OutputStream writer;
     private DataInputStream reader;
+    private Socket socket;
 
     private byte[] bufferPackage; // zbiera paczke tutaj
     private byte[] portion; // pojedyncze porcje od read socket
@@ -21,18 +24,35 @@ public class ConnectionManager {
     private int packageSize; // jak juz wiemy ile ma paczka, inaczej -1
     private int bytesFromRead; // ile bajtow pobrac read socket
 
-    public ConnectionManager() {
-        try {
-            Socket clientSocket = new Socket("localhost", 9543);
-            writer = clientSocket.getOutputStream();
-            reader = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+    private boolean isConnected;
 
-            init();
+    private String address;
+    private int port;
+
+    public ConnectionManager(String address, String port) {
+        this.address = address;
+        this.port = Integer.parseInt(port);
+    }
+
+    private int initSocket() {
+        try {
+            SocketAddress sockAddr = new InetSocketAddress(address, port);
+            socket = new Socket();
+            socket.setKeepAlive(true);
+            socket.connect(sockAddr, 3000);
+
+            writer = socket.getOutputStream();
+            reader = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Klient rozstawil gniazdo");
+
+            init();
+            isConnected = true;
         } catch (IOException e) {
-            e.printStackTrace();
+            return -1;
         }
+
+        return 0;
     }
 
     private void init() {
@@ -46,6 +66,13 @@ public class ConnectionManager {
 
     public String sendRequestRecResponse(String request) {
 
+        if(!isConnected && initSocket() == -1) {
+                isConnected = false;
+                return "{\"flag\" : \"DISCONN\"}";
+        }
+
+        System.out.println("----------------------------------------------------------------" + socket.isConnected() );
+
         // przychodzi sam json w stringu, wiec dodajemy do niego dlugosc i to jest paczka
         byte[] header = convertIntToHeader(request.length());
 
@@ -57,7 +84,11 @@ public class ConnectionManager {
         sendRequest(pack);
 
         // odbierze cala pacze i umiesci w bufferPackage
-        receiveResponse();
+        if(receiveResponse() == -1) {
+            isConnected = false;
+            return "{\"flag\" : \"DISCONN\"}";
+        }
+
         String response = removeHeader(bufferPackage);
 
         System.out.println("Odebrana wiadomosc (bez header): " + response);
@@ -88,13 +119,15 @@ public class ConnectionManager {
         return responseString;
     }
 
-    private void receiveResponse() {
+    private int receiveResponse() {
 
         while(bytesReceived != packageSize) {
             portion = new byte[bytesNeeded];
 
             try {
                 bytesFromRead = reader.read(portion);
+                if (bytesFromRead == -1)
+                    return -1;
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -102,6 +135,8 @@ public class ConnectionManager {
 
             handlePortion();
         }
+
+        return 0;
     }
 
     private void handlePortion() {
@@ -157,5 +192,13 @@ public class ConnectionManager {
         buffer.order(ByteOrder.BIG_ENDIAN);
         buffer.putInt(mSize);
         return buffer.array();
+    }
+
+    public void closeConnection() {
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

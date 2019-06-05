@@ -55,6 +55,12 @@ public class AllGroupsWindowController {
 
         FlagResponse flagResponse = serializer.applyForMembership(membershipRequest);
 
+        if(flagResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                applyClicked();
+            }
+            return;
+        }
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for MEMBREQ");
             return;
@@ -98,6 +104,12 @@ public class AllGroupsWindowController {
 
         GroupListResponse groupListResponse = serializer.refreshAllGroups(allGroupsRequest);
 
+        if(groupListResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                refreshClicked();
+            }
+            return;
+        }
         if(groupListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for GRPLIST");
             return;

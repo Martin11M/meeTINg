@@ -1,5 +1,7 @@
 package meeting.controller;
 
+import javafx.application.Platform;
+import meeting.api.ConnectionManager;
 import meeting.api.request.UserDataRequest;
 import meeting.api.response.UserLoginResponse;
 import meeting.enums.RequestFlag;
@@ -22,10 +24,23 @@ import static com.google.common.hash.Hashing.sha256;
 
 public class LoginWindowController {
 
-    private Serializer serializer;
-
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
+
+    private String address;
+    private String port;
+
+    @FXML
+    public void initialize() {
+
+        Platform.runLater(() -> {
+            if(address == null)
+                address = "localhost";
+
+            if(port == null)
+                port = "9543";
+        });
+    }
 
     @FXML
     public void signInClicked(ActionEvent event) {
@@ -45,8 +60,15 @@ public class LoginWindowController {
                 .password(hashedPassword)
                 .build();
 
+        ConnectionManager connectionManager = new ConnectionManager(address, port);
+        Serializer serializer = new Serializer(connectionManager);
+
         UserLoginResponse userLoginResponse = serializer.signIn(userDataRequest);
 
+        if(userLoginResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            ApplicationService.showErrorAlert("CANT CONNECT");
+            return;
+        }
         if (userLoginResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Wrong username or password!");
             return;
@@ -77,7 +99,9 @@ public class LoginWindowController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/RegistrationWindow.fxml"));
             ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             RegistrationWindowController registrationWindowController = fxmlLoader.getController();
-            registrationWindowController.setSerializer(serializer);
+            registrationWindowController.setAddress(this.address);
+            registrationWindowController.setPort(this.port);
+
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -87,8 +111,24 @@ public class LoginWindowController {
         return !usernameField.getText().trim().equals("") && !passwordField.getText().trim().equals("");
     }
 
-    public void setSerializer(Serializer serializer) {
-        this.serializer = serializer;
+    public void settingsClicked(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Settings.fxml"));
+            ApplicationService.loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
+            SettingsWindowController settingsWindowController = fxmlLoader.getController();
+            settingsWindowController.setAddress(this.address);
+            settingsWindowController.setPort(this.port);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void setAddress(String address) {
+        this.address = address;
+    }
+
+    void setPort(String port) {
+        this.port = port;
     }
 }
 

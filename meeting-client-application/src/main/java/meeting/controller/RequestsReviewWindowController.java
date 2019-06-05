@@ -69,6 +69,12 @@ public class RequestsReviewWindowController {
 
         RequestReviewListResponse requestReviewListResponse = serializer.refreshRequests(requestReviewListRequest);
 
+        if(requestReviewListResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                refreshClicked();
+            }
+            return;
+        }
         if(requestReviewListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for USERREQ");
             return;
@@ -125,6 +131,12 @@ public class RequestsReviewWindowController {
 
         FlagResponse flagResponse = serializer.makeRequestDecision(requestDecisionRequest);
 
+        if(flagResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                decisionClicked(evt);
+            }
+            return;
+        }
         if(flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for USERACC/USERDEC");
             return;

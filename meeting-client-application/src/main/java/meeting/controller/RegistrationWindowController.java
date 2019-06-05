@@ -1,5 +1,6 @@
 package meeting.controller;
 
+import meeting.api.ConnectionManager;
 import meeting.api.request.UserDataRequest;
 import meeting.api.response.FlagResponse;
 import meeting.enums.RequestFlag;
@@ -26,7 +27,8 @@ public class RegistrationWindowController {
     @FXML private Button registerButton;
     @FXML private Label infoLabel;
 
-    private Serializer serializer;
+    private String address;
+    private String port;
 
     @FXML
     public void registerClicked(ActionEvent event) {
@@ -43,8 +45,17 @@ public class RegistrationWindowController {
                     .isLeader(isLeader.isSelected())
                     .build();
 
+            ConnectionManager connectionManager = new ConnectionManager(address, port);
+            Serializer serializer = new Serializer(connectionManager);
+
             FlagResponse flagResponse = serializer.register(userDataRequest);
 
+            connectionManager.closeConnection();
+
+            if(flagResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+                ApplicationService.showErrorAlert("CANT CONNECT");
+                return;
+            }
             if (flagResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
                 ApplicationService.showErrorAlert("Username is already in use");
                 return;
@@ -63,7 +74,8 @@ public class RegistrationWindowController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginWindow.fxml"));
             ApplicationService.loadStage((Stage)((Node) event.getSource()).getScene().getWindow(), fxmlLoader);
             LoginWindowController loginWindowController = fxmlLoader.getController();
-            loginWindowController.setSerializer(serializer);
+            loginWindowController.setAddress(this.address);
+            loginWindowController.setPort(this.port);
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -78,7 +90,11 @@ public class RegistrationWindowController {
             infoLabel.setText("");
     }
 
-    public void setSerializer(Serializer serializer) {
-        this.serializer = serializer;
+    void setAddress(String address) {
+        this.address = address;
+    }
+
+    void setPort(String port) {
+        this.port = port;
     }
 }

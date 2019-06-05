@@ -26,5 +26,6 @@ public enum ResponseFlag {
     NEWVOTE, // zagłosuj na termin
     COMMENT,  // dodaj komentarz
 
-    __ERROR  // błąd
+    __ERROR,  // błąd
+    DISCONN   // utracono polaczenie
 }

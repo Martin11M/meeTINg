@@ -113,4 +113,8 @@ public class Serializer {
         String response = connectionManager.sendRequestRecResponse(request);
         return gson.fromJson(response, NewCommentResponse.class);
     }
+
+    public ConnectionManager getConnectionManager () {
+        return this.connectionManager;
+    }
 }

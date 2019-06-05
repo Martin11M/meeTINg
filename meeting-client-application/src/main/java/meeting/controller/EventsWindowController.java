@@ -79,6 +79,12 @@ public class EventsWindowController {
 
         EventListResponse eventListResponse = serializer.refreshEvents(eventListRequest);
 
+        if(eventListResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                refreshClicked();
+            }
+            return;
+        }
         if(eventListResponse.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Error response for GRPEVNT");
             return;
@@ -125,6 +131,12 @@ public class EventsWindowController {
 
         NewEventResponse newEventResponse = serializer.createEvent(newEventRequest);
 
+        if(newEventResponse.getFlag().equals(ResponseFlag.DISCONN.toString())) {
+            if (ApplicationService.showDisconnectAlert() == 0) {
+                sendNewEventRequest(name);
+            }
+            return;
+        }
         if(newEventRequest.getFlag().equals(ResponseFlag.__ERROR.toString())) {
             ApplicationService.showErrorAlert("Cannot do request MAKEEVT");
             return;

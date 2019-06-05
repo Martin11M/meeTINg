@@ -48,8 +48,7 @@ public class ApplicationService {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(theClass.getResource("/fxml/LoginWindow.fxml"));
                     loadStage((Stage)((Node) actionEvent.getSource()).getScene().getWindow(), fxmlLoader);
-                    LoginWindowController loginWindowController = fxmlLoader.getController();
-                    loginWindowController.setSerializer(serializer);
+                    serializer.getConnectionManager().closeConnection();
                 } catch(Exception e) {
                     e.printStackTrace();
                 }
@@ -69,6 +68,21 @@ public class ApplicationService {
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.showAndWait();
+    }
+
+    public static int showDisconnectAlert() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setContentText("Connection lost. Resend request?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent()) {
+            ButtonType reloadedResult = result.get();
+            if (reloadedResult == ButtonType.OK) {
+                return 0;
+            }
+        }
+        return -1;
     }
 
     public static void loadPreviousWindow(ActionEvent actionEvent, Class theClass, Serializer serializer, User user, Group group, String resource) {
