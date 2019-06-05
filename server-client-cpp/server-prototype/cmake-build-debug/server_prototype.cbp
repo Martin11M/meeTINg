@@ -8,135 +8,135 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug"/>
+				<Option working_dir="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug"/>
+				<Option working_dir="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="server_prototype">
-				<Option output="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/server_prototype" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug"/>
+				<Option output="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/server_prototype" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/."/>
+					<Add directory="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/."/>
 					<Add directory="/usr/include/cppconn"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 server_prototype"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 server_prototype"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="server_prototype/fast">
-				<Option output="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/server_prototype" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug"/>
+				<Option output="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/server_prototype" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/."/>
+					<Add directory="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/."/>
 					<Add directory="/usr/include/cppconn"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 server_prototype/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 server_prototype/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug"/>
+				<Option working_dir="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ClientStructure.h">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ClientStructure.h">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConnectionManager.cpp">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConnectionManager.cpp">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConnectionManager.h">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConnectionManager.h">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConsoleManager.cpp">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConsoleManager.cpp">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConsoleManager.h">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConsoleManager.h">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.cpp">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.cpp">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/MessageParser.cpp">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/MessageParser.cpp">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/MessageParser.h">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/MessageParser.h">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.cpp">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.cpp">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ResponseFlag.h">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ResponseFlag.h">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ServerController.cpp">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ServerController.cpp">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ServerController.h">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ServerController.h">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Waiter.h">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/Waiter.h">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/main.cpp">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/main.cpp">
 			<Option target="server_prototype"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/CMakeLists.txt">
+		<Unit filename="/home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

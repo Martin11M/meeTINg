@@ -21,7 +21,7 @@ DataBaseConnection::DataBaseConnection(string userName, string password) {
 
         /* Create a connection */
         driver = get_driver_instance();
-        con = driver->connect("tcp://127.0.0.1:3306", "root", "admin");
+        con = driver->connect("tcp://127.0.0.1:3306", userName, password);
         /* Connect to the MySQL test database */
         con->setSchema("meeting");
 
@@ -892,22 +892,22 @@ char DataBaseConnection::deleteGroup(int id) {
 
         while(res->next()){
             sql::ResultSet *res1;
-            res = stmt->executeQuery(
-                    "SELECT offer_id FROM OFFER where event_id='" + res->getString("event_id"));
+            res1 = stmt->executeQuery(
+                    "SELECT offer_id FROM OFFER where event_id='" + res->getString("event_id")+"'");
             while(res1->next()){
                 stmt->executeUpdate(
-                        "DELETE FROM VOTE WHERE offer_id = " + res1->getString("event_id"));
+                        "DELETE FROM VOTE WHERE offer_id = '" + res1->getString("offer_id")+"'");
             }
             stmt->executeUpdate(
-                    "DELETE FROM OFFER WHERE event_id = " + res->getString("event_id"));
+                    "DELETE FROM OFFER WHERE event_id = '" + res->getString("event_id")+"'");
         }
         stmt->executeUpdate(
-                "DELETE FROM EVENT WHERE group_id = " + to_string(id));
+                "DELETE FROM EVENT WHERE group_id = '" + to_string(id)+"'");
 
         stmt->executeUpdate(
-                "DELETE FROM GROUP_USER WHERE group_id = " + to_string(id));
+                "DELETE FROM GROUP_USER WHERE group_id = '" + to_string(id)+"'");
         stmt->executeUpdate(
-                "DELETE FROM GROUPS WHERE group_id = " + to_string(id));
+                "DELETE FROM GROUPS WHERE group_id = '" + to_string(id)+"'");
 
         stmt->close();
         delete stmt;

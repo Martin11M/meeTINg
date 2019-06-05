@@ -22,7 +22,7 @@ class Waiter {
     std::vector<int> descr_in_use; // deskryptory bedace aktualnie w uzyciu
 
 public:
-    Waiter(int pr, int pw, int l, int pr2, int pw2) : pipe_read(pr), pipe_write(pw), listener(l), pipe_read2(pr2), pipe_write2(pw2) {
+    Waiter(int pr, int pw, int pr2, int pw2, int l) : pipe_read(pr), pipe_write(pw), listener(l), pipe_read2(pr2), pipe_write2(pw2) {
         FD_ZERO(&master);
         FD_ZERO(&ready);
         FD_ZERO(&errors);
@@ -76,7 +76,7 @@ public:
         }
 
         // fdmax ustawiam na najnizsze mozliwe, bo zamknalem wszystkich klientow
-        fdmax = pipe_read2;
+        fdmax = pipe_write2;
         set_if_higher_fd(listener);
     }
 

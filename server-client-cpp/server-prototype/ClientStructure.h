@@ -21,7 +21,15 @@ class ClientStructure {
 public:
 
     ClientStructure(int fd) {
-        init();
+       // init();
+        memset(header, 0, 4);
+
+        // jak bytes needed na poczatku dam np 2, to nie zaalokuje nowej, a ta bedzie tylko [2], i przepelnie przy drugiej probie zapisania
+        bytes_needed = 128; // ile chcemy za pierwszym zamahem pobrac bajtow
+        buffer_message = new char[bytes_needed]; // robie bufor zeby pomiescil ten pierwszy rzut
+        message_size = -1;
+        bytes_received = 0;
+        whole_package_size = -1;
         my_fd = fd;
     }
 

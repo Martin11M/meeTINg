@@ -33,22 +33,22 @@ CMakeFiles/server_prototype.dir/ConnectionManager.cpp.o
  .././nlohmann/detail/output/serializer.hpp
  .././nlohmann/detail/value_t.hpp
  .././nlohmann/json_fwd.hpp
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ClientStructure.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConnectionManager.cpp
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConnectionManager.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/MessageParser.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ServerController.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Waiter.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/nlohmann/json.hpp
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ClientStructure.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConnectionManager.cpp
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConnectionManager.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/MessageParser.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ServerController.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/Waiter.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/nlohmann/json.hpp
 CMakeFiles/server_prototype.dir/ConsoleManager.cpp.o
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConsoleManager.cpp
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConsoleManager.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConsoleManager.cpp
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConsoleManager.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
 CMakeFiles/server_prototype.dir/DataBaseConnection.cpp.o
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.cpp
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.cpp
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
 CMakeFiles/server_prototype.dir/MessageParser.cpp.o
  .././nlohmann/adl_serializer.hpp
  .././nlohmann/detail/conversions/from_json.hpp
@@ -81,14 +81,14 @@ CMakeFiles/server_prototype.dir/MessageParser.cpp.o
  .././nlohmann/detail/output/serializer.hpp
  .././nlohmann/detail/value_t.hpp
  .././nlohmann/json_fwd.hpp
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ClientStructure.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/MessageParser.cpp
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/MessageParser.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/nlohmann/json.hpp
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ClientStructure.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/MessageParser.cpp
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/MessageParser.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/nlohmann/json.hpp
 CMakeFiles/server_prototype.dir/PackageSizeParser.cpp.o
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.cpp
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.cpp
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h
 CMakeFiles/server_prototype.dir/ServerController.cpp.o
  .././nlohmann/adl_serializer.hpp
  .././nlohmann/detail/conversions/from_json.hpp
@@ -121,15 +121,15 @@ CMakeFiles/server_prototype.dir/ServerController.cpp.o
  .././nlohmann/detail/output/serializer.hpp
  .././nlohmann/detail/value_t.hpp
  .././nlohmann/json_fwd.hpp
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ClientStructure.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConnectionManager.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ResponseFlag.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ServerController.cpp
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ServerController.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Waiter.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/nlohmann/json.hpp
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ClientStructure.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConnectionManager.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ResponseFlag.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ServerController.cpp
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ServerController.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/Waiter.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/nlohmann/json.hpp
 CMakeFiles/server_prototype.dir/main.cpp.o
  .././nlohmann/adl_serializer.hpp
  .././nlohmann/detail/conversions/from_json.hpp
@@ -162,12 +162,12 @@ CMakeFiles/server_prototype.dir/main.cpp.o
  .././nlohmann/detail/output/serializer.hpp
  .././nlohmann/detail/value_t.hpp
  .././nlohmann/json_fwd.hpp
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ClientStructure.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConnectionManager.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ConsoleManager.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/ServerController.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/Waiter.h
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/main.cpp
- /home/michal/Desktop/master/meeTINg/server-client-cpp/server-prototype/nlohmann/json.hpp
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ClientStructure.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConnectionManager.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ConsoleManager.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/DataBaseConnection.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/PackageSizeParser.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/ServerController.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/Waiter.h
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/main.cpp
+ /home/marjan/Desktop/meeTINg/server-client-cpp/server-prototype/nlohmann/json.hpp

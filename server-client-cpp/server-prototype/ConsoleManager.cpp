@@ -2,7 +2,12 @@
 #include <unistd.h>
 #include "ConsoleManager.h"
 
-#include <cstdlib>
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+#include<sys/types.h>
+#include<string.h>
+#include<sys/wait.h>
 
 using namespace std;
 
@@ -64,14 +69,12 @@ void ConsoleManager::runConsole(int readfd, int writefd, int readfd2, int writef
             exit(EXIT_FAILURE);
         }
 
-        //      if (message == 's' || message == 'e')
-//        {
         char receive;
-        if(read(readfd2, &receive, 1) == -1)
+        if(read(readfd2, &receive, sizeof(receive)) == -1)
         {
             perror("read_readfd_pipe 2");
             exit(EXIT_FAILURE);
         }
-        //       }
+
     }
 }

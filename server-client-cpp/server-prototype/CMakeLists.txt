@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.13)
 project(server_prototype)
 
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS -pthread )
+set(CMAKE_CXX_FLAGS -pthread)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -gdwarf-3")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -gdwarf-3")
 
 include_directories(. "/usr/include/cppconn")
 link_directories("/usr/lib/" "mysqlcppconn")

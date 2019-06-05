@@ -59,13 +59,16 @@ void ConnectionManager::handle_client_request(int fd) {
     // mowie klienckiej strukturze zeby sobie odebrala pakiet
     int status = cli_struct[fd].receive_part_message();
 
-    // struct cli mowi mi ze rozlaczyl sie lub sa bledy, to zamykam jego deskryptor
+    // struct cli mowi mi ze rozlaczyl sie lub sa bledy, to zamykam jego deskryptor1
     if(status  < 0)
     {
         if(status == -1) // koniec lacznosci
             printf("~~ Socket %d hung up \n", fd);
-        else
+        else{
+            cout << "recv error!!!" << endl;
             perror("recv");
+        }
+
 
         // mowie waiterowi zeby usunal deskryptor ze zbioru i go zamknal
         waiter.close_descr(fd);
@@ -92,62 +95,40 @@ void ConnectionManager::handle_client_request(int fd) {
 }
 
 int ConnectionManager::handle_console_request() {
-    if(read(pipe_fd[0], &buf, 1) == -1)
+    if(read(pipe_fd[0], &buf1, sizeof(buf1)) == -1)
     {
         perror("read_readfd_pipe");
         exit(EXIT_FAILURE);
     }
 
-//    if(buf == 'x' || buf == 'q')
-//    {
-//        waiter.close_all_descr();
-//
-//        if(buf == 'q')
-//        {
-//            dbc.closeConnection();
-//            work = false;
-//        }
-//
-//        return 1;
-//    }
     int id;
     char response;
 
-    if(buf=='x'){
+    if(buf1=='x'){
         waiter.close_all_descr();
-    }else if(buf=='q'){
+        response='s';
+    }else if(buf1=='q'){
         dbc.closeConnection();
         work = false;
-    }else if(buf=='r') {
+    }else if(buf1=='r') {
         response = dbc.showAllGroups();
-
-    }else if(buf=='t'){
+    }else if(buf1=='t'){
         response = dbc.showAllUsers();
-    }else if(buf=='y'){
+    }else if(buf1=='y'){
         response = dbc.showLeaders();
-    }else if(buf=='u'){
+    }else if(buf1=='u'){
         id = showUserMenu();
-        // system("clear");
-
-        //cout << "Podaj id uzytkownika do usuniecia: ";
-        //cin >> id;
-       // cout << "ID to delete: " << id;
         response = dbc.deleteUser(id);
-    }else if(buf=='i') {
+    }else if(buf1=='i') {
         id = showGroupMenu();
-        //system("clear");
-//        cout << "Podaj id grupy do usuniecia: ";
-//        cin >> id;
-        //cout << "ID to delete: " << id;
         response = dbc.deleteGroup(id);
     }
 
-    if(write(pipe_fd2[1], &response, 1) == -1)
+    if(write(pipe_fd2[1], &response, sizeof(response)) == -1)
     {
         perror("write_writefd_pipe");
         exit(EXIT_FAILURE);
     }
-//        cout << "wyslalem" << endl;
     return 1;
 }
 
@@ -164,7 +145,6 @@ int ConnectionManager::showGroupMenu() {
 
     int id = dbc.getGroupID(choice);
 
-    char response = dbc.deleteGroup(id);
 }
 
 int ConnectionManager::showUserMenu(){
@@ -325,5 +305,7 @@ void ConnectionManager::manage_connections() {
 
     close(pipe_fd[0]);
     close(pipe_fd[1]);
+    close(pipe_fd2[0]);
+    close(pipe_fd2[1]);
     close(listenerfd);
 }

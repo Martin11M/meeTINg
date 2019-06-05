@@ -20,6 +20,7 @@ private:
     int pipe_fd2[2];
 
     char buf; // jednobajtowe komunikaty od watka nadrzednego
+    char buf1;
     bool work = true;
 
     ServerController sc;
