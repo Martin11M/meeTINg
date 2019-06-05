@@ -304,10 +304,29 @@ void ConnectionManager::create_listener(int PORT, int BACKLOG) {
 
 void ConnectionManager::manage_connections() {
 
+
+
     // glowna petla, czyli obsluguj wszystkie deskryptory
     while(work)
     {
+        while(!dbc.testConnection()) {
+            dbc.closeConnection();
 
+            cout << "przerwa" << endl;
+            sleep(10);
+
+            try {
+                cout << " po 10 sekundach" << endl;
+                dbc = DataBaseConnection("root", "admin");
+            }catch (sql::SQLException &e) {
+                cout << "# ERR: SQLException in " << __FILE__;
+                cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+                cout << "# ERR: " << e.what();
+                cout << " (MySQL error code: " << e.getErrorCode();
+                cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+            }
+        }
+        cout << "essas " << endl;
         std::vector<int> ready_descr = waiter.make_select();
 
         // patrze ktory deskryptor obudzil selecta (jak select zwroci -1 to vector pusty, jak select wyskoczy to nic do niego nie wlozy wiec tez pusty)

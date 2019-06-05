@@ -20,12 +20,14 @@ class DataBaseConnection {
     sql::Connection *con;
 
 public:
-    
+
 
     DataBaseConnection(string userName, string password);
+    bool testConnection();
+    bool createConnection();
     bool correctLogon(string userName, string password);
     void usersList();
-    void closeConnection();
+    bool closeConnection();
     string userLoginData(string userName);
     bool correctRegistration(string userName, string password, bool isLeader);
     string userGroupsList(int userId);

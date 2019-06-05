@@ -21,9 +21,10 @@ DataBaseConnection::DataBaseConnection(string userName, string password) {
 
         /* Create a connection */
         driver = get_driver_instance();
-        con = driver->connect("tcp://127.0.0.1:3306", "root", "admin");
+        con = driver->connect("tcp://127.0.0.1:3306", userName, password);
         /* Connect to the MySQL test database */
         con->setSchema("meeting");
+        cout << " udalo sie postawic baze" << endl;
 
 
     } catch (sql::SQLException &e) {
@@ -32,9 +33,34 @@ DataBaseConnection::DataBaseConnection(string userName, string password) {
         cout << "# ERR: " << e.what();
         cout << " (MySQL error code: " << e.getErrorCode();
         cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+
     }
 
 }
+
+
+bool DataBaseConnection::testConnection() {
+
+    try {
+        sql::ResultSet *res;
+
+        stmt = con->createStatement();
+
+        res = stmt->executeQuery("SELECT 1 FROM USER" );
+        stmt->close();
+        res->close();
+        delete res;
+        delete stmt;
+
+        return 1;
+
+
+    } catch (sql::SQLException &e) {
+        return 0;
+    }
+
+}
+
 
 
 bool DataBaseConnection::correctLogon(string userName, string password) {
@@ -151,11 +177,20 @@ bool DataBaseConnection::correctRegistration(string userName, string password, b
 }
 
 
-void DataBaseConnection::closeConnection() {
-    cout << "Close connection" << endl;
-    con->close();
+bool DataBaseConnection::closeConnection()
+{
+    try
+    {
+        this->con->close();
+        delete this->con;
+        this->driver->threadEnd();
+        return true;
+    }
+    catch(sql::SQLException &e)
+    {
+        return false;
+    }
 
-    delete con;
 }
 
 string DataBaseConnection::userGroupsList(int userId) {
